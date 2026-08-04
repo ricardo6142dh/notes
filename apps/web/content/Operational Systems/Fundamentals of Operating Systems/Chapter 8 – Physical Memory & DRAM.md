@@ -1,0 +1,37 @@
+---
+tags:
+  - course/operating-systems
+  - topic/memory
+  - topic/dram
+course: "[[Fundamentals of Operating Systems]]"
+---
+
+
+# Chapter 8 – Physical Memory & DRAM
+
+### Core idea
+
+Physical memory (DRAM) is **not uniform** and has **performance constraints**.
+
+### DRAM basics
+
+- **SRAM**
+    - Very fast, expensive
+    - Used for CPU caches
+- **DRAM**
+    - Slower, cheaper
+    - Needs constant refresh
+- Memory access happens in **bursts** (e.g. 64 bytes)
+
+### Modern RAM
+
+- **SDRAM** – synchronized with CPU clock
+- **DDR (Double Data Rate)** – two transfers per cycle
+- **DDR4 / DDR5**
+    - Larger prefetch buffers
+    - Higher bandwidth
+
+### Exam traps
+
+- RAM is not byte-by-byte accessed
+- Cache line size matters for performance

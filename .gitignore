@@ -1,0 +1,24 @@
+node_modules/
+dist/
+.next/
+out/
+/public/
+*.tsbuildinfo
+.env
+.env.local
+.vercel/
+.DS_Store
+refs/
+quartz/.quartz-cache/
+
+# Prebuild static artifacts
+apps/web/.generated/
+apps/web/.server-routes-backup/
+apps/web/public/graph.json
+apps/web/public/preview-index.json
+apps/web/public/content/
+apps/web/public/pagefind/
+
+.claude/
+.superset/
+.obsidian/
