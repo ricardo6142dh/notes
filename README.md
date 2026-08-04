@@ -1,10 +1,29 @@
 # notes
 
-Public Obsidian vault with study notes on system design, operating systems, databases, caching, communication patterns, and distributed systems.
+Public Obsidian digital garden powered by Quartz and deployed on Vercel.
+
+Production URL: https://notes.rick.wiki
+
+## Local Development
+
+Open `content/` as the Obsidian vault.
+
+```bash
+npm install
+npm run dev
+```
+
+## Build
+
+```bash
+npm run build
+```
+
+Quartz writes the static site to `public/`.
 
 ## Structure
 
-- `System Design/` - system design concepts and patterns
-- `Operational Systems/` - operating systems notes
-- `Articles/` - article and paper notes
-- `Templates/` - Obsidian templates for new notes
+- `content/System Design/` - system design concepts and patterns
+- `content/Operational Systems/` - operating systems notes
+- `content/Articles/` - article and paper notes
+- `content/Templates/` - Obsidian templates for new notes

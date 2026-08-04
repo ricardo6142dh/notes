@@ -1,5 +1,10 @@
 .DS_Store
-.obsidian/workspace.json
-.obsidian/workspace-mobile.json
-.obsidian/plugins/
+node_modules/
+public/
+.quartz-cache/
+.vercel/
+content/.obsidian/workspace.json
+content/.obsidian/workspace-mobile.json
+content/.obsidian/plugins/
 .trash/
+content/.trash/
