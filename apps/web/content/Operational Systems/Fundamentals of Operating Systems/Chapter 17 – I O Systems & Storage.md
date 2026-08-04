@@ -15,8 +15,6 @@ aliases:
   - I/O Systems & Storage
 ---
 
-prev:: [[Chapter 16 – Concurrency & Synchronization]]
-next:: [[Chapter 18 – Sockets]]
 
 # Chapter 17 – I/O Systems & Storage
 

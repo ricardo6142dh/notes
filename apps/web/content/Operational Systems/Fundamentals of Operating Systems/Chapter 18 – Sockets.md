@@ -14,8 +14,6 @@ aliases:
   - Sockets
 ---
 
-prev:: [[Chapter 17 – I O Systems & Storage]]
-next::
 
 # Chapter 18 – Sockets
 

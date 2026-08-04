@@ -13,8 +13,6 @@ aliases:
   - The Stack
 ---
 
-prev:: [[Chapter 4 – Process Execution (Fetch–Execute Cycle)]]
-next:: [[Chapter 6 – Data Section & Heap]]
 
 # Chapter 5 – The Stack
 

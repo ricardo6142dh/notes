@@ -13,8 +13,6 @@ aliases:
   - Physical Memory & DRAM
 ---
 
-prev:: [[Chapter 7 – Memory Management Basics]]
-next:: [[Chapter 9 – Virtual Memory]]
 
 # Chapter 8 – Physical Memory & DRAM
 

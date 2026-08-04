@@ -13,8 +13,6 @@ aliases:
   - System Architecture
 ---
 
-prev:: [[Chapter 1 – Introduction to Operating Systems]]
-next:: [[Chapter 3 – Programs vs Processes]]
 
 # Chapter 2 – System Architecture
 

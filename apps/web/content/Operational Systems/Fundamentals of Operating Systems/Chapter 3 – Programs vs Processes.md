@@ -12,8 +12,6 @@ aliases:
   - Programs vs Processes
 ---
 
-prev:: [[Chapter 2 – System Architecture]]
-next:: [[Chapter 4 – Process Execution (Fetch–Execute Cycle)]]
 
 # Chapter 3 – Programs vs Processes
 

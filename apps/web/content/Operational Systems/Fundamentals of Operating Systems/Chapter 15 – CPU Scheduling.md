@@ -13,8 +13,6 @@ aliases:
   - CPU Scheduling
 ---
 
-prev:: [[Chapter 14 – Context Switching]]
-next:: [[Chapter 16 – Concurrency & Synchronization]]
 
 # Chapter 15 – CPU Scheduling
 

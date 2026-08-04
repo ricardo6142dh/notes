@@ -13,8 +13,6 @@ aliases:
   - Data Section & Heap
 ---
 
-prev:: [[Chapter 5 – The Stack]]
-next:: [[Chapter 7 – Memory Management Basics]]
 
 # Chapter 6 – Data Section & Heap
 

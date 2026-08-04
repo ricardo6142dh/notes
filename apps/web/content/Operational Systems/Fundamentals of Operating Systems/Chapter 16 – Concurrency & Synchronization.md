@@ -13,8 +13,6 @@ aliases:
   - Concurrency & Synchronization
 ---
 
-prev:: [[Chapter 15 – CPU Scheduling]]
-next:: [[Chapter 17 – I O Systems & Storage]]
 
 # Chapter 16 – Concurrency & Synchronization
 

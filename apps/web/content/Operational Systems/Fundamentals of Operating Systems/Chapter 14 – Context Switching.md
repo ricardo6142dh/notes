@@ -13,8 +13,6 @@ aliases:
   - Context Switching
 ---
 
-prev:: [[Chapter 13 – Processes vs Threads]]
-next:: [[Chapter 15 – CPU Scheduling]]
 
 # Chapter 14 – Context Switching
 

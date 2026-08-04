@@ -13,8 +13,6 @@ aliases:
   - Paging, Page Tables & Swap
 ---
 
-prev:: [[Chapter 9 – Virtual Memory]]
-next:: [[Chapter 11 – DMA (Direct Memory Access)]]
 
 # Chapter 10 – Paging, Page Tables & Swap
 

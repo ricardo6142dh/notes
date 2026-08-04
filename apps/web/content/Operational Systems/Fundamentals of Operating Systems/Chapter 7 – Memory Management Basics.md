@@ -13,8 +13,6 @@ aliases:
   - Memory Management Basics
 ---
 
-prev:: [[Chapter 6 – Data Section & Heap]]
-next:: [[Chapter 8 – Physical Memory & DRAM]]
 
 # Chapter 7 – Memory Management Basics
 

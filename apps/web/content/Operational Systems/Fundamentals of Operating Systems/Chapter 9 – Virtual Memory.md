@@ -13,8 +13,6 @@ aliases:
   - Virtual Memory
 ---
 
-prev:: [[Chapter 8 – Physical Memory & DRAM]]
-next:: [[Chapter 10 – Paging, Page Tables & Swap]]
 
 # Chapter 9 – Virtual Memory
 

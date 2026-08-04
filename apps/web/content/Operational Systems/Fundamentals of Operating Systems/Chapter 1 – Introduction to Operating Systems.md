@@ -16,8 +16,6 @@ aliases:
   - OS Introduction
 ---
 
-prev::
-next:: [[Chapter 2 – System Architecture]]
 
 # Chapter 1 – Introduction to Operating Systems
 
