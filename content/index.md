@@ -3,6 +3,7 @@ tags:
   - area/system-design
   - type/index
 type: index
+title: Ricardo Notes
 aliases:
   - Home
   - Notes
