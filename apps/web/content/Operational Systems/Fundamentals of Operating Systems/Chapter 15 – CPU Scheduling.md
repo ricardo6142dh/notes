@@ -13,7 +13,6 @@ aliases:
   - CPU Scheduling
 ---
 
-up:: [[Fundamentals of Operating Systems]]
 prev:: [[Chapter 14 – Context Switching]]
 next:: [[Chapter 16 – Concurrency & Synchronization]]
 

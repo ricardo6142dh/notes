@@ -9,7 +9,6 @@ aliases:
   - Políticas de Evicção
 ---
 
-up:: [[Definicao de Cache|Definição de Cache]]
 related:: [[Métricas de Eficiência em Sistemas de Cache]], [[Arquiteturas de Cache (Cache Patterns)]]
 
 # Políticas de Evicção e Substituição

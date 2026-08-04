@@ -8,7 +8,6 @@ aliases:
   - Consistency
 ---
 
-up:: [[CAP Theorem]]
 related:: [[Availability]], [[Partition Tolerance]], [[ACID]]
 
 # Consistency

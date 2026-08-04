@@ -8,7 +8,6 @@ aliases:
   - Algoritmos de Balanceamento
 ---
 
-up:: [[Load Balancing (Balanceamento de Carga)]]
 related:: [[API Gateway]]
 
 # Algoritmos de Balanceamento de Carga

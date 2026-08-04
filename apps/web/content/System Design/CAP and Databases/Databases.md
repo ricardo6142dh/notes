@@ -9,7 +9,6 @@ aliases:
   - Tipos de Bancos de Dados
 ---
 
-up:: [[System Design]]
 related:: [[Data Models]], [[Database Models Reference]], [[ACID]], [[BASE]], [[CAP Theorem]], [[PACELC]]
 
 # Abstração de Armazenamento & Tipos de Bancos de Dados

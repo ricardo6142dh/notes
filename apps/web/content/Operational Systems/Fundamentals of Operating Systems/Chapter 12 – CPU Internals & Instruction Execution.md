@@ -13,7 +13,6 @@ aliases:
   - CPU Internals & Instruction Execution
 ---
 
-up:: [[Fundamentals of Operating Systems]]
 prev:: [[Chapter 11 – DMA (Direct Memory Access)]]
 next:: [[Chapter 13 – Processes vs Threads]]
 

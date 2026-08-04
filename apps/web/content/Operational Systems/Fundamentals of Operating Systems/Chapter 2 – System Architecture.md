@@ -13,7 +13,6 @@ aliases:
   - System Architecture
 ---
 
-up:: [[Fundamentals of Operating Systems]]
 prev:: [[Chapter 1 – Introduction to Operating Systems]]
 next:: [[Chapter 3 – Programs vs Processes]]
 

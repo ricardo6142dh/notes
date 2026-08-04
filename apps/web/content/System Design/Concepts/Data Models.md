@@ -9,7 +9,6 @@ aliases:
   - Data Modeling
 ---
 
-up:: [[System Design]]
 related:: [[Databases]], [[Database Models Reference]]
 
 # Data Models

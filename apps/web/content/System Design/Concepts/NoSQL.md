@@ -8,7 +8,6 @@ aliases:
   - NoSQL
 ---
 
-up:: [[Databases]]
 related:: [[BASE]], [[CAP Theorem]], [[Database Models Reference]]
 
 # NoSQL

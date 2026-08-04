@@ -9,7 +9,6 @@ aliases:
   - GraphQL
 ---
 
-up:: [[System Design]]
 related:: [[HTTP & REST]], [[API Gateway]], [[WebSockets]]
 
 # GraphQL

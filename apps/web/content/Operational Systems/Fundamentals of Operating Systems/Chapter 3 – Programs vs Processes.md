@@ -12,7 +12,6 @@ aliases:
   - Programs vs Processes
 ---
 
-up:: [[Fundamentals of Operating Systems]]
 prev:: [[Chapter 2 – System Architecture]]
 next:: [[Chapter 4 – Process Execution (Fetch–Execute Cycle)]]
 

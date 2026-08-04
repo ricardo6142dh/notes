@@ -8,7 +8,6 @@ aliases:
   - ACID Transactions
 ---
 
-up:: [[Databases]]
 related:: [[BASE]], [[Consistency]]
 
 # ACID

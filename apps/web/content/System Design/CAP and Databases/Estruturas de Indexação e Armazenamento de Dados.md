@@ -11,7 +11,6 @@ aliases:
   - Índices de Banco de Dados
 ---
 
-up:: [[Databases]]
 related:: [[Database Models Reference]], [[ACID]], [[BASE]]
 
 # Estruturas de Indexação e Armazenamento de Dados

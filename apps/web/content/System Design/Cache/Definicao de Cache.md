@@ -8,7 +8,6 @@ aliases:
   - Definição de Cache
 ---
 
-up:: [[System Design]]
 related:: [[Arquiteturas de Cache (Cache Patterns)]], [[Métricas de Eficiência em Sistemas de Cache]], [[Políticas de Evicção e Substituição]]
 
 # Definição de Cache

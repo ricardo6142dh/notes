@@ -8,7 +8,6 @@ aliases:
   - Paralelismo
 ---
 
-up:: [[System Design]]
 related:: [[Concorrência]], [[Paralelismo Interno X Externo]]
 
 # Paralelismo

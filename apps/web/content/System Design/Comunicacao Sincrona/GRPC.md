@@ -10,7 +10,6 @@ aliases:
   - gRPC
 ---
 
-up:: [[System Design]]
 related:: [[RPC]], [[HTTP & REST]], [[Protocol Buffers]], [[API Gateway]]
 
 # gRPC

@@ -8,7 +8,6 @@ aliases:
   - Basically Available Soft State Eventual Consistency
 ---
 
-up:: [[Databases]]
 related:: [[ACID]], [[CAP Theorem]], [[Availability]], [[Consistency]]
 
 # BASE

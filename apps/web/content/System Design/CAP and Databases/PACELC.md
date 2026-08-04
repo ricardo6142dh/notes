@@ -10,7 +10,6 @@ aliases:
   - PC EC
 ---
 
-up:: [[CAP Theorem]]
 related:: [[CAP Combinations]], [[Consistency]], [[Availability]], [[Partition]]
 
 # PACELC

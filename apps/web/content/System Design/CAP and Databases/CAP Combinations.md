@@ -9,7 +9,6 @@ aliases:
   - CP AP CA
 ---
 
-up:: [[CAP Theorem]]
 related:: [[Consistency]], [[Availability]], [[Partition Tolerance]], [[PACELC]]
 
 # CAP Combinations

@@ -11,7 +11,6 @@ aliases:
   - Webhooks & Pooling
 ---
 
-up:: [[System Design]]
 related:: [[HTTP & REST]], [[WebSockets]], [[API Gateway]]
 
 # Webhooks & Polling

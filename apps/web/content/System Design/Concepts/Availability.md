@@ -8,7 +8,6 @@ aliases:
   - Availability
 ---
 
-up:: [[CAP Theorem]]
 related:: [[Consistency]], [[Partition Tolerance]], [[BASE]]
 
 # Availability

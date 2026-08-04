@@ -8,7 +8,6 @@ aliases:
   - Microservices
 ---
 
-up:: [[System Design]]
 related:: [[API Gateway]], [[Kubernetes]], [[Failover]]
 
 # Microservices

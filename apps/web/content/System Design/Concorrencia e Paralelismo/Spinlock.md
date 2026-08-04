@@ -8,7 +8,6 @@ aliases:
   - Spinlock
 ---
 
-up:: [[Concorrência]]
 related:: [[Mutex (Mutual Exclusion)]], [[Semaforo]]
 
 # Spinlock

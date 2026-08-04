@@ -13,7 +13,6 @@ aliases:
   - The Stack
 ---
 
-up:: [[Fundamentals of Operating Systems]]
 prev:: [[Chapter 4 – Process Execution (Fetch–Execute Cycle)]]
 next:: [[Chapter 6 – Data Section & Heap]]
 

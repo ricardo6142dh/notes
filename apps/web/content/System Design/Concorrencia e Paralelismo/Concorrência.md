@@ -8,7 +8,6 @@ aliases:
   - Concorrência
 ---
 
-up:: [[System Design]]
 related:: [[Paralelismo]], [[Mutex (Mutual Exclusion)]], [[Semaforo]], [[Spinlock]], [[Problemas Classicos]]
 
 # Concorrência

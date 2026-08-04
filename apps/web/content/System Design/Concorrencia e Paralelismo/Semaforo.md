@@ -10,7 +10,6 @@ aliases:
   - Semaforo
 ---
 
-up:: [[Concorrência]]
 related:: [[Mutex (Mutual Exclusion)]], [[Spinlock]], [[Problemas Classicos]]
 
 # Semáforo

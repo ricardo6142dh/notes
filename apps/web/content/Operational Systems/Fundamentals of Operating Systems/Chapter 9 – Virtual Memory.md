@@ -13,7 +13,6 @@ aliases:
   - Virtual Memory
 ---
 
-up:: [[Fundamentals of Operating Systems]]
 prev:: [[Chapter 8 – Physical Memory & DRAM]]
 next:: [[Chapter 10 – Paging, Page Tables & Swap]]
 

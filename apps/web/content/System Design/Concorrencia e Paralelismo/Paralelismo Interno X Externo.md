@@ -8,7 +8,6 @@ aliases:
   - Paralelismo Interno e Externo
 ---
 
-up:: [[Paralelismo]]
 related:: [[Concorrência]]
 
 # Paralelismo Interno X Externo

@@ -8,7 +8,6 @@ aliases:
   - Partition Tolerance
 ---
 
-up:: [[CAP Theorem]]
 related:: [[Consistency]], [[Availability]], [[Partition]]
 
 # Partition Tolerance

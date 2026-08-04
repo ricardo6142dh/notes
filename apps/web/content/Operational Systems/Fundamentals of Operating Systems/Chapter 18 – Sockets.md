@@ -14,7 +14,6 @@ aliases:
   - Sockets
 ---
 
-up:: [[Fundamentals of Operating Systems]]
 prev:: [[Chapter 17 – I O Systems & Storage]]
 next::
 

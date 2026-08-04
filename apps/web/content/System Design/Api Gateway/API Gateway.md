@@ -8,7 +8,6 @@ aliases:
   - API Gateway
 ---
 
-up:: [[System Design]]
 related:: [[HTTP & REST]], [[Load Balancing (Balanceamento de Carga)]], [[Algoritmos Token Bucket e Leaky Bucket]], [[Microservices]]
 
 # API Gateway

@@ -12,7 +12,6 @@ aliases:
   - Uber UFA
 ---
 
-up:: [[System Design]]
 related:: [[Kubernetes]], [[Failover]], [[Microservices]]
 
 # Uber’s Failover Architecture

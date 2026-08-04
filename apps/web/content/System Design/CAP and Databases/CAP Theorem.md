@@ -9,7 +9,6 @@ aliases:
   - CAP Theorem
 ---
 
-up:: [[Databases]]
 related:: [[CAP Combinations]], [[PACELC]], [[Consistency]], [[Availability]], [[Partition Tolerance]]
 
 # CAP Theorem

@@ -9,7 +9,6 @@ aliases:
   - RPC
 ---
 
-up:: [[System Design]]
 related:: [[HTTP & REST]], [[GRPC]], [[GraphQL]], [[WebSockets]], [[API Gateway]]
 
 # RPC

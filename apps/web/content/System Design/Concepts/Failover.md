@@ -8,7 +8,6 @@ aliases:
   - Failover
 ---
 
-up:: [[System Design]]
 related:: [[Uber’s Failover Architecture Reconciling Reliability and Efficiency in Hyperscale Microservice Infrastructure|Uber’s Failover Architecture]], [[Microservices]]
 
 # Failover

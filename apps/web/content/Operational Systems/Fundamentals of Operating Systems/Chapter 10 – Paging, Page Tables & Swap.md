@@ -13,7 +13,6 @@ aliases:
   - Paging, Page Tables & Swap
 ---
 
-up:: [[Fundamentals of Operating Systems]]
 prev:: [[Chapter 9 – Virtual Memory]]
 next:: [[Chapter 11 – DMA (Direct Memory Access)]]
 

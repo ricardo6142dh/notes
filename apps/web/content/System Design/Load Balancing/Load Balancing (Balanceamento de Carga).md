@@ -9,7 +9,6 @@ aliases:
   - Balanceamento de Carga
 ---
 
-up:: [[System Design]]
 related:: [[Algoritmos de balanceamento de carga]], [[API Gateway]], [[HTTP & REST]]
 
 # Load Balancing (Balanceamento de Carga)

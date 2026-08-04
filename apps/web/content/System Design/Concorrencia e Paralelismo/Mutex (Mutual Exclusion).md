@@ -9,7 +9,6 @@ aliases:
   - Mutual Exclusion
 ---
 
-up:: [[Concorrência]]
 related:: [[Semaforo]], [[Spinlock]], [[Problemas Classicos]]
 
 # Mutex (Mutual Exclusion)

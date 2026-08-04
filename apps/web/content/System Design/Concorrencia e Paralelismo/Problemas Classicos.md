@@ -9,7 +9,6 @@ aliases:
   - Problemas Classicos
 ---
 
-up:: [[Concorrência]]
 related:: [[Mutex (Mutual Exclusion)]], [[Semaforo]], [[Spinlock]]
 
 # Problemas Clássicos de Concorrência

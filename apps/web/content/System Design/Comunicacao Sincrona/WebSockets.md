@@ -10,7 +10,6 @@ aliases:
   - WebSockets
 ---
 
-up:: [[System Design]]
 related:: [[HTTP & REST]], [[GraphQL]], [[Webhooks & Pooling]], [[Chapter 18 – Sockets|Sockets]]
 
 # WebSockets

@@ -13,7 +13,6 @@ aliases:
   - Process Execution (Fetch–Execute Cycle)
 ---
 
-up:: [[Fundamentals of Operating Systems]]
 prev:: [[Chapter 3 – Programs vs Processes]]
 next:: [[Chapter 5 – The Stack]]
 

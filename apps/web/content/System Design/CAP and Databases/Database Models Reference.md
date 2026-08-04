@@ -9,7 +9,6 @@ aliases:
   - Database Model Types
 ---
 
-up:: [[Data Models]]
 related:: [[Databases]], [[ACID]], [[BASE]]
 
 # Database Models Reference Note

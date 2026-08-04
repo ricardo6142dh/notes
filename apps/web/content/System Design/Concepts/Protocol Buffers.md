@@ -9,7 +9,6 @@ aliases:
   - Protobuf
 ---
 
-up:: [[GRPC|gRPC]]
 related:: [[RPC]]
 
 # Protocol Buffers

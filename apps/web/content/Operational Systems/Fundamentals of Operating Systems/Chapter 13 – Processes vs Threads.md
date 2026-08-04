@@ -13,7 +13,6 @@ aliases:
   - Processes vs Threads
 ---
 
-up:: [[Fundamentals of Operating Systems]]
 prev:: [[Chapter 12 – CPU Internals & Instruction Execution]]
 next:: [[Chapter 14 – Context Switching]]
 

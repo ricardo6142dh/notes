@@ -9,7 +9,6 @@ aliases:
   - Partition
 ---
 
-up:: [[PACELC]]
 related:: [[Partition Tolerance]], [[CAP Theorem]]
 
 # Partition

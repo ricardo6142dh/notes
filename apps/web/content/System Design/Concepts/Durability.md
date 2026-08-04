@@ -8,7 +8,6 @@ aliases:
   - Durability
 ---
 
-up:: [[ACID]]
 related:: [[Atomicity]], [[Consistency]], [[Isolation]]
 
 # Durability

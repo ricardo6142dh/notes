@@ -12,7 +12,6 @@ aliases:
   - "{{title}}"
 ---
 
-up::
 related::
 
 # {{title}}

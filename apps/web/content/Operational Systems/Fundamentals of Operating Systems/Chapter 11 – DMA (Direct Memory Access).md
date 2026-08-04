@@ -13,7 +13,6 @@ aliases:
   - DMA (Direct Memory Access)
 ---
 
-up:: [[Fundamentals of Operating Systems]]
 prev:: [[Chapter 10 – Paging, Page Tables & Swap]]
 next:: [[Chapter 12 – CPU Internals & Instruction Execution]]
 

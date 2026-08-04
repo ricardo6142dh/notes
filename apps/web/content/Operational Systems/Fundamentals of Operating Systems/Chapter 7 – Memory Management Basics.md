@@ -13,7 +13,6 @@ aliases:
   - Memory Management Basics
 ---
 
-up:: [[Fundamentals of Operating Systems]]
 prev:: [[Chapter 6 – Data Section & Heap]]
 next:: [[Chapter 8 – Physical Memory & DRAM]]
 

@@ -13,7 +13,6 @@ aliases:
   - Data Section & Heap
 ---
 
-up:: [[Fundamentals of Operating Systems]]
 prev:: [[Chapter 5 – The Stack]]
 next:: [[Chapter 7 – Memory Management Basics]]
 

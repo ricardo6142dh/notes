@@ -10,7 +10,6 @@ aliases:
   - Rate Limiting
 ---
 
-up:: [[API Gateway]]
 related:: [[HTTP & REST]], [[Load Balancing (Balanceamento de Carga)]]
 
 # Algoritmos Token Bucket e Leaky Bucket

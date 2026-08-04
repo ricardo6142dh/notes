@@ -12,7 +12,6 @@ aliases:
   - RESTful APIs
 ---
 
-up:: [[System Design]]
 related:: [[RPC]], [[GRPC]], [[GraphQL]], [[Webhooks & Pooling]], [[API Gateway]], [[Definicao de Cache|Definição de Cache]]
 
 # HTTP & REST

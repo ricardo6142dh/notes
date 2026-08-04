@@ -9,7 +9,6 @@ aliases:
   - Arquiteturas de Cache
 ---
 
-up:: [[Definicao de Cache|Definição de Cache]]
 related:: [[Métricas de Eficiência em Sistemas de Cache]], [[Políticas de Evicção e Substituição]], [[HTTP & REST]]
 
 # Arquiteturas de Cache (Cache Patterns)

@@ -10,7 +10,6 @@ aliases:
   - Métricas de Cache
 ---
 
-up:: [[Definicao de Cache|Definição de Cache]]
 related:: [[Arquiteturas de Cache (Cache Patterns)]], [[Políticas de Evicção e Substituição]]
 
 # Métricas de Eficiência em Sistemas de Cache

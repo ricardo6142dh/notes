@@ -13,7 +13,6 @@ aliases:
   - Context Switching
 ---
 
-up:: [[Fundamentals of Operating Systems]]
 prev:: [[Chapter 13 – Processes vs Threads]]
 next:: [[Chapter 15 – CPU Scheduling]]
 

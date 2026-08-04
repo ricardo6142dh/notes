@@ -13,7 +13,6 @@ aliases:
   - Physical Memory & DRAM
 ---
 
-up:: [[Fundamentals of Operating Systems]]
 prev:: [[Chapter 7 – Memory Management Basics]]
 next:: [[Chapter 9 – Virtual Memory]]
 

@@ -15,7 +15,6 @@ aliases:
   - I/O Systems & Storage
 ---
 
-up:: [[Fundamentals of Operating Systems]]
 prev:: [[Chapter 16 – Concurrency & Synchronization]]
 next:: [[Chapter 18 – Sockets]]
 

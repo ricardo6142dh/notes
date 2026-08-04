@@ -8,7 +8,6 @@ aliases:
   - Isolation
 ---
 
-up:: [[ACID]]
 related:: [[Atomicity]], [[Consistency]], [[Durability]], [[Concorrência]]
 
 # Isolation
