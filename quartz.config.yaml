@@ -132,6 +132,41 @@ plugins:
     enabled: true
   - source: "@quartz-community/explorer"
     enabled: true
+    options:
+      mapFn: >-
+        function (node) {
+          const labels = {
+            "api-gateway": "API Gateway",
+            "cap-and-databases": "CAP and Databases",
+            "comunicacao-sincrona": "Comunicacao Sincrona",
+            "comunicacao-syncrona": "Comunicacao Syncrona",
+            "concorrencia-e-paralelismo": "Concorrencia e Paralelismo",
+            "grpc": "gRPC",
+            "graphql": "GraphQL",
+            "http--and--rest": "HTTP & REST",
+            "rpc": "RPC",
+            "system-design": "System Design",
+            "webhooks--and--pooling": "Webhooks & Polling",
+            "websockets": "WebSockets"
+          }
+
+          const segment = node.slugSegment || ""
+          if (labels[segment]) {
+            node.displayName = labels[segment]
+            return node
+          }
+
+          const current = node.displayName || ""
+          const looksLikeSlug = current === segment || current.includes("--") || /^[a-z0-9]+(?:-[a-z0-9]+)+$/.test(current)
+          if (looksLikeSlug) {
+            node.displayName = segment
+              .replace(/--and--/g, " & ")
+              .replace(/-/g, " ")
+              .replace(/\b\w/g, (letter) => letter.toUpperCase())
+          }
+
+          return node
+        }
     layout:
       position: left
       priority: 50
