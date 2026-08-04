@@ -18,7 +18,7 @@ export function MobileNav({ tree }: MobileNavProps) {
           <Menu className="h-4 w-4" />
         </Button>
       </SheetTrigger>
-      <SheetContent side="left" className="w-72 p-4">
+      <SheetContent side="left" className="w-[88vw] max-w-sm overflow-y-auto p-4">
         <SheetHeader className="mb-4">
           <SheetTitle>Navigation</SheetTitle>
         </SheetHeader>

@@ -37,10 +37,10 @@ export default async function RootLayout({
           </a>
           <div className="flex min-h-screen flex-col">
             <Header title={config.site.title} tree={tree} />
-            <div className="flex flex-1 mx-auto w-full max-w-[1440px]">
+            <div className="flex w-full flex-1">
               <aside className="hidden lg:block w-[var(--sidebar-width)] shrink-0 border-r">
                 <ScrollArea className="sticky top-14 h-[calc(100vh-3.5rem)] scroll-mask">
-                  <div className="pl-6 pr-4 pt-4 pb-6">
+                  <div className="px-4 pt-4 pb-6">
                     <NavSidebar tree={tree} />
                   </div>
                 </ScrollArea>

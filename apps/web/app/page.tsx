@@ -25,7 +25,7 @@ export default async function HomePage() {
       const raw = await fs.readFile(path.join(GENERATED_DIR, "pages", "index.json"), "utf-8")
       const pageData = JSON.parse(raw) as { html: string; toc: any[] }
       return (
-        <div className="flex min-h-0 gap-8 px-6 py-8 max-w-6xl mx-auto w-full">
+        <div className="flex min-h-0 w-full gap-8 px-6 py-8 lg:px-8">
           <div className="min-w-0 flex-1">
             <article
               data-pagefind-body

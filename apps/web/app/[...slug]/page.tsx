@@ -146,7 +146,7 @@ export default async function NotePage({
     const folderData = await readJSON<FolderData>(path.join(GENERATED_DIR, "folders", `${canonicalSlug}.json`))
     if (folderData) {
       return (
-        <div className="max-w-6xl mx-auto w-full px-6 py-10">
+        <div className="w-full max-w-4xl px-6 py-10 lg:px-8">
           <div className="mb-6">
             <Breadcrumb slug={slug} />
           </div>
@@ -206,7 +206,7 @@ export default async function NotePage({
   }
 
   return (
-    <div className="flex min-h-0 gap-8 px-6 py-8 max-w-6xl mx-auto w-full">
+    <div className="flex min-h-0 w-full gap-8 px-6 py-8 lg:px-8">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
