@@ -10,25 +10,27 @@ import tagIndex from "@/.generated/tags.json"
 const typedTagIndex = tagIndex as Record<string, { slug: string; title: string; description: string | null; date: string | null }[]>
 
 export async function generateStaticParams() {
-  return Object.keys(typedTagIndex).map((tag) => ({ tag }))
+  return Object.keys(typedTagIndex).map((tag) => ({ tag: tag.split("/") }))
 }
 
 export async function generateMetadata({
   params,
 }: {
-  params: Promise<{ tag: string }>
+  params: Promise<{ tag: string[] }>
 }): Promise<Metadata> {
   const { tag } = await params
-  return { title: `#${tag}` }
+  const tagName = tag.join("/")
+  return { title: `#${tagName}` }
 }
 
 export default async function TagPage({
   params,
 }: {
-  params: Promise<{ tag: string }>
+  params: Promise<{ tag: string[] }>
 }) {
   const { tag } = await params
-  const tagged = typedTagIndex[tag]
+  const tagName = tag.join("/")
+  const tagged = typedTagIndex[tagName]
 
   if (!tagged?.length) notFound()
 
@@ -43,7 +45,7 @@ export default async function TagPage({
         </Link>
       </div>
       <div className="mb-6 flex items-center gap-3">
-        <h1 className="text-2xl font-semibold tracking-tight">#{tag}</h1>
+        <h1 className="text-2xl font-semibold tracking-tight">#{tagName}</h1>
         <Badge variant="secondary" className="font-normal">
           {tagged.length} notes
         </Badge>
