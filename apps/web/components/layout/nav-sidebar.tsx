@@ -16,11 +16,11 @@ export function NavSidebar({ tree }: NavSidebarProps) {
   const currentSlug = pathname.replace(/^\//, "")
 
   return (
-    <nav className="space-y-0.5 text-sm">
+    <nav className="min-w-0 space-y-0.5 text-sm">
       <Link
         href="/"
         className={cn(
-          "flex items-center rounded-md px-2 py-1.5 transition-colors hover:bg-muted",
+          "flex min-w-0 items-center rounded-md px-2 py-1.5 transition-colors hover:bg-muted",
           pathname === "/"
             ? "font-medium text-foreground bg-muted"
             : "text-muted-foreground hover:text-foreground"
@@ -95,14 +95,14 @@ function NavNode({
   const isActive = node.type === "file" && currentSlug === node.path
   const isAncestor = node.type === "folder" && currentSlug.startsWith(node.path + "/")
   const [open, setOpen] = useState(isAncestor || depth === 0)
-  const indent = depth * 12
+  const indent = depth * 10
 
   if (node.type === "folder") {
     return (
       <div>
         {/* Section label style for folders */}
         <div
-          className="flex w-full items-center gap-1 transition-colors"
+          className="flex w-full min-w-0 items-center gap-1 transition-colors"
           style={{ paddingLeft: `${8 + indent}px` }}
         >
           <button
@@ -120,7 +120,7 @@ function NavNode({
           <Link
             href={`/${node.path}`}
             className={cn(
-              "flex-1 min-w-0 py-1.5 text-xs font-semibold uppercase tracking-wider truncate",
+              "min-w-0 flex-1 truncate py-1.5 text-xs font-semibold uppercase tracking-wide",
               isAncestor
                 ? "text-foreground"
                 : "text-muted-foreground hover:text-foreground"
@@ -132,7 +132,7 @@ function NavNode({
 
         <Collapse open={open}>
           {node.children && (
-            <div style={{ paddingLeft: `${8 + indent + 12}px` }} className="space-y-0.5">
+            <div className="min-w-0 space-y-0.5">
               {node.children.map((child) => (
                 <NavNode
                   key={child.path}
@@ -153,14 +153,14 @@ function NavNode({
       href={`/${node.path}`}
       aria-current={isActive ? "page" : undefined}
       className={cn(
-        "flex items-center rounded-md py-1.5 pr-2 transition-colors hover:bg-muted truncate",
+        "flex min-w-0 items-center overflow-hidden rounded-md py-1.5 pr-2 transition-colors hover:bg-muted",
         isActive
           ? "font-medium text-foreground bg-muted"
           : "text-muted-foreground hover:text-foreground"
       )}
       style={{ paddingLeft: `${8 + indent}px` }}
     >
-      <span className="truncate">{node.name}</span>
+      <span className="block min-w-0 truncate">{node.name}</span>
     </Link>
   )
 }
