@@ -9,8 +9,6 @@ aliases:
   - Notes
 ---
 
-# Ricardo Notes
-
 Notas públicas de estudo sobre sistemas distribuídos, bancos de dados, infraestrutura, comunicação entre serviços e sistemas operacionais.
 
 ## Start Here
