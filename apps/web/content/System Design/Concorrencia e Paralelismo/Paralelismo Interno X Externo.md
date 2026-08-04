@@ -1,6 +1,5 @@
 ---
 tags:
-  - area/system-design
   - topic/parallelism
 type: note
 aliases:

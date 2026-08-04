@@ -1,6 +1,5 @@
 ---
 tags:
-  - area/system-design
   - topic/databases
   - topic/distributed-systems
 type: note

@@ -1,6 +1,5 @@
 ---
 tags:
-  - area/system-design
   - topic/api-gateway
   - topic/rate-limiting
 type: note

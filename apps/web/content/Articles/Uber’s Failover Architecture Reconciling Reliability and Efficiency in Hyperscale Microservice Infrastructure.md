@@ -1,10 +1,8 @@
 ---
 tags:
-  - area/system-design
   - topic/reliability
   - topic/failover
   - topic/kubernetes
-  - type/article-note
 type: article-note
 source: https://arxiv.org/pdf/2603.07345
 aliases:

@@ -1,9 +1,6 @@
 ---
 tags:
   - course/operating-systems
-  - area/systems
-  - status/imported
-  - type/course-note
   - topic/io
   - topic/storage
   - topic/file-systems

@@ -1,8 +1,6 @@
 ---
 tags:
-  - area/system-design
   - topic/reliability
-  - type/concept
 type: concept
 aliases:
   - Failover

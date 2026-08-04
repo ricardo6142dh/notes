@@ -1,8 +1,6 @@
 ---
 tags:
-  - area/system-design
   - topic/microservices
-  - type/concept
 type: concept
 aliases:
   - Microservices

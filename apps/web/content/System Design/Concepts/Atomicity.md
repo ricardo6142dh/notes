@@ -1,8 +1,6 @@
 ---
 tags:
-  - area/system-design
   - topic/transactions
-  - type/concept
 type: concept
 aliases:
   - Atomicity

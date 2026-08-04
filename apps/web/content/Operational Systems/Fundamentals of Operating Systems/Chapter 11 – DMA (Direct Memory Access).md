@@ -1,9 +1,6 @@
 ---
 tags:
   - course/operating-systems
-  - area/systems
-  - status/imported
-  - type/course-note
   - topic/dma
   - topic/io
 type: course-note

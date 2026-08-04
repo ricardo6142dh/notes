@@ -1,9 +1,6 @@
 ---
 tags:
   - course/operating-systems
-  - area/systems
-  - status/imported
-  - type/course-note
   - topic/processes
 type: course-note
 course: "[[Fundamentals of Operating Systems]]"

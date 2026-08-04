@@ -1,9 +1,6 @@
 ---
 tags:
   - course/operating-systems
-  - area/systems
-  - status/imported
-  - type/course-note
   - topic/processes
   - topic/context-switching
 type: course-note

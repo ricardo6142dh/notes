@@ -1,9 +1,6 @@
 ---
 tags:
   - course/operating-systems
-  - area/systems
-  - status/imported
-  - type/course-index
 type: course-index
 course: Fundamentals of Operating Systems
 aliases:

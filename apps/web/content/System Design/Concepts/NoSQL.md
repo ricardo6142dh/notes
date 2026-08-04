@@ -1,8 +1,6 @@
 ---
 tags:
-  - area/system-design
   - topic/databases
-  - type/concept
 type: concept
 aliases:
   - NoSQL

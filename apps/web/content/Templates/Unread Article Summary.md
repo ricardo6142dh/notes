@@ -1,6 +1,5 @@
 ---
 tags:
-  - status/unread
   - source/article
   - topic/{{topic}}
 type: article-note

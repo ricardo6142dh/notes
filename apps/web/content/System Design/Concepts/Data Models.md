@@ -1,8 +1,6 @@
 ---
 tags:
-  - area/system-design
   - topic/data-modeling
-  - type/index
 type: concept
 aliases:
   - Data Models

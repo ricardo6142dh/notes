@@ -1,7 +1,4 @@
 ---
-tags:
-  - area/system-design
-  - type/index
 type: index
 aliases:
   - System Design

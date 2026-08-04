@@ -1,6 +1,5 @@
 ---
 tags:
-  - area/system-design
   - topic/cache
 type: note
 aliases:

@@ -1,8 +1,6 @@
 ---
 tags:
-  - area/system-design
   - topic/distributed-systems
-  - type/concept
 type: concept
 aliases:
   - Partition Tolerance

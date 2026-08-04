@@ -1,7 +1,4 @@
 ---
-tags:
-  - area/system-design
-  - status/draft
 type: note
 aliases:
   - "{{title}}"

@@ -1,8 +1,6 @@
 ---
 tags:
-  - area/system-design
   - topic/kubernetes
-  - type/concept
 type: concept
 aliases:
   - Kubernetes

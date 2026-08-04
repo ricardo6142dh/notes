@@ -1,8 +1,6 @@
 ---
 tags:
-  - area/system-design
   - topic/grpc
-  - type/concept
 type: concept
 aliases:
   - Protocol Buffers

@@ -1,6 +1,5 @@
 ---
 tags:
-  - area/system-design
   - topic/communication
   - topic/synchronous-communication
   - topic/http

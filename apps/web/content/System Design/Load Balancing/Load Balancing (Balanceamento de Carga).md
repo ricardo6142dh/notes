@@ -1,6 +1,5 @@
 ---
 tags:
-  - area/system-design
   - topic/load-balancing
   - topic/networking
 type: note

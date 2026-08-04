@@ -1,6 +1,5 @@
 ---
 tags:
-  - area/system-design
   - topic/cache
   - topic/cache-patterns
 type: note
