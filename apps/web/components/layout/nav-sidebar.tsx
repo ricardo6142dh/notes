@@ -20,7 +20,7 @@ export function NavSidebar({ tree }: NavSidebarProps) {
       <Link
         href="/"
         className={cn(
-          "flex min-w-0 items-center rounded-md px-2 py-1.5 transition-colors hover:bg-muted",
+          "flex w-full min-w-0 items-center overflow-hidden rounded-md px-2 py-1.5 transition-colors hover:bg-muted",
           pathname === "/"
             ? "font-medium text-foreground bg-muted"
             : "text-muted-foreground hover:text-foreground"
@@ -102,7 +102,7 @@ function NavNode({
       <div>
         {/* Section label style for folders */}
         <div
-          className="flex w-full min-w-0 items-center gap-1 transition-colors"
+          className="flex w-full min-w-0 items-center overflow-hidden gap-1 transition-colors"
           style={{ paddingLeft: `${8 + indent}px` }}
         >
           <button
@@ -120,7 +120,7 @@ function NavNode({
           <Link
             href={`/${node.path}`}
             className={cn(
-              "min-w-0 flex-1 truncate py-1.5 text-xs font-semibold uppercase tracking-wide",
+              "sidebar-label min-w-0 max-w-full flex-1 py-1.5 text-xs font-semibold uppercase tracking-wide",
               isAncestor
                 ? "text-foreground"
                 : "text-muted-foreground hover:text-foreground"
@@ -153,14 +153,14 @@ function NavNode({
       href={`/${node.path}`}
       aria-current={isActive ? "page" : undefined}
       className={cn(
-        "flex min-w-0 items-center overflow-hidden rounded-md py-1.5 pr-2 transition-colors hover:bg-muted",
+        "flex w-full min-w-0 max-w-full items-center overflow-hidden rounded-md py-1.5 pr-2 transition-colors hover:bg-muted",
         isActive
           ? "font-medium text-foreground bg-muted"
           : "text-muted-foreground hover:text-foreground"
       )}
       style={{ paddingLeft: `${8 + indent}px` }}
     >
-      <span className="block min-w-0 truncate">{node.name}</span>
+      <span className="sidebar-label min-w-0 max-w-full flex-1">{node.name}</span>
     </Link>
   )
 }

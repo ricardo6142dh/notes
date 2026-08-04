@@ -38,6 +38,15 @@
     @apply bg-background text-foreground;
   }
 
+  .sidebar-label {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+    overflow-wrap: anywhere;
+    line-height: 1.25;
+  }
+
   ::selection {
     background: oklch(0.8 0.04 250 / 0.3);
   }
