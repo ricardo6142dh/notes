@@ -1,4 +1,6 @@
 ---
+tags:
+  - course/system-design
 type: index
 aliases:
   - System Design

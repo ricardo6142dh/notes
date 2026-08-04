@@ -1,5 +1,6 @@
 ---
 tags:
+  - course/system-design
   - topic/microservices
 type: concept
 aliases:

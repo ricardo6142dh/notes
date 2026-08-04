@@ -1,5 +1,6 @@
 ---
 tags:
+  - course/system-design
   - topic/databases
   - topic/transactions
 type: note

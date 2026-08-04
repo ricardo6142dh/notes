@@ -1,5 +1,6 @@
 ---
 tags:
+  - course/system-design
   - topic/grpc
 type: concept
 aliases:

@@ -1,5 +1,6 @@
 ---
 tags:
+  - course/system-design
   - topic/data-modeling
   - topic/databases
 type: note

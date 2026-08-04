@@ -1,5 +1,6 @@
 ---
 tags:
+  - course/system-design
   - topic/cache
   - topic/metrics
 type: note

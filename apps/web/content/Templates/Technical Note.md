@@ -1,4 +1,6 @@
 ---
+tags:
+  - course/system-design
 type: note
 aliases:
   - "{{title}}"

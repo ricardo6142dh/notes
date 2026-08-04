@@ -1,5 +1,6 @@
 ---
 tags:
+  - course/system-design
   - topic/concurrency
   - topic/synchronization
 type: note

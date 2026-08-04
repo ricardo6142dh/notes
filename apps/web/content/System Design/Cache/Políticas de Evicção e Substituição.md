@@ -1,5 +1,6 @@
 ---
 tags:
+  - course/system-design
   - topic/cache
   - topic/eviction
 type: note

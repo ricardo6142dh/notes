@@ -1,5 +1,6 @@
 ---
 tags:
+  - course/system-design
   - topic/kubernetes
 type: concept
 aliases:

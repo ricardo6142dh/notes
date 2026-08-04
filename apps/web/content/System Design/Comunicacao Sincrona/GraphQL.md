@@ -1,5 +1,6 @@
 ---
 tags:
+  - course/system-design
   - topic/communication
   - topic/synchronous-communication
   - topic/graphql

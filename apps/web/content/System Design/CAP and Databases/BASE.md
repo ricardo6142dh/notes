@@ -1,5 +1,6 @@
 ---
 tags:
+  - course/system-design
   - topic/databases
   - topic/distributed-systems
 type: note

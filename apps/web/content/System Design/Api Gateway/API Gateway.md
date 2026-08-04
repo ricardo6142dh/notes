@@ -1,5 +1,6 @@
 ---
 tags:
+  - course/system-design
   - topic/api-gateway
   - topic/communication
 type: note

@@ -1,5 +1,6 @@
 ---
 tags:
+  - course/system-design
   - topic/distributed-systems
 type: concept
 aliases:

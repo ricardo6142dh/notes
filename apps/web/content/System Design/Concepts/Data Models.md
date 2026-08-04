@@ -1,5 +1,6 @@
 ---
 tags:
+  - course/system-design
   - topic/data-modeling
 type: concept
 aliases:

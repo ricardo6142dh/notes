@@ -1,5 +1,6 @@
 ---
 tags:
+  - course/system-design
   - topic/load-balancing
 type: note
 aliases:

@@ -1,5 +1,6 @@
 ---
 tags:
+  - course/system-design
   - topic/databases
 type: concept
 aliases:

@@ -1,5 +1,6 @@
 ---
 tags:
+  - course/system-design
   - topic/cap
   - topic/distributed-systems
 type: note
