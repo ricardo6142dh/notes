@@ -1,7 +1,6 @@
 ---
 tags:
   - area/system-design
-  - type/note
   - topic/load-balancing
 type: note
 aliases:

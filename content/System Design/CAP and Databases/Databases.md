@@ -2,7 +2,6 @@
 tags:
   - area/system-design
   - topic/databases
-  - type/note
 type: note
 aliases:
   - Databases

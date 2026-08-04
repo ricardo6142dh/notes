@@ -3,7 +3,6 @@ tags:
   - area/system-design
   - topic/cap
   - topic/distributed-systems
-  - type/note
 type: note
 aliases:
   - CAP

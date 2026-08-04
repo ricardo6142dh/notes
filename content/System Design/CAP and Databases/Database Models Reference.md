@@ -3,7 +3,6 @@ tags:
   - area/system-design
   - topic/data-modeling
   - topic/databases
-  - type/note
 type: note
 aliases:
   - Database Models

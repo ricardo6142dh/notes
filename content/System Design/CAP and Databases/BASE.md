@@ -3,7 +3,6 @@ tags:
   - area/system-design
   - topic/databases
   - topic/distributed-systems
-  - type/note
 type: note
 aliases:
   - Basically Available Soft State Eventual Consistency

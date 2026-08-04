@@ -1,7 +1,6 @@
 ---
 tags:
   - area/system-design
-  - type/note
   - topic/concurrency
 type: note
 aliases:

@@ -3,7 +3,6 @@ tags:
   - area/system-design
   - topic/databases
   - topic/transactions
-  - type/note
 type: note
 aliases:
   - ACID Transactions

@@ -1,7 +1,6 @@
 ---
 tags:
   - area/system-design
-  - type/note
   - topic/databases
   - topic/indexing
   - topic/storage
