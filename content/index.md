@@ -9,13 +9,6 @@ aliases:
   - Notes
 ---
 
-Notas públicas de estudo sobre sistemas distribuídos, bancos de dados, infraestrutura, comunicação entre serviços e sistemas operacionais.
-
-## Start Here
-
-- [[System Design]] — mapa principal de arquitetura e system design.
-- [[Fundamentals of Operating Systems]] — curso de fundamentos de sistemas operacionais.
-
 ## System Design
 
 - [[Databases]]
