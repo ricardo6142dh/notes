@@ -12,7 +12,7 @@ aliases:
   - "{{title}}"
 ---
 
-up:: [[System Design]]
+up::
 related::
 
 # {{title}}
