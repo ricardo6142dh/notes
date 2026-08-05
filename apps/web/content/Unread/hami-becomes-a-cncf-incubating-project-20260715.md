@@ -17,11 +17,6 @@ Hami joining CNCF incubation formalizes governance and community support for a p
 
 ## Summary
 
-Posted on July 15, 2026
-		by HAMi Maintainers
-
-CNCF projects highlighted in this post
-
 The CNCF Technical Oversight Committee (TOC) has voted to accept HAMi as a CNCF incubating project.
 
 # About HAMi

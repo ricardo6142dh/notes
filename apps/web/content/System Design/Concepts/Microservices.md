@@ -31,7 +31,7 @@ Estilo arquitetural onde uma aplicação é decomposta em **serviços pequenos, 
 Ponto de entrada único que roteia requisições aos serviços corretos, agrega respostas e lida com autenticação. Ver [[API Gateway]].
 
 ### Service Discovery
-Serviços se registram em um registry (ex: Consul, [[Kubernetes]] DNS) e se encontram dinamicamente — sem IPs hardcoded.
+Serviços se registram em um registry (ex: Consul, [[System Design/Concepts/Kubernetes]] DNS) e se encontram dinamicamente — sem IPs hardcoded.
 
 ### Circuit Breaker
 Quando um serviço dependente falha repetidamente, o circuit breaker "abre" e para de chamar o serviço — retornando fallback ou erro imediato. Evita cascata de falhas.

@@ -20,17 +20,6 @@ A first-hand post-mortem describing how an author scaled a URL shortener to hand
 
 The article explains practical steps taken to scale a URL shortener: profiling hotspots, using caches effectively, adopting async workers for background tasks, and optimizing database access patterns. It provides concrete operational lessons rather than abstract theory.
 
-
-LinkedIn respects your privacy
-          
-            
-              LinkedIn and 3rd parties use essential and non-essential cookies to provide, secure, analyze and improve our Services, and to show you relevant ads (including professional and job ads) on and off LinkedIn. Learn more in our Cookie Policy.
-
-Select Accept to consent or Reject to decline non-essential cookies for this use. You can update your choices at any time in your settings.
-
-By clicking Continue to join or sign in, you agree to LinkedIn’s User Agreement, Privacy Policy, and Cookie Policy.
-
-
 ## Key Concepts
 
 - URL shortening service: mapping long URLs to short codes with low-latency redirects.

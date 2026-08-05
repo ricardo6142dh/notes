@@ -46,7 +46,7 @@ tags:
 - [[Durability]]
 - [[Failover]]
 - [[Isolation]]
-- [[Kubernetes]]
+- [[System Design/Concepts/Kubernetes]]
 - [[Microservices]]
 - [[NoSQL]]
 - [[Partition]]

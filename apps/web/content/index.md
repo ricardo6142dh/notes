@@ -41,3 +41,11 @@ title: Ricardo Notes
 ## Articles
 
 - [[Uber’s Failover Architecture Reconciling Reliability and Efficiency in Hyperscale Microservice Infrastructure|Uber’s Failover Architecture]]
+
+## Links
+
+- [[devops-sre|DevOps / SRE]]
+- [[Links/kubernetes|Kubernetes]]
+- [[sysadmin|Sysadmin]]
+- [[python|Python]]
+- [[certificacoes|Certificações]]

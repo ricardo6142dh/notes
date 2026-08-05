@@ -10,7 +10,7 @@ tags:
   - tradeoffs
 ---
 
-# Just a moment...
+# Replacing Redis with PostgreSQL
 
 ## TL;DR
 
