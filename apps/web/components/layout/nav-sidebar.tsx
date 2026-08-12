@@ -97,6 +97,10 @@ function NavNode({
   const [open, setOpen] = useState(isAncestor)
   const indent = depth * 10
 
+  useEffect(() => {
+    setOpen(isAncestor)
+  }, [isAncestor])
+
   if (node.type === "folder") {
     return (
       <div>
