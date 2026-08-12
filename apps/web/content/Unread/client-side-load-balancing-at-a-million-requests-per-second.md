@@ -1,53 +1,62 @@
 ---
 status: unread
 source: https://engineering.zalando.com/posts/2026/06/client-side-load-balancing.html
-created: 2026-08-05
+created: 2026-08-12
 tags:
-  - client-side-load-balancing
-  - load-balancing
-  - service-mesh
-  - platform-engineering
-  - zalando
+- load-balancing
+- kubernetes
+- performance
+- reliability
 ---
 
 # Client-Side Load Balancing at a Million Requests Per Second
 
 ## TL;DR
+Zalando moved hot internal fan-out routing from shared ingress infrastructure into a client-side library, preserving cache locality while improving latency, operability, rollout control, and cost efficiency.
 
-Zalando explores client-side load balancing approaches, trade-offs versus server-side LB, and practical patterns for resilient, efficient request routing in microservice architectures.
+## Subject
+The article describes how Zalando redesigned internal routing for its Product Read API. The focus is consistent-hash client-side load balancing at very high request volume.
 
-## Summary
+## Author's Objective
+The author wants to explain the engineering tradeoffs behind replacing shared router hops with in-process routing. The article also documents rollout mechanics, correctness constraints, and later algorithmic improvements.
 
-Content could not be extracted. See source for full article.
+## Brief
+Zalando's Product Read API serves critical commerce paths across European markets. Because batch requests fan out into many downstream product calls, tail latency was heavily affected by the slowest routing hop.
 
-## Key Concepts
+The team kept Skipper for edge traffic but moved internal fan-out routing into the calling process. This required exact hash-ring compatibility with Skipper to avoid cache splits and increased DynamoDB load.
 
-- Client-side load balancing: routing decisions made by service clients using a local view of healthy backends obtained from service discovery.
-- Service discovery integration: keeping an up-to-date set of endpoints with health status for the LB algorithm.
-- Load-balancing algorithms: round-robin, least-connections, weighted, and load-aware selection.
+The rollout depended as much on delivery discipline as algorithm design. CI/CD improvements, traffic toggles, canary groups, and fallback paths made it possible to shift more than one million requests per second safely.
 
-## Technical Insights
+Once the team owned the routing algorithm, they added improvements such as ring fade-in during scale-up and bounded-load routing based on occupancy rather than simplistic request counts.
 
-- Architecture: clients maintain endpoint lists and choose targets; may require local circuit breakers, retry policies, and outlier detection to avoid cascading failures.
-- Performance: reduces network hops and central bottlenecks but shifts complexity to clients; consistency of endpoint views and staleness are key trade-offs.
-- Trade-offs: server-side LBs simplify client logic but can become bottlenecks; client-side reduces infra but complicates consistency and observability.
+The result was better load distribution, fewer pods, higher CPU thresholds, and meaningful daily infrastructure savings.
+
+## Key Ideas
+- Shared infrastructure can become a latency and ownership bottleneck on hot internal paths.
+- Exact consistent-hash parity was required to preserve pod-local cache behavior.
+- Kubernetes endpoint discovery moved to watch-based informers with last-good retention.
+- Rollout safety came from traffic ramps, fallbacks, and observable cache metrics.
+- Load should be estimated from time occupied, not only request counts or in-flight requests.
+- Owning the routing logic enabled faster iteration and cost reduction.
+
+## Technical Notes
+- The client library uses xxHash64, 100 virtual nodes per endpoint, and binary search over a 64-bit ring.
+- Unit tests assert hash-ring parity with Skipper.
+- Endpoint discovery uses Kubernetes informers with debounce and last-good endpoint sets.
+- N-ring fade-in gradually introduces new pods over 30 seconds after scale events.
+- Bounded-load routing uses sliding-window occupancy, in-flight protection, latency weighting, and a capped ring walk.
 
 ## Why This Matters
+At very high request rates, routing architecture becomes application architecture. Removing a shared hop can reduce tail latency, but only if correctness, rollout safety, and observability are treated as first-order requirements.
 
-For SREs and platform engineers, choosing client-side vs server-side LB affects latency, fault isolation, operational surface area, and deployment complexity. Client-side LB can improve scalability but requires robust discovery and observability.
-
-## Open Questions
-
-- How does Zalando handle endpoint list staleness and synchronization under high churn?
-- What observability tooling and metrics do they recommend for client-side choices?
-- How are retries and timeouts tuned to avoid amplification during failures?
+The article is also a strong example of infrastructure ownership: once the team controlled the algorithm, they could tune it for workload-specific cache locality, scale-up behavior, and cost.
 
 ## Review Points
-
-- Evaluate client libraries for LB algorithms and integrate health checks with our service discovery.
-- Prototype client-side LB for a non-critical service and measure p95/p99 latencies and error amplification.
-- Ensure tracing and metrics capture per-client routing decisions for debugging and SLOs.
+- Verify how hash-ring compatibility was tested against Skipper during ongoing changes.
+- Consider whether client-side routing increases library coupling across services.
+- Review failure behavior when endpoint discovery becomes stale or inconsistent.
+- Examine bounded-load tuning under partial outages or shared dependency slowdowns.
+- Revisit AZ-aware routing once cache fragmentation and degradation handling are solved.
 
 ## Source
-
 https://engineering.zalando.com/posts/2026/06/client-side-load-balancing.html
