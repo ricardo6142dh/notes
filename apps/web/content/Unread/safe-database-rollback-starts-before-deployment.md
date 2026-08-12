@@ -3,62 +3,57 @@ status: unread
 source: https://newsletter.systemdesignclassroom.com/p/safe-database-rollback-starts-before-deployment
 created: 2026-08-12
 tags:
-  - database-rollback
-  - deployment-safety
-  - schema-migrations
-  - sre
-  - release-engineering
+- databases
 ---
 
-# Safe database rollback starts before deployment
+# Safe Database Rollback Starts Before Deployment
 
 ## TL;DR
+Application rollback is not database rollback; safe schema changes require compatibility planning, staged migration, observable backfills, delayed cleanup, and recovery paths before deployment.
 
-Prepare database rollback plans and automated safeguards before deploying schema or data changes to minimize blast radius and enable safe, fast recovery.
+## Subject
+The article explains why production database rollbacks are harder than reverting application binaries. It focuses on schema compatibility, data preservation, staged rollout, and operational recovery.
 
-## Summary
+## Author's Objective
+The author argues that teams should design database changes around coexistence between old code, new code, and intermediate schema states. The goal is to prevent emergency recovery decisions during incidents.
 
-The newsletter argues that safe database rollback requires planning before deployment: feature flags, backward-compatible schema changes, automated pre-merge checks, and rehearsed rollback playbooks. It highlights techniques like shadow writes, dual-read strategies, and migration patterns that avoid irreversible states.
+## Brief
+The central point is that production data keeps changing after deployment. Rolling back code may be easy, but the old application may not understand the new schema or the values already written by the new version.
 
+The author warns against trusting simple up/down migration thinking in production. A down migration can restore schema shape while losing data, truncating values, or leaving records in a form older code cannot interpret.
 
-System Design ClassroomSubscribeSign in{"@context":"https://schema.org","@type":"NewsArticle","url":"https://newsletter.systemdesignclassroom.com/p/safe-database-rollback-starts-before-deployment","mainEntityOfPage":"https://newsletter.systemdesignclassroom.com/p/safe-database-rollback-starts-before-deployment","headline":"Safe Database Rollback Starts Before Deployment","description":"Learn why safe database rollback starts before deployment, and how backward-compatible schema changes, staged migrations, feature flags, and targeted recovery keep production failures from turning into data loss.","image":[{"@type":"ImageObject","url":"https://substack-post-media.s3.amazonaws.com/public/images/8da6ab16-4550-4596-992f-04a61a3c5bff_490x490.png"}],"datePublished":"2026-07-25T12:00:54+00:00","dateModified":"2026-07-25T12:00:54+00:00","isAccessibleForFree":true,"author":[{"@type":"Person","name":"Raul Junco","url":"https://substack.com/@rauljuncov","description":"I simplify software engineering. \n\nSharing lessons to help early-career developers grow as Software Engineers. \n\nI write about Systems Design, Algorithms, Good Practices, and Machine Learning.","identifier":"user:98661477","image":{"@type":"ImageObject","contentUrl":"https://substackcdn.com/image/fetch/$s_!ue6D!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F45a92f5e-1e2e-4dfa-9ff3-45fc5ad0c57e_612x612.png","thumbnailUrl":"https://substackcdn.com/image/fetch/$s_!ue6D!,w_128,h_128,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F45a92f5e-1e2e-4dfa-9ff3-45fc5ad0c57e_612x612.png"}}],"publisher":{"@type":"Organization","name":"System Design Classroom","url":"https://newsletter.systemdesignclassroom.com","description":"A System Design Newsletter to help you build better software. ","interactionStatistic":{"@type":"InteractionCounter","name":"Subscribers","interactionType":"https://schema.org/SubscribeAction","userInteractionCount":10000},"identifier":"pub:2391457","logo":{"@type":"ImageObject","url":"https://substackcdn.com/image/fetch/$s_!Mtgs!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fcdb90e4a-4569-433d-93c4-a4863e3d54ef_69x69.png","contentUrl":"https://substackcdn.com/image/fetch/$s_!Mtgs!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fcdb90e4a-4569-433d-93c4-a4863e3d54ef_69x69.png","thumbnailUrl":"https://substackcdn.com/image/fetch/$s_!Mtgs!,w_128,h_128,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fcdb90e4a-4569-433d-93c4-a4863e3d54ef_69x69.png"},"image":{"@type":"ImageObject","url":"https://substackcdn.com/image/fetch/$s_!Mtgs!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fcdb90e4a-4569-433d-93c4-a4863e3d54ef_69x69.png","contentUrl":"https://substackcdn.com/image/fetch/$s_!Mtgs!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fcdb90e4a-4569-433d-93c4-a4863e3d54ef_69x69.png","thumbnailUrl":"https://substackcdn.com/image/fetch/$s_!Mtgs!,w_128,h_128,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fcdb90e4a-4569-433d-93c4-a4863e3d54ef_69x69.png"}},"interactionStatistic":[{"@type":"InteractionCounter","interactionType":"https://schema.org/LikeAction","userInteractionCount":55},{"@type":"InteractionCounter","interactionType":"https://schema.org/ShareAction","userInteractionCount":4},{"@type":"InteractionCounter","interactionType":"https://schema.org/CommentAction","userInteractionCount":0}]}{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"System Design Classroom","item":"https://newsletter.systemdesignclassroom.com"},{"@type":"ListItem","position":2,"name":"Safe Database Rollback Starts Before Deployment","item":"https://newsletter.systemdesignclassroom.com/p/safe-database-rollback-starts-before-deployment"}]}Safe Database Rollback Starts Before DeploymentHow to deploy schema changes without painting yourself into a corner.Raul JuncoJul 25, 2026554ShareEverybody explains how to migrate a database.
+The recommended pattern is Expand, Migrate, and Contract. Add new structures without removing old ones, deploy transitional code that writes or reads both safely, backfill existing data in bounded batches, and only later remove obsolete fields.
 
-Add a column. Create an index. Rename a field. Transform existing rows. Deploy the new application version.
+The article also separates deployment from release. Feature flags and canaries can reduce rollback pressure, but they must not allow new writes that older application versions cannot read while both versions are still running.
 
-But few people are focused on what happens when the deployment fails after the migration has already changed production data.
+Finally, the author treats observability and recovery as part of migration design. Backfills should be idempotent, restartable, bounded, observable, and verifiable before destructive cleanup happens.
 
-Imagine that version 2 of your application introduces a new database schema. The migration completes successfully, traffic reaches the new version, and users begin creating records using the new structure.
+## Key Ideas
+- Reverting application code does not undo production data written after a migration.
+- Schema rollback is not data rollback when migrations delete, truncate, merge, rewrite, or transform information.
+- Compatibility depends on deployment timing, not only on the SQL statement.
+- Breaking schema changes should be split into Expand, Migrate, and Contract phases.
+- Feature flags help decouple code deployment from activating risky data-writing behavior.
+- Verification queries, metrics, logs, snapshots, CDC, and backups are part of the rollback strategy.
 
-
-## Key Concepts
-
-- Backward-compatible migrations: schema changes that allow old and new code to operate concurrently.
-- Shadow writes / dual writes: write to both old and new schemas or systems to validate behavior before cutover.
-- Feature flags and toggles: control rollout and quickly disable new behavior without DB reversions.
-- Rehearsed rollback playbooks: tested steps to revert schema/data changes safely under pressure.
-
-## Technical Insights
-
-- Patterns: expand-then-contract migrations, use of triggers to populate new columns, and online schema change tools that avoid long locks.
-- Automation: pre-deployment checks, canary runs, and automated verification of data integrity; metrics to detect migration regressions early.
-- Trade-offs: some safe patterns increase short-term complexity and storage costs (e.g., shadow writes), but reduce downtime risk and rollback pain.
+## Technical Notes
+- Before deploying, verify that the previous application version can run against the new schema.
+- Backfills should run in bounded, idempotent, restartable batches with progress and failure metrics.
+- Do not drop old columns immediately after switching reads and writes; keep them through a defined rollback window.
+- Dual writes are only straightforward when they are atomic; across services or databases they become a distributed consistency problem.
+- Full database restore can destroy valid post-deployment writes, so targeted repair from backup or CDC may be safer.
 
 ## Why This Matters
+Database migrations are production state transitions, not just schema edits. A rollback plan that ignores new writes, partial failures, and compatibility windows can turn a small release bug into data loss.
 
-For SREs and release engineers, pre-planned rollback strategies reduce MTTR and incident severity for database-related failures, enabling safer continuous delivery for data-driven systems.
-
-## Open Questions
-
-- Which online schema migration tools and versions are recommended for our DB engines?
-- How to validate data integrity automatically after a migration at scale?
-- What operational runbooks and playbooks should be added to on-call rotations and runbook drills?
+The useful engineering habit is to preserve options: keep old and new versions compatible, delay destructive cleanup, instrument migrations, and know the repair path before deployment.
 
 ## Review Points
-
-- Audit recent schema changes and identify non-backward-compatible migrations to remediate.
-- Implement shadow write tests for a candidate migration in staging and measure divergence.)
-- Create and rehearse rollback playbooks with simulated failures during deployment.
+- Classify each migration by whether old and new application versions can both operate safely.
+- Check whether the migration discards information or writes values older code cannot parse.
+- Confirm that feature flags do not bypass compatibility constraints during rolling deployments.
+- Define observability for locks, lag, errors, backfill progress, retries, and verification queries.
+- Decide the recovery path before release, especially for corrupted or partially migrated data.
 
 ## Source
-
 https://newsletter.systemdesignclassroom.com/p/safe-database-rollback-starts-before-deployment
