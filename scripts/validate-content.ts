@@ -7,7 +7,7 @@ import path from "node:path"
 import { getAllMarkdownFiles } from "nuartz"
 import { renderMarkdown } from "nuartz/markdown"
 
-const CONTENT_DIR = path.resolve(process.argv[2] ?? "apps/web/content")
+const CONTENT_DIR = path.resolve(process.argv[2] ?? "apps/web/Notas")
 
 async function main() {
   console.log(`\nValidating content in: ${CONTENT_DIR}\n`)

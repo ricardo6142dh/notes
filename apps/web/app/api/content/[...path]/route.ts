@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server"
 import fs from "node:fs/promises"
 import path from "node:path"
 
-const CONTENT_DIR = path.join(process.cwd(), "content")
+const CONTENT_DIR = path.join(process.cwd(), "Notas")
 
 const MIME_TYPES: Record<string, string> = {
   ".png": "image/png",

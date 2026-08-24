@@ -23,7 +23,7 @@ import {
 import { renderMarkdown } from "nuartz/markdown"
 import type { MarkdownFile, RenderResult, Frontmatter, TocEntry } from "nuartz"
 
-const CONTENT_DIR = path.join(import.meta.dir, "../apps/web/content")
+const CONTENT_DIR = path.join(import.meta.dir, "../apps/web/Notas")
 const OUT_DIR = path.join(import.meta.dir, "../apps/web/.generated")
 const PUBLIC_DIR = path.join(import.meta.dir, "../apps/web/public")
 const IGNORED_DIRS = new Set([".obsidian", ".trash", "private", "Templates"])

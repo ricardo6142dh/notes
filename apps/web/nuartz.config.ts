@@ -2,7 +2,7 @@ import path from "node:path"
 import { defineConfig } from "nuartz"
 
 export default defineConfig({
-  contentDir: path.join(process.cwd(), "content"),
+  contentDir: path.join(process.cwd(), "Notas"),
   site: {
     title: "Ricardo Notes",
     description: "Ricardo's public Obsidian digital garden",
