@@ -1,5 +1,11 @@
-
-
+---
+title: Zalando Client-Side Load Balancing at 1M reqs
+source: https://engineering.zalando.com/posts/2026/06/client-side-load-balancing.html
+created: 2026-08-26
+tags:
+  - source/article
+  - topic/load-balancing
+  - topic/networking
 ---
 
 ## 🎯 Highlights & Principais Aprendizados

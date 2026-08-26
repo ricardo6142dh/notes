@@ -4,31 +4,31 @@ title: Ricardo Notes
 
 ## System Design
 
-- [[Databases]]
+- [[Databases|Databases]]
 - [[Definicao de Cache|Definição de Cache]]
-- [[Load Balancing (Balanceamento de Carga)]]
-- [[API Gateway]]
-- [[HTTP & REST]]
-- [[RPC]]
+- [[Load Balancing (Balanceamento de Carga)|Load Balancing]]
+- [[System Design/Api Gateway|API Gateway]]
+- [[HTTP & REST|HTTP & REST]]
+- [[RPC|RPC]]
 - [[GRPC|gRPC]]
-- [[GraphQL]]
+- [[GraphQL|GraphQL]]
 
 ## Distributed Systems
 
-- [[CAP Theorem]]
-- [[CAP Combinations]]
-- [[PACELC]]
-- [[Consistency]]
-- [[Availability]]
-- [[Partition Tolerance]]
+- [[CAP Theorem|CAP Theorem]]
+- [[CAP Combinations|CAP Combinations]]
+- [[PACELC|PACELC]]
+- [[Consistency|Consistency]]
+- [[Availability|Availability]]
+- [[Partition Tolerance|Partition Tolerance]]
 
 ## Runtime And Concurrency
 
-- [[Concorrência]]
-- [[Paralelismo]]
-- [[Mutex (Mutual Exclusion)]]
+- [[Concorrência|Concorrência]]
+- [[Paralelismo|Paralelismo]]
+- [[Mutex (Mutual Exclusion)|Mutex]]
 - [[Semaforo|Semáforo]]
-- [[Spinlock]]
+- [[Spinlock|Spinlock]]
 - [[Problemas Classicos|Problemas Clássicos]]
 
 ## Operating Systems
@@ -40,12 +40,15 @@ title: Ricardo Notes
 
 ## Articles
 
-- [[Uber’s Failover Architecture Reconciling Reliability and Efficiency in Hyperscale Microservice Infrastructure|Uber’s Failover Architecture]]
+- [[Articles/Uber’s Failover Architecture Reconciling Reliability and Efficiency in Hyperscale Microservice Infrastructure|Uber’s Failover Architecture]]
 
 ## Links
 
-- [[devops-sre|DevOps / SRE]]
+- [[Links/SRE & Observabilidade|SRE & Observabilidade]]
+- [[Links/Cloud & IaC|Cloud & IaC]]
 - [[Links/Kubernetes|Kubernetes]]
-- [[sysadmin|Sysadmin]]
-- [[python|Python]]
-- [[Certificações|Certificações]]
+- [[Links/Networking & Linux|Networking & Linux]]
+- [[Links/System Design|System Design]]
+- [[Links/Programação & Algoritmos|Programação & Algoritmos]]
+- [[Links/Entrevistas & Carreira|Entrevistas & Carreira]]
+- [[Links/Certificações|Certificações]]

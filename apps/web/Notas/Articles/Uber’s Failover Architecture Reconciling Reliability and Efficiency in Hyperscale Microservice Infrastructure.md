@@ -1,52 +1,86 @@
 ---
+title: Uber’s Failover Architecture
+source: https://arxiv.org/pdf/2603.07345
+created: 2026-08-04
 tags:
+  - source/article
   - topic/reliability
   - topic/failover
   - topic/kubernetes
-source: https://arxiv.org/pdf/2603.07345
+  - topic/microservices
 ---
 
-# Uber’s Failover Architecture
+## 🎯 Highlights & Principais Aprendizados
 
-Para chegar a esse nível de eficiência (redução de 2x para 1,3x na capacidade provisionada e aumento da utilização de CPU), a Uber implementou uma série de mudanças técnicas e organizacionais profundas na forma como seus **6.000 microserviços** interagem.
+* **Failover é produto de arquitetura, não só de capacidade:** A Uber reduziu a capacidade provisionada para failover de aproximadamente **2x para 1,3x** ao combinar isolamento de dependências, priorização de serviços e reaproveitamento controlado de recursos.
+* **Fail-open protege fluxos críticos:** Serviços essenciais, como solicitar uma viagem, não podem depender rigidamente de serviços acessórios, como promoções. Dependências não críticas precisam degradar sem bloquear o caminho principal.
+* **Overcommit seguro exige classes de workload:** Recursos reservados para serviços críticos podem ser usados por workloads não críticos em tempo normal, desde que o scheduler consiga expulsá-los rapidamente durante uma falha.
+* **Batch vira reserva elástica:** Clusters de processamento offline podem ser temporariamente convertidos em capacidade para microserviços, porque jobs analíticos toleram interrupção melhor que tráfego transacional.
+* **Imagem Docker também é gargalo de failover:** Em migrações massivas, puxar imagens ao mesmo tempo cria efeito manada. Preload e distribuição P2P reduzem o tempo de recuperação.
+* **Drills em produção são parte da arquitetura:** A confiabilidade veio de testes recorrentes, não de documentação estática. Os drills expuseram milhares de dependências inseguras antes de uma crise real.
 
-Aqui estão os pilares principais do que foi feito:
+---
 
-1. Mudança de "Fail-Close" para "Fail-Open"
+## 🛠️ Problemas Resolvidos & Soluções de System Design
 
-O maior desafio técnico era que serviços críticos (como o de solicitar uma viagem) dependiam de serviços não críticos (como o de exibir uma promoção). No modelo antigo, se o serviço de promoção caísse, ele "travava" o serviço de viagem (comportamento chamado de **fail-close**).
+### 1. Dependências Não Críticas Bloqueando Fluxos Críticos
+* **Problema:** Serviços críticos dependiam de serviços acessórios. Se uma dependência como promoções falhasse, o fluxo principal podia travar por comportamento **fail-close**.
+* **Solução:** A Uber identificou dependências perigosas com análise estática e telemetria em produção, depois adaptou clientes e chamadas para permitir **fail-open** quando a dependência não era essencial.
 
-- **O que fizeram:** A Uber utilizou análise estática de código e monitoramento em tempo real para identificar essas dependências perigosas.
-- **Resultado:** Eles "blindaram" os serviços críticos para que, caso um serviço secundário seja desligado durante uma falha, o serviço principal continue funcionando normalmente (**fail-open**).
+### 2. Capacidade de Failover Ociosa
+* **Problema:** Reservar máquinas inteiras para desastre mantinha capacidade parada a maior parte do tempo, reduzindo utilização de CPU e encarecendo a infraestrutura.
+* **Solução:** Criação de pools com prioridades diferentes no Kubernetes, como `stateless.cpu` para serviços críticos e `overcommit.cpu` para workloads não críticos. Em tempo normal, serviços menos críticos usam a folga; em falha, são preemptados.
 
-2. Superalocação Inteligente (Oversubscription)
+### 3. Falta de Capacidade Imediata Para Absorver Região Perdida
+* **Problema:** Uma falha regional exige deslocar tráfego e workloads rapidamente, mas comprar ou manter capacidade dedicada para isso aumenta muito o custo.
+* **Solução:** Uso de clusters de **batch** como reserva. Jobs analíticos e de IA são interrompidos temporariamente, liberando servidores para microserviços online em menos de dezenas de minutos.
 
-Antes, a Uber reservava máquinas inteiras que ficavam paradas esperando uma falha. Com a UFA, eles passaram a usar esses "espaços vazios" (buffers) de forma ativa.
+### 4. Efeito Manada no Pull de Imagens
+* **Problema:** Realocar milhares de serviços ao mesmo tempo faz muitos nós puxarem imagens Docker simultaneamente, saturando rede, registry e tempo de inicialização.
+* **Solução:** Pré-carregamento e distribuição **peer-to-peer** das imagens antes ou durante a movimentação do tráfego, reduzindo o caminho crítico de startup.
 
-- **O que fizeram:** Criaram dois pools de recursos no Kubernetes: o `stateless.cpu` (para serviços críticos) e o `overcommit.cpu` (para serviços não críticos).
-- **A mágica:** Em tempos normais, os serviços não críticos rodam "de carona" na CPU que está reservada para o failover dos serviços críticos. Se ocorre uma falha regional, o sistema **expulsa instantaneamente** os serviços não críticos para dar lugar ao tráfego real de viagens.
+### 5. Ausência de Priorização Entre Serviços
+* **Problema:** Tratar todos os microserviços como igualmente importantes impede decisões automáticas durante uma crise. O sistema não sabe o que preservar, degradar ou desligar.
+* **Solução:** Classificação explícita de criticidade e políticas automáticas de preempção. Serviços ligados ao fluxo principal recebem prioridade; serviços acessórios podem degradar, pausar ou perder capacidade.
 
-3. Uso de Clusters de "Batch" como Reserva
+### 6. Confiabilidade Não Testada Sob Pressão Real
+* **Problema:** Sem simulações frequentes, dependências inseguras só aparecem durante incidentes reais, quando o custo é maior.
+* **Solução:** Execução recorrente de drills em produção e staging. A Uber reporta dezenas de simulações e milhares de dependências inseguras encontradas e corrigidas.
 
-Em vez de comprar mais servidores para serem usados apenas em emergências, a Uber passou a "sequestrar" temporariamente seus clusters de processamento de dados (Batch), usados para análises e treinamento de IA.
+---
 
-- **O que fizeram:** Quando uma região cai, o orquestrador (OMG) envia um sinal para os clusters de Batch.
-- **Ação rápida:** Em menos de **20 minutos**, o sistema encerra as tarefas de análise de dados (que podem esperar) e converte esses milhares de servidores em capacidade para hospedar os microserviços que foram expulsos dos clusters principais.
+```mermaid
+graph TD
+    subgraph Normal ["Operação Normal"]
+        A[Serviços Críticos] --> B[Pool stateless.cpu]
+        C[Serviços Não Críticos] --> D[Pool overcommit.cpu]
+        E[Jobs Batch] --> F[Clusters Batch]
+    end
 
-4. Automatização e Pré-carregamento de Imagens
+    subgraph Falha ["Falha Regional"]
+        G[Orquestrador de Failover] --> H[Preempta Workloads Não Críticos]
+        G --> I[Interrompe Jobs Batch]
+        G --> J[Precarrega Imagens via P2P]
+        H --> K[Capacidade Para Serviços Críticos]
+        I --> K
+        J --> K
+    end
 
-Mover milhares de serviços de um lugar para outro em segundos causaria um congestionamento na rede (o efeito "manada" ou _thundering herd_).
+    subgraph Aplicacao ["Aplicação"]
+        L[Fluxo Crítico] --> M{Dependência Acessória Falhou?}
+        M -->|Sim| N[Fail-open e Degrada]
+        M -->|Não| O[Resposta Completa]
+    end
+```
 
-- **O que fizeram:** Implementaram um sistema de **pré-carregamento de imagens Docker** via rede P2P (Peer-to-Peer).
-- **Eficiência:** Antes mesmo de o tráfego ser movido, as imagens dos serviços já estão sendo enviadas para os novos servidores, reduzindo o tempo de inicialização em até **30%**.
+## Impacto dos Resultados
 
-5. Validação com "Drills" em Produção
+- **Eficiência de capacidade:** Redução da capacidade reservada para failover de aproximadamente **2x para 1,3x**, com melhor utilização de CPU.
 
-Para garantir que tudo isso funcionaria em uma crise real, a Uber instituiu uma cultura de **simulações agressivas**.
+- **Resiliência de produto:** Serviços críticos continuam operando mesmo quando dependências não essenciais são desligadas ou degradadas.
 
-- **O que fizeram:** Eles realizam testes constantes onde cortam propositalmente o tráfego de serviços não críticos em produção para ver se os serviços principais sobrevivem.
-- **Resultado:** Foram mais de **43 simulações em produção** e 70 em ambientes de teste, o que permitiu identificar e corrigir mais de **4.000 dependências inseguras** antes que elas causassem problemas reais.
+- **Tempo de recuperação:** Uso de batch, preempção e preload de imagens reduz o tempo necessário para recolocar microserviços em capacidade disponível.
 
-Em suma, eles pararam de tratar todos os serviços como "iguais" e criaram uma infraestrutura elástica que sabe exatamente o que priorizar, o que desligar e onde buscar recursos extras em segundos
+- **Maturidade operacional:** Drills recorrentes transformam failover em rotina testada, não em procedimento manual raro.
 
 Source: https://arxiv.org/pdf/2603.07345
