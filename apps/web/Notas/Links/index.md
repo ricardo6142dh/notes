@@ -13,4 +13,3 @@ tags:
 - [[Links/System Design|System Design]]
 - [[Links/Programação & Algoritmos|Programação & Algoritmos]]
 - [[Links/Entrevistas & Carreira|Entrevistas & Carreira]]
-- [[Links/Certificações|Certificações]]
