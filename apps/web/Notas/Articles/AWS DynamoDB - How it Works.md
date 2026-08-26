@@ -97,25 +97,25 @@ O mapeamento entre chaves primárias e nós de armazenamento (*routing metadata*
 
 ```mermaid
 graph TD
-    Cliente[Cliente: PutItem/GetItem] --> RR[Request Router]
-    RR --> Auth[Authentication System: IAM/KMS]
-    RR --> GAC[Global Admission Control: Token Buckets]
-    RR --> MemDS[(MemDS: In-Memory Perkle Tree)]
+    Cliente["Cliente: PutItem / GetItem"] --> RR["Request Router"]
+    RR --> Auth["Authentication System: IAM / KMS"]
+    RR --> GAC["Global Admission Control: Token Buckets"]
+    RR --> MemDS[("MemDS: In-Memory Perkle Tree")]
 
-    subgraph Storage Nodes (Replication Group)
-        SN1[Storage Node 1: Líder Paxos <br> WAL + B-Tree]
-        SN2[Storage Node 2: Seguidor <br> WAL + B-Tree]
-        LogRep[Log Replica Node: Aceitador <br> WAL Only]
+    subgraph Storage["Storage Nodes: Replication Group"]
+        SN1["Storage Node 1: Lider Paxos, WAL e B-Tree"]
+        SN2["Storage Node 2: Seguidor, WAL e B-Tree"]
+        LogRep["Log Replica Node: Aceitador, WAL only"]
     end
 
-    RR -->|Gravação/Leitura Forte| SN1
-    RR -->|Leitura Eventual| SN2
+    RR -->|"Gravacao / Leitura Forte"| SN1
+    RR -->|"Leitura Eventual"| SN2
 
-    SN1 ===|Consenso Paxos| SN2
-    SN1 ===|Cura Rápida em Falhas| LogRep
+    SN1 -->|"Consenso Paxos"| SN2
+    SN1 -->|"Cura rapida em falhas"| LogRep
 
-    SN1 -->|Push de Mudança de Topologia| MemDS
-    SN2 -->|Push de Mudança de Topologia| MemDS
+    SN1 -->|"Push de mudanca de topologia"| MemDS
+    SN2 -->|"Push de mudanca de topologia"| MemDS
 ```
 
 ### Como o MemDS se mantém sempre atualizado?
