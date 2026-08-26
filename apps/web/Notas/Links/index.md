@@ -1,16 +1,16 @@
 ---
-title: Links
-description: Coleção de links técnicos organizados por categoria.
 tags:
   - links
   - resources
-enableToc: false
 ---
 
 ## Categorias
 
-- [[devops-sre|DevOps / SRE]]
-- [[Links/kubernetes|Kubernetes]]
-- [[sysadmin|Sysadmin]]
-- [[python|Python]]
-- [[certificacoes|Certificações]]
+- [[SRE & Observabilidade|SRE & Observabilidade]]
+- [[Cloud & IaC|Cloud & IaC]]
+- [[Links/Kubernetes|Kubernetes]]
+- [[Networking & Linux|Networking & Linux]]
+- [[Links/System Design|System Design]]
+- [[Programação & Algoritmos|Programação & Algoritmos]]
+- [[Entrevistas & Carreira|Entrevistas & Carreira]]
+- [[Certificações|Certificações]]

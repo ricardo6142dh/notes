@@ -45,7 +45,7 @@ title: Ricardo Notes
 ## Links
 
 - [[devops-sre|DevOps / SRE]]
-- [[Links/kubernetes|Kubernetes]]
+- [[Links/Kubernetes|Kubernetes]]
 - [[sysadmin|Sysadmin]]
 - [[python|Python]]
-- [[certificacoes|Certificações]]
+- [[Certificações|Certificações]]

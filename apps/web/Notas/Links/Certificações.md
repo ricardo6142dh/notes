@@ -1,12 +1,9 @@
 ---
-title: Certificações
-description: Recursos de estudo para certificações AWS DevOps Professional e LPIC DevOps.
 tags:
   - links
   - certifications
   - aws
   - lpic
-enableToc: false
 ---
 
 ## AWS DevOps Professional

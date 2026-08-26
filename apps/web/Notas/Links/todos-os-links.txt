@@ -1,0 +1,276 @@
+===== TODOS OS LINKS =====
+Gerado em: 2026-08-26
+
+===== devops-sre.md =====
+
+[Blog] Chaos Engineering Upgraded
+https://netflixtechblog.com/chaos-engineering-upgraded-878d341f15fa
+
+[Article] Containers 101
+https://www.freecodecamp.org/news/demystifying-containers-101-a-deep-dive-into-container-technology-for-beginners-d7b60d8511c1/
+
+[Video] SRE x Devops
+https://www.youtube.com/watch?v=uTEL8Ff1Zvk
+
+[Training] Site Reliability Engineering
+https://www.coursera.org/learn/site-reliability-engineering-slos
+
+[Article] SRE Toolkit: Failure Domains
+http://www.willett.io/posts/domains/
+
+[Article] Terraform Module Patterns
+https://medium.com/@AaronKalair/terraform-module-patterns-4ba2996f0b96
+
+[Article] Golden Signals
+https://dev.to/squadcast/golden-signals-monitoring-from-first-principles-kpn
+
+[Article] Interview Questions - SRE
+https://www.opsera.io/learn/sre-top-interview-questions
+
+[Git] Devops Exercises
+https://github.com/bregman-arie/devops-exercises#ansible
+
+[Git] Rover - Terraform Visualizer
+https://github.com/im2nguyen/rover
+
+[Article] How Time Series Databases Work
+https://www.honeycomb.io/blog/time-series-database/
+
+[Training] Elastic Free Training
+https://www.elastic.co/pt/training/free
+
+[Article] Our AWS bill is ~2% of revenue
+https://www.sankalpjonna.com/posts/our-aws-bill-is-2-of-revenue-heres-how-we-did-it
+
+[Video] Otimizando seu Webserver na AWS
+https://www.youtube.com/watch?v=gklTu8iq04o
+
+[Article] Princípios de Chaos Engineering
+https://principlesofchaos.org/pt/
+
+[Project] School Of SRE
+https://linkedin.github.io/school-of-sre/
+
+[Project] Four Keys Project
+https://cloud.google.com/blog/products/devops-sre/using-the-four-keys-to-measure-your-devops-performance
+
+[Article] DORA's research
+https://www.devops-research.com/research.html
+
+[Article] Infrastructure as Product
+https://www.thoughtworks.com/insights/articles/infrastructure-as-product
+
+[Article] Product management in infrastructure
+https://lethain.com/product-management-infra-engineering/
+
+[Training] Friends Of Tomorrow
+https://aeroli.to/online/friends-of-tomorrow-online#online-6
+
+[Project] The Leadership Library for Engineers
+https://leadership-library.dev/
+
+[Project] Pleco - Delete AWS resources by TTL
+https://github.com/Qovery/pleco
+
+[Article] Rundown of Netflix's SRE practice
+https://five9s.substack.com/p/rundown-of-netflixs-sre-practice
+
+[Article] 90DaysOfDevOps
+https://github.com/MichaelCade/90DaysOfDevOps
+
+[Tool] Making SLOs with Prometheus manageable (pyrra)
+https://github.com/pyrra-dev/pyrra
+
+[Article] How S3 Works
+https://newsletter.systemdesign.one/p/aws-s3-system-design
+
+[Article] SRE Book in Pieces
+https://sre.google/resources/book-update/
+
+[Article] Sysadmin Questions
+https://github.com/trimstray/test-your-sysadmin-skills
+
+===== kubernetes.md =====
+
+[Article] Monografia: Containers Orquestrados com Kubernetes
+https://prezi.com/p/wgoqjmtmjcpe/monografia-containers-orquestrados-com-kubernetes-provendo-infraestrutura-imutavel-em-alta-disponibilidade/
+
+[Article] Tracing the path of network traffic in Kubernetes
+https://learnk8s.io/kubernetes-network-packets
+
+[Article] Detect crashes in your Kubernetes cluster using kwatch
+https://kwatch.dev/blog/detect-crashes-in-your-cluster-using-kwatch-and-slack
+
+[Article] How ETCD Works
+https://learnk8s.io/etcd-kubernetes
+
+[Article] A visual guide on troubleshooting Kubernetes deployments
+https://learnk8s.io/troubleshooting-deployments
+
+[Article] Multicluster Traffic Mirroring with Istio and Kind
+https://piotrminkowski.com/2021/07/12/multicluster-traffic-mirroring-with-istio-and-kind/
+
+[Article] Architecting Kubernetes clusters
+https://itnext.io/architecting-kubernetes-clusters-choosing-a-cluster-size-92f6feaa2908
+
+[Article] Kubernetes Logging in Production
+https://codersociety.com/blog/articles/kubernetes-logging
+
+[Article] Living with Kubernetes: 12 Commands to Debug Your Workloads
+https://thenewstack.io/living-with-kubernetes-12-commands-to-debug-your-workloads
+
+[Video] 10 awesome Kubernetes tools
+https://developers.redhat.com/devnation/tech-talks/10-kubernetes-tools
+
+[Document] Kubernetes For Everyone
+https://docs.google.com/document/d/1p4ZYQYM2VrMCR8K3T68JOMzWHlV-C8Jogrl9Ces77OA/edit
+
+[Git] EKS Base - Terraform + Terragrunt
+https://github.com/maddevsio/aws-eks-base
+
+[Training] Get Certified for GitOps with Argo
+https://codefresh.learnworlds.com/
+
+[Training] Certified Calico Operator: Level 1
+https://academy.tigera.io/course/certified-calico-operator-level-1/
+
+[Tool] Fortio load testing tool
+https://github.com/fortio/fortio
+
+[Tool] Kubernetes Instance Calculator
+https://learnk8s.io/kubernetes-instance-calculator
+
+[Tool] Kube Chaos
+https://github.com/Shogan/kube-chaos
+
+[Tool] A standalone reverse-proxy to enforce Webauthn
+https://github.com/Quiq/webauthn_proxy
+
+[Tool] Kwatch - Monitoring and integrate with Slack
+https://github.com/abahmed/kwatch
+
+[Tool] Zarf - K8s install Tool
+https://github.com/defenseunicorns/zarf
+
+[Tool] Kustomize Tutorial
+https://www.mirantis.com/blog/introduction-to-kustomize-part-1-creating-a-kubernetes-app-out-of-multiple-pieces/
+
+[Tool] KEDA - Event-driven Autoscaling
+https://keda.sh/
+
+[Tool] keptn - Observability, Dashboards & Alerting
+https://keptn.sh/
+
+[Tool] Impeller - Managing multiple Helm charts
+https://github.com/target/impeller
+
+[Tool] Escalonamento de Nós com Amazon EKS e Karpenter
+https://aws.amazon.com/pt/blogs/aws-brasil/escalonamento-de-nos-com-amazon-eks-e-karpenter/
+
+[Tool] Gitops Framework (cloudogu/gitops-patterns)
+https://github.com/cloudogu/gitops-patterns
+
+[Article] K8s Networking
+https://learnkube.com/kubernetes-network-packets
+
+===== python.md =====
+
+[Course] Google's Python Class
+https://developers.google.com/edu/python/
+
+[Certification] Python Institute — PCEP
+https://pythoninstitute.org/certification/pcep-certification-entry-level/
+
+[Course] Time Complexity — InterviewBit
+https://www.interviewbit.com/courses/programming/topics/time-complexity/
+
+[YouTube] Patricia Jaques Maillard
+https://www.youtube.com/channel/UCaF7od9pbJBdEagu1ywdT5g
+
+[Practice] Codility — Iterations
+https://app.codility.com/programmers/lessons/1-iterations/
+
+[Course] Python Fundamentos para Análise de Dados
+https://www.datascienceacademy.com.br/course?courseid=python-fundamentos
+
+[Course] Python for Data Science — Cognitive Class
+https://cognitiveclass.ai/courses/python-for-data-science/
+
+[Reference] Algoritmos em Python
+https://algoritmosempython.com.br/
+
+[Course] MAC0121 Algoritmos e Estruturas de Dados I — IME/USP
+https://www.ime.usp.br/~pf/mac0121-2015/
+
+[Course] Decode the Coding Interview in Python — Educative
+https://www.educative.io/courses/decode-coding-interview-python
+
+[Course] Ace the Python Coding Interview — Educative
+https://www.educative.io/path/ace-python-coding-interview
+
+[Course] Algorithms for Coding Interviews in Python — Educative
+https://www.educative.io/courses/algorithms-coding-interviews-python
+
+[Reference] Hello Interview — System Design
+https://www.hellointerview.com/learn/system-design/in-a-hurry/introduction
+
+===== sysadmin.md =====
+
+[Tool] KiTTY
+http://www.9bis.net/kitty/#!index.md
+
+[Blog] Notas de Aula de TCP/IP — IME/USP
+https://www.ime.usp.br/~ueda/ldoc/notastcp.html
+
+[Training] Master Class: TCP/IP — Udemy
+https://www.udemy.com/course/tcpmasterclass/
+
+[Video] SSL/TLS process explained in 7 minutes
+https://www.youtube.com/watch?v=4nGrOpo0Cuc
+
+[Training] TCP/IP Training Video — Udemy
+https://www.udemy.com/course/tcp-ip-training/
+
+[Blog] Eriberto Wiki (networking)
+http://eriberto.pro.br/wiki/index.php?title=P%C3%A1gina_principal
+
+[Training] Linux Tracing Workshops Materials
+https://github.com/goldshtn/linux-tracing-workshop
+
+[Reference] The GNU C Library
+https://www.gnu.org/software/libc/manual/html_mono/libc.html
+
+[Training] NYUx's Computer Science Fundamentals — edX
+https://www.edx.org/microbachelors/nyux-computer-science-fundamentals
+
+[Training] CS401: Operating Systems — Saylor
+https://learn.saylor.org/course/CS401
+
+[Training] Computer Hardware and Operating Systems — edX
+https://www.edx.org/course/computer-hardware-and-operating-systems
+
+[Blog] Sysadvent
+https://sysadvent.blogspot.com/
+
+===== certificacoes.md =====
+
+[Article] My path to AWS Certified Solutions Architect - Professional
+https://medium.com/grey-frogs/my-path-to-aws-certified-solutions-architect-professional-bebd42eb5d5
+
+[Guide] AWS Certified Solution Architect - Professional Exam Learning Path
+http://jayendrapatil.com/aws-solution-architect-professional-certification-exam-preparation-guide/
+
+[Article] What it takes to pass the AWS Certified DevOps Engineer - Professional exam
+https://medium.com/@apzuk3/what-it-takes-to-pass-the-aws-certified-devops-engineer-professional-exam-40453cf0e3d4
+
+[Article] How to Master the AWS DevOps Professional Exam
+https://medium.com/@bachlmayr/how-to-master-the-aws-devops-professional-exam-de2b80ae10e2
+
+[Blog] Jayendra's Blog (AWS)
+https://jayendrapatil.com/
+
+[Git] pyguy/lpi-devops-study
+https://github.com/pyguy/lpi-devops-study/blob/master/Links.md#GettingStarted
+
+[Reference] 701-100 LPI Real Exam Questions — CertLibrary
+https://www.certlibrary.com/info/701-100
