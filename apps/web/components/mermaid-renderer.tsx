@@ -5,7 +5,9 @@ import { useEffect } from "react"
 export function MermaidRenderer() {
   useEffect(() => {
     async function render() {
-      const blocks = document.querySelectorAll("code.language-mermaid")
+      const blocks = document.querySelectorAll<HTMLElement>(
+        "code.language-mermaid, code[data-language='mermaid']",
+      )
       if (!blocks.length) return
       const mermaid = (await import("mermaid")).default
       mermaid.initialize({
@@ -14,8 +16,12 @@ export function MermaidRenderer() {
         securityLevel: "loose",
       })
       for (const block of Array.from(blocks)) {
-        const pre = block.parentElement
-        if (!pre) continue
+        if (block.dataset.mermaidRendered === "true") continue
+        block.dataset.mermaidRendered = "true"
+
+        const wrapper = block.closest("figure") ?? block.closest("pre")
+        if (!wrapper) continue
+
         const definition = block.textContent ?? ""
         try {
           const id = `mermaid-${Math.random().toString(36).slice(2)}`
@@ -23,7 +29,7 @@ export function MermaidRenderer() {
           const container = document.createElement("div")
           container.className = "mermaid-diagram my-4 overflow-x-auto"
           container.innerHTML = svg
-          pre.replaceWith(container)
+          wrapper.replaceWith(container)
         } catch (e) {
           console.error("Mermaid render error:", e)
         }
