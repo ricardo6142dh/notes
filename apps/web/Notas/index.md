@@ -51,4 +51,3 @@ title: Ricardo Notes
 - [[Links/System Design|System Design]]
 - [[Algorithms & Programming|Algorithms & Programming]]
 - [[Interviews|Interviews]]
-- [[Links/Certificações|Certificações]]
