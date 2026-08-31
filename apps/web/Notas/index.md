@@ -49,6 +49,6 @@ title: Ricardo Notes
 - [[Links/Kubernetes|Kubernetes]]
 - [[Links/Networking & Linux|Networking & Linux]]
 - [[Links/System Design|System Design]]
-- [[Links/Programação & Algoritmos|Programação & Algoritmos]]
-- [[Links/Entrevistas & Carreira|Entrevistas & Carreira]]
+- [[Algorithms & Programming|Algorithms & Programming]]
+- [[Interviews|Interviews]]
 - [[Links/Certificações|Certificações]]

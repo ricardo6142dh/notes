@@ -5,8 +5,6 @@ tags:
   - topic/synchronization
 ---
 
-# Spinlock
-
 O **spinlock** é um mecanismo de sincronização utilizado em ambientes de programação concorrente para proteger o acesso a recursos compartilhados. Diferente de um Mutex, que coloca a thread em estado de espera (_sleep_) quando o recurso está ocupado, o spinlock mantém a **thread ativa em um loop de verificação** (girando) até que o bloqueio seja liberado.
 
 Abaixo estão os detalhes sobre seu funcionamento e aplicações:

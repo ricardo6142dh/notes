@@ -5,7 +5,6 @@ tags:
   - topic/synchronization
 ---
 
-# Semáforo
 
 Um **semáforo** é um mecanismo de sincronização utilizado na programação paralela e concorrente para controlar o acesso a recursos compartilhados, com o objetivo de evitar **Race Conditions** (condições de corrida) e inconsistências de dados.
 

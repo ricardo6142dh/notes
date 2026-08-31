@@ -5,8 +5,6 @@ tags:
   - topic/synchronization
 ---
 
-# Problemas Clássicos de Concorrência
-
 ### 1. **Race Conditions (Condições de Corrida)**
 
 Este fenômeno ocorre quando um recurso compartilhado (como uma variável na memória ou um registro no banco de dados) é acessado e modificado por várias tarefas simultaneamente.

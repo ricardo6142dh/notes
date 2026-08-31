@@ -8,13 +8,13 @@ tags:
 
 ## Entrevistas Técnicas
 
-| Tipo    | Nome                            | Link                                                                                         |
-| ------- | ------------------------------- | -------------------------------------------------------------------------------------------- |
-| Article | Interview Questions - SRE       | [opsera.io](https://www.opsera.io/learn/sre-top-interview-questions)                         |
-| Git     | Devops Exercises (Q&A)          | [github.com](https://github.com/bregman-arie/devops-exercises#ansible)                       |
-| Git     | Test Your Sysadmin Skills       | [github.com](https://github.com/trimstray/test-your-sysadmin-skills)                         |
-| Git     | Awesome Behavioral Interviews   | [github.com](https://github.com/ashishps1/awesome-behavioral-interviews)                     |
-| Article | Kubernetes Troubleshooting Q&A  | [interview.devopscommunity.in](https://interview.devopscommunity.in/topic/kubernetes-troubleshooting) |
+| Tipo    | Nome                           | Link                                                                                                  |
+| ------- | ------------------------------ | ----------------------------------------------------------------------------------------------------- |
+| Article | Interview Questions - SRE      | [opsera.io](https://www.opsera.io/learn/sre-top-interview-questions)                                  |
+| Git     | Devops Exercises (Q&A)         | [github.com](https://github.com/bregman-arie/devops-exercises#ansible)                                |
+| Git     | Test Your Sysadmin Skills      | [github.com](https://github.com/trimstray/test-your-sysadmin-skills)                                  |
+| Git     | Awesome Behavioral Interviews  | [github.com](https://github.com/ashishps1/awesome-behavioral-interviews)                              |
+| Article | Kubernetes Troubleshooting Q&A | [interview.devopscommunity.in](https://interview.devopscommunity.in/topic/kubernetes-troubleshooting) |
 
 ## Liderança & Carreira
 

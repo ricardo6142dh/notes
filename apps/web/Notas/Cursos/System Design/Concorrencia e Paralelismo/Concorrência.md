@@ -4,9 +4,11 @@ tags:
   - topic/concurrency
 ---
 
-# Concorrência
 
-De acordo com as fontes, a **concorrência** é a capacidade de um sistema ou aplicação de **lidar com várias tarefas ao mesmo tempo**, mas não necessariamente de forma simultânea.
+
+> [!quote] Definicao
+> A **concorrência** é a capacidade de um sistema ou aplicação de **lidar com várias tarefas ao mesmo tempo**, mas não necessariamente de forma simultânea.
+
 
 Abaixo estão os pontos principais para entender esse conceito:
 

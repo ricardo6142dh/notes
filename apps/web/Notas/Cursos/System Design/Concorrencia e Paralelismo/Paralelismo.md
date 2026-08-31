@@ -4,9 +4,13 @@ tags:
   - topic/parallelism
 ---
 
-# Paralelismo
 
-Diferente da concorrência, que lida com o gerenciamento e a alternância de múltiplas tarefas, o **paralelismo** envolve a **execução literal e simultânea** de várias operações ou instruções. Enquanto a concorrência pode ocorrer em um único núcleo de processamento através da troca rápida de contexto, o paralelismo requer obrigatoriamente hardware com **múltiplos núcleos de CPU** para que cada núcleo processe diferentes threads ou tarefas no mesmo instante.
+
+> [!quote] Definicao
+> O **paralelismo** envolve a **execução literal e simultânea** de várias operações ou instruções. 
+
+
+Enquanto a concorrência pode ocorrer em um único núcleo de processamento através da troca rápida de contexto, o paralelismo requer obrigatoriamente hardware com **múltiplos núcleos de CPU** para que cada núcleo processe diferentes threads ou tarefas no mesmo instante.
 
 Abaixo, detalho os principais aspectos do paralelismo conforme as fontes:
 
@@ -21,7 +25,6 @@ Para facilitar a compreensão, as fontes utilizam a analogia de um churrasco ond
 
 - Uma pessoa corta a carne, outra acende a churrasqueira, outra gela a cerveja e uma quarta prepara drinks.
 - Como cada pessoa (núcleo de CPU) é responsável por uma parte do processo de forma independente, todas as ações acontecem **paralelamente**, acelerando a entrega final do evento.
-
 
 ### 3. Desafios Técnicos
 
