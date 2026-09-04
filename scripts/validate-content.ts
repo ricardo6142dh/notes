@@ -4,7 +4,7 @@
  * Usage: bun scripts/validate-content.ts [content-dir]
  */
 import path from "node:path"
-import { getAllMarkdownFiles } from "nuartz"
+import { getAllMarkdownFiles, slugifySegment } from "nuartz"
 import { renderMarkdown } from "nuartz/markdown"
 
 const CONTENT_DIR = path.resolve(process.argv[2] ?? "apps/web/Notas")
@@ -25,7 +25,33 @@ async function main() {
     process.exit(0)
   }
 
-  const slugSet = new Set(files.map(f => f.slug))
+  const slugifyPath = (value: string) =>
+    value
+      .split("/")
+      .map(slugifySegment)
+      .filter(Boolean)
+      .join("/")
+
+  const slugByName = new Map<string, string>()
+  for (const file of files) {
+    const parts = file.slug.split("/")
+    const name = parts.at(-1) === "index" ? parts.at(-2)! : parts.at(-1)!
+    const target = file.slug.endsWith("/index") ? file.slug.slice(0, -"/index".length) : file.slug
+    if (!slugByName.has(name)) slugByName.set(name, target)
+  }
+
+  const slugSet = new Set(files.flatMap((f) => (
+    f.slug.endsWith("/index") ? [f.slug, f.slug.slice(0, -"/index".length)] : [f.slug]
+  )))
+
+  const resolveLink = (target: string): string => {
+    const normalized = slugifyPath(target)
+    const exact = files.find((f) => f.slug === normalized)
+    if (exact) return `/${exact.slug}`
+    const byName = slugByName.get(normalized.split("/").pop()!)
+    if (byName) return `/${byName}`
+    return `/${normalized}`
+  }
 
   const results: {
     slug: string
@@ -43,7 +69,11 @@ async function main() {
 
     let result
     try {
-      result = await renderMarkdown(file.raw)
+      result = await renderMarkdown(file.raw, {
+        resolveLink,
+        knownSlugs: slugSet,
+        filePath: file.slug + ".md",
+      })
     } catch (e) {
       errors.push(`Render error: ${e instanceof Error ? e.message : String(e)}`)
       results.push({ slug: file.slug, errors, warnings })
@@ -51,9 +81,10 @@ async function main() {
     }
 
     for (const link of result.links) {
-      const normalized = link.toLowerCase().replace(/\s+/g, "-")
+      const normalized = slugifyPath(link)
+      const resolved = resolveLink(link).replace(/^\/+/, "")
       const found = [...slugSet].some(
-        s => s === normalized || s.endsWith("/" + normalized)
+        s => s === normalized || s.endsWith("/" + normalized) || s === resolved
       )
       if (!found) {
         warnings.push(`Broken wikilink: [[${link}]]`)

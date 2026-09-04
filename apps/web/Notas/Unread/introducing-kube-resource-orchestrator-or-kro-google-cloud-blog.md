@@ -1,16 +1,15 @@
 ---
+title: Introducing Kube Resource Orchestrator (kro)
 status: unread
 source: https://cloud.google.com/blog/products/containers-kubernetes/introducing-kube-resource-orchestrator
 created: 2026-08-04
 tags:
-  - kubernetes
-  - kube-resource-orchestrator
-  - cloud-agnostic
-  - platform-engineering
-  - gke
+  - source/article
+  - topic/kubernetes
+  - topic/platform-engineering
+  - topic/gke
+  - topic/cloud-native
 ---
-
-# Introducing Kube Resource Orchestrator, or kro | Google Cloud Blog
 
 ## TL;DR
 
@@ -19,7 +18,6 @@ kro provides a Kubernetes-native, cloud-agnostic abstraction to group and manage
 ## Summary
 
 Google worked with AWS, and Azure on kro, a Kubernetes-native, cloud-agnostic way to define groupings of Kubernetes resources. It introduces a Kubernetes Custom Resource Definition (CRD)-driven approach to declare and orchestrate collections of resources as a single unit, enabling consistent lifecycle management across environments. The blog explains developer workflows, example use cases, and how kro integrates with existing platforms like GKE and other cloud providers.
-
 
 The article outlines challenges in resource orchestration—fragmented APIs, inconsistent tooling, and operational overhead—and positions kro as a standardized control plane for resource groupings. It gives practical examples, discusses benefits such as portability and simplified developer experience, and provides a getting-started guide and links to further docs.
 
@@ -58,3 +56,8 @@ For SRE and Platform Engineering, kro reduces cognitive overhead by providing a 
 ## Source
 
 https://cloud.google.com/blog/products/containers-kubernetes/introducing-kube-resource-orchestrator
+
+## Connections
+
+- [[Cursos/Descomplicando System Design/Concepts/Kubernetes|Kubernetes]]
+- [[Cursos/Descomplicando System Design/Concepts/Microservices|Microservices]]

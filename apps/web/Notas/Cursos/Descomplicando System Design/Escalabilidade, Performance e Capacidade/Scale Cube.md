@@ -1,4 +1,6 @@
-
+---
+title: "Scale Cube"
+---
 
 O **Scale Cube** (Cubo da Escalabilidade) é um modelo conceitual do livro *"The Art of Scalability"* (de Martin L. Abbott e Michael T. Fisher) que propõe a **modelagem de microsserviços voltada à escalabilidade desde o dia zero**. Ele atua como um **mapa mental** para sabermos o que levar em conta ao projetar ou refatorar sistemas distribuídos.
 

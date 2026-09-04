@@ -1,16 +1,15 @@
 ---
+title: File Descriptor and Open File Description
 status: unread
 source: https://biriukov.dev/docs/fd-pipe-session-terminal/1-file-descriptor-and-open-file-description/
 created: 2026-08-26
 tags:
-  - file-descriptor
-  - unix
-  - os
-  - file-io
-  - systems
+  - source/article
+  - topic/linux
+  - topic/operating-systems
+  - topic/file-io
+  - topic/processes
 ---
-
-# File descriptor and open file description | Viacheslav Biriukov
 
 ## TL;DR
 
@@ -20,7 +19,6 @@ Explains the distinction between file descriptors and open file descriptions on 
 
 The article defines file descriptors as per-process integer handles and open file descriptions as kernel-level objects representing the open file state (offsets, status flags). It covers dup/dup2/dup3 behavior, fork semantics, and how pipes and sessions interact with descriptors and file descriptions.
 
-
 First of all, I want to touch on the two fundamental concepts of working with files:
 
 These two abstractions are crucial for understanding the internals of a process creation, communication, and data transition.
@@ -28,7 +26,6 @@ These two abstractions are crucial for understanding the internals of a process 
 The first concept is a file descriptor or fd. It’s a positive integer number used by file system calls instead of a file path in order to make a variety of operations. Every process has its own file descriptor table (see Image 1 below). The main idea of a file descriptor is to decouple a file path (or, more correctly, an inode with minor and major device numbers) from a file object inside a process and the Linux kernel. This allows software developers to open the same file an arbitrary number of times for different purposes, with various flags (for instance: O_DIRECT, O_SYNC, O_APPEND, etc.), and at different offsets.
 
 For example, a program wants to read from and write to one file in two separate places. In this case, it needs to open the file twice. Thus, two new file descriptors will refer to 2 different entries in the system-wide open file description table.
-
 
 ## Key Concepts
 
@@ -62,3 +59,8 @@ Understanding descriptors vs open file descriptions is essential for system prog
 ## Source
 
 https://biriukov.dev/docs/fd-pipe-session-terminal/1-file-descriptor-and-open-file-description/
+
+## Connections
+
+- [[Cursos/Fundamentals of Operating Systems/Chapter 17 – I O Systems & Storage|I/O Systems & Storage]]
+- [[Cursos/Fundamentals of Operating Systems/Chapter 3 – Programs vs Processes|Programs vs Processes]]

@@ -86,6 +86,16 @@ describe("remarkWikilink", () => {
     expect(html).toContain('href="/custom/my_page"')
   })
 
+  it("does not mark links as broken when custom resolve points to a known slug", async () => {
+    const html = await process("[[Cursos/Fundamentals of Operating Systems/Fundamentals of Operating Systems]]", {
+      resolve: () => "/cursos/fundamentals-of-operating-systems",
+      knownSlugs: new Set(["cursos/fundamentals-of-operating-systems"]),
+    })
+
+    expect(html).toContain('class="wikilink"')
+    expect(html).not.toContain("wikilink broken")
+  })
+
   it("supports custom baseUrl", async () => {
     const html = await process("[[Page]]", { baseUrl: "/wiki/" })
     expect(html).toContain('href="/wiki/page"')

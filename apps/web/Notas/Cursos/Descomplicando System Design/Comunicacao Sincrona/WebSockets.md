@@ -1,4 +1,5 @@
 ---
+title: "WebSockets"
 tags:
   - course/system-design
   - topic/communication

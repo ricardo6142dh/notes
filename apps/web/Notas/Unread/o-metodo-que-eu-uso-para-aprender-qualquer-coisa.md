@@ -1,16 +1,14 @@
 ---
+title: O Metodo Que Eu Uso Para Aprender Qualquer Coisa
 status: unread
 source: https://deveficiente.com/blog/o-metodo-que-eu-uso-para-aprender-qualquer-coisa-3jnn
 created: 2026-08-07
 tags:
-  - learning
-  - study-methods
-  - personal-development
-  - productivity
-  - portuguese
+  - source/article
+  - topic/learning
+  - topic/study-methods
+  - topic/productivity
 ---
-
-# O metodo que eu uso para aprender qualquer coisa
 
 ## TL;DR
 
@@ -45,3 +43,7 @@ Storing a placeholder preserves the intent to read/track the article and keeps t
 ## Source
 
 https://deveficiente.com/blog/o-metodo-que-eu-uso-para-aprender-qualquer-coisa-3jnn
+
+## Connections
+
+- [[Links/Interviews|Interviews]]

@@ -1,12 +1,15 @@
 ---
+title: Using Amazon EC2 Spot Instances with Karpenter
 status: unread
 source: https://aws.amazon.com/blogs/containers/using-amazon-ec2-spot-instances-with-karpenter/
 created: 2026-08-12
 tags:
-- kubernetes
+  - source/article
+  - topic/kubernetes
+  - topic/karpenter
+  - topic/aws
+  - topic/cost-optimization
 ---
-
-# Using Amazon EC2 Spot Instances with Karpenter
 
 ## TL;DR
 Karpenter can run EKS workloads on EC2 Spot capacity cost-effectively, but reliability depends on diversified NodePools, interruption handling, graceful shutdown, consolidation, and monitoring.
@@ -55,3 +58,8 @@ Karpenter makes Spot practical when the platform team designs for flexibility, i
 
 ## Source
 https://aws.amazon.com/blogs/containers/using-amazon-ec2-spot-instances-with-karpenter/
+
+## Connections
+
+- [[Kubernetes]]
+- [[Availability]]

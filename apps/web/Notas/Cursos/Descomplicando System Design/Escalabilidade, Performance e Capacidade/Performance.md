@@ -1,4 +1,6 @@
-
+---
+title: "Performance"
+---
 
 > [!quote] Definicao
 > A **performance** refere-se a **quão rápido e eficiente um sistema ou algoritmo pode ser ao processar uma única transação**, seja de forma isolada ou concorrendo com um grande volume de outras transações. 

@@ -1,15 +1,15 @@
 ---
+title: Building AdamastorX
 status: unread
 source: https://www.lmpeixoto.com/posts/building-adamastorx/
 created: 2026-08-12
 tags:
-- sre
-- ai-engineering
-- platform-engineering
-- observability
+  - source/article
+  - topic/sre
+  - topic/ai-engineering
+  - topic/platform-engineering
+  - topic/observability
 ---
-
-# Building AdamastorX: An SRE Experiment with AI Doing the Typing
 
 ## TL;DR
 AdamastorX tests AI-assisted engineering under realistic SRE constraints, showing that code generation can be cheap while architecture, coherence, operations, and accountability remain human responsibilities.
@@ -60,3 +60,8 @@ For senior engineers, the experiment reinforces that AI can accelerate implement
 
 ## Source
 https://www.lmpeixoto.com/posts/building-adamastorx/
+
+## Connections
+
+- [[Cursos/Descomplicando System Design/Concepts/Kubernetes|Kubernetes]]
+- [[Cursos/Descomplicando System Design/Escalabilidade, Performance e Capacidade/Performance|Performance]]

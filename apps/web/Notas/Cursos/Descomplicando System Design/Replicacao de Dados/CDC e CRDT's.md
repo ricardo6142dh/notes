@@ -1,3 +1,6 @@
+---
+title: "CDC e CRDT's"
+---
 
 O **Change Data Capture (CDC)** é uma técnica que detecta e captura as alterações feitas em uma fonte de dados, como um **[banco de dados relacional ou não relacional](https://fidelissauro.dev/teorema-cap/)**, e as **transmite para outros sistemas em tempo real**. Isso **permite que outros serviços sejam imediatamente atualizados sem a necessidade de consultar diretamente o banco de dados original**. Essa abordagem é muito útil para **sincronizar dados entre diferentes sistemas**, alimentar filas de mensagens ou manter caches atualizados com as informações mais recentes.
 

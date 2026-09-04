@@ -1,3 +1,6 @@
+---
+title: "Escalabilidade"
+---
 
 > [!quote] Definicao
 > A **escalabilidade** é a capacidade de um sistema, aplicação ou negócio de **crescer e lidar com um aumento na carga de trabalho**, sem comprometer a qualidade, o desempenho e a eficiência . 

@@ -95,8 +95,13 @@ export const remarkWikilink: Plugin<[WikilinkOptions?], Root> = (options = {}) =
         } else {
           outgoingLinks.push(target)
           const normalized = slugifyPath(target)
+          const resolvedPath = href.split("#")[0]!
+          const resolved = (resolvedPath.startsWith(baseUrl)
+            ? resolvedPath.slice(baseUrl.length)
+            : resolvedPath
+          ).replace(/^\/+/, "")
           const isKnown = !knownSlugs || [...knownSlugs].some(
-            (s) => s === normalized || s.endsWith("/" + normalized)
+            (s) => s === normalized || s.endsWith("/" + normalized) || s === resolved
           )
           nodes.push({
             type: "link",

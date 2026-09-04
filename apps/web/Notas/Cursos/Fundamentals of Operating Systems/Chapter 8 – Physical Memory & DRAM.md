@@ -1,4 +1,5 @@
 ---
+title: "Chapter 8 – Physical Memory & DRAM"
 tags:
   - course/operating-systems
   - topic/memory

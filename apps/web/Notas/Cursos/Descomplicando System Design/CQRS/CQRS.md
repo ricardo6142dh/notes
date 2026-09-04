@@ -1,3 +1,6 @@
+---
+title: "CQRS (Command Query Responsibility Segregation)"
+---
 
 # CQRS (Command Query Responsibility Segregation)
 
@@ -80,6 +83,6 @@ A complexidade do CQRS varia desde estratégias simples na mesma base de dados a
 
 ## 🔗 Relação com Outros Padrões Arquiteturais
 
-* **[[system-design/event-sourcing|Event Sourcing]]:** Frequentemente combinado com CQRS. Em vez de salvar o estado atual no Command, salvam-se os eventos de mudança. O modelo Query consome essa sequência de eventos para montar a leitura (Projections).
+* **Event Sourcing:** Frequentemente combinado com CQRS. Em vez de salvar o estado atual no Command, salvam-se os eventos de mudança. O modelo Query consome essa sequência de eventos para montar a leitura (Projections).
 * **[[system-design/sharding|Sharding]]:** Enquanto o Sharding particiona horizontalmente os dados para distribuir carga por chaves, o CQRS particiona os dados funcionalmente por tipo de acesso (Leitura vs. Escrita). Ambos podem coexistir para escala extrema.
 * **Transactional Outbox & CDC:** Utilizados para garantir a publicação confiável de eventos sem incorrer nos problemas do *Dual-Write*.

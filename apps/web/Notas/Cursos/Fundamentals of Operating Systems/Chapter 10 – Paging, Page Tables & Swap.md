@@ -1,4 +1,5 @@
 ---
+title: "Chapter 10 – Paging, Page Tables & Swap"
 tags:
   - course/operating-systems
   - topic/memory

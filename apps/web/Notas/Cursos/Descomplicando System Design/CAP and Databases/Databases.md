@@ -1,4 +1,5 @@
 ---
+title: "Abstração de Armazenamento & Tipos de Bancos de Dados"
 tags:
   - course/system-design
   - topic/databases

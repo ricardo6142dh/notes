@@ -1,4 +1,5 @@
 ---
+title: "Chapter 6 – Data Section & Heap"
 tags:
   - course/operating-systems
   - topic/memory

@@ -1,3 +1,7 @@
+---
+title: "Outbox Pattern"
+---
+
 # Outbox Pattern
 
 ## Problema

@@ -1,16 +1,16 @@
 ---
+title: Como escalei um encurtador de URL
 status: unread
 source: https://www.linkedin.com/pulse/como-escalei-um-encurtador-de-url-para-100-milh%C3%B5es-mesquita-estrela-vsfaf/
 created: 2026-08-05
 tags:
-  - scaling
-  - url-shortener
-  - performance
-  - architecture
-  - brazil
+  - source/article
+  - topic/scalability
+  - topic/url-shortener
+  - topic/performance
+  - topic/cache
+  - topic/sharding
 ---
-
-# Como escalei um encurtador de url para 100 milhões de escritas diárias usando meu Homelab.
 
 ## TL;DR
 
@@ -50,3 +50,10 @@ Platform teams running high-throughput web services can apply the same increment
 ## Source
 
 https://www.linkedin.com/pulse/como-escalei-um-encurtador-de-url-para-100-milh%C3%B5es-mesquita-estrela-vsfaf/
+
+## Connections
+
+- [[Cursos/Descomplicando System Design/Concepts/Consistent Hashing (Hash Consistente)|Consistent Hashing]]
+- [[Cursos/Descomplicando System Design/Sharding/Sharding|Sharding]]
+- [[Cursos/Descomplicando System Design/Cache/Definicao de Cache|Cache]]
+- [[Cursos/Descomplicando System Design/Load Balancing/Load Balancing (Balanceamento de Carga)|Load Balancing]]

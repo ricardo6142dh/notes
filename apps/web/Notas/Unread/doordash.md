@@ -1,16 +1,15 @@
 ---
+title: DoorDash Service Mesh and Data Transfer
 status: unread
 source: https://careersatdoordash.com/blog/staying-in-the-zone-how-doordash-used-a-service-mesh-to-manage-data-transfer-reducing-hops-and-cloud-spend/?utm_source=substack&utm_medium=email
 created: 2026-08-26
 tags:
-  - service-mesh
-  - data-transfer
-  - doordash
-  - networking
-  - cost-optimization
+  - source/article
+  - topic/service-mesh
+  - topic/networking
+  - topic/cost-optimization
+  - topic/observability
 ---
-
-# DoorDash
 
 ## TL;DR
 
@@ -18,9 +17,7 @@ DoorDash used a service mesh to consolidate and optimize data transfer paths, re
 
 ## Summary
 
-The article details DoorDashs project to reduce cross-region/zone data transfer by routing traffic through an internal service mesh, implementing smarter routing policies, and leveraging observability to identify expensive paths. It describes engineering decisions, the mesh implementation, and measured cost and latency benefits.
-
-
+The article details DoorDash's project to reduce cross-region/zone data transfer by routing traffic through an internal service mesh, implementing smarter routing policies, and leveraging observability to identify expensive paths. It describes engineering decisions, the mesh implementation, and measured cost and latency benefits.
 
 ## Key Concepts
 
@@ -53,3 +50,9 @@ Platform teams can apply similar mesh-based routing policies to reduce cloud spe
 ## Source
 
 https://careersatdoordash.com/blog/staying-in-the-zone-how-doordash-used-a-service-mesh-to-manage-data-transfer-reducing-hops-and-cloud-spend/?utm_source=substack&utm_medium=email
+
+## Connections
+
+- [[Cursos/Descomplicando System Design/Concepts/Microservices|Microservices]]
+- [[Cursos/Descomplicando System Design/Load Balancing/Load Balancing (Balanceamento de Carga)|Load Balancing]]
+- [[attention-required-cloudflare|Observabilidade na Vida Real]]

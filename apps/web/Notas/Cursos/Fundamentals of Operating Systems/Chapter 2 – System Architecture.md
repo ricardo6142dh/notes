@@ -1,4 +1,5 @@
 ---
+title: "Chapter 2 – System Architecture"
 tags:
   - course/operating-systems
   - topic/kernel

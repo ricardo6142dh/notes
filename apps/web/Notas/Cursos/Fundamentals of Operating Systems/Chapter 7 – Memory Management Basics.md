@@ -1,4 +1,5 @@
 ---
+title: "Chapter 7 – Memory Management Basics"
 tags:
   - course/operating-systems
   - topic/memory

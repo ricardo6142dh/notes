@@ -1,4 +1,6 @@
-
+---
+title: "Streaming de dados"
+---
 
 ▪ Fluxo Contínuo
 ▪ Processamento de um fluxo contínuo de dados que são gerados em tempo real

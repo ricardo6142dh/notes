@@ -1,3 +1,6 @@
+---
+title: "Event Carried Event Transfer"
+---
 
 Em grandes sistemas, especialmente em arquiteturas corporativas complexas, uma solução eficaz para lidar com a alta disponibilidade de grandes volumes de dados é o **Event-Carried State Transfer**.
 

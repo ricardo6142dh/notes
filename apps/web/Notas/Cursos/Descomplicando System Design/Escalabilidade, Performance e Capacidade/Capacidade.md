@@ -1,3 +1,6 @@
+---
+title: "Capacidade"
+---
 
 > [!quote] Definicao
 > A **capacidade** refere-se à **quantidade máxima de trabalho que um sistema consegue receber e processar de maneira eficaz dentro de um determinado período de tempo**.

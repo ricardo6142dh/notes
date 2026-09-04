@@ -1,16 +1,15 @@
 ---
+title: Observabilidade na Vida Real
 status: unread
 source: https://medium.com/@valeriowillian/observabilidade-na-vida-real-reduzindo-99-do-tempo-de-resposta-0a6364e7dbd8
 created: 2026-08-26
 tags:
-  - observability
-  - sre
-  - incident-response
-  - latency
-  - portuguese
+  - source/article
+  - topic/observability
+  - topic/sre
+  - topic/incident-response
+  - topic/latency
 ---
-
-# Attention Required! | Cloudflare
 
 ## TL;DR
 
@@ -19,14 +18,6 @@ A practical account of using observability to reduce incident response times and
 ## Summary
 
 The author shares real-world examples where improving observability—better metrics, dashboards, tracing, and alerting—cut response time dramatically. They discuss prioritizing high-signal metrics, automating common remediation steps, and aligning alerts with actionable runbooks. The article is in Portuguese and includes practical steps and examples.
-
-
-This website is using a security service to protect itself from online attacks. The action you just performed triggered the security solution. There are several actions that could trigger this block including submitting a certain word or phrase, a SQL command or malformed data.
-
-You can email the site owner to let them know you were blocked. Please include what you were doing when this page came up and the Cloudflare Ray ID found at the bottom of this page.
-
-Cloudflare Ray ID: a311c9dbb959ae55 • Your IP: Click to reveal 217.160.75.67 • Performance & security by Cloudflare
-
 
 ## Key Concepts
 
@@ -59,3 +50,8 @@ Platform teams gain faster incident response, lower customer impact, and reduced
 ## Source
 
 https://medium.com/@valeriowillian/observabilidade-na-vida-real-reduzindo-99-do-tempo-de-resposta-0a6364e7dbd8
+
+## Connections
+
+- [[Cursos/Descomplicando System Design/Escalabilidade, Performance e Capacidade/Performance|Performance]]
+- [[Cursos/Descomplicando System Design/Concepts/Availability|Availability]]

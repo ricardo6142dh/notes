@@ -1,4 +1,5 @@
 ---
+title: "Chapter 11 – DMA (Direct Memory Access)"
 tags:
   - course/operating-systems
   - topic/dma

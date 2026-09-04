@@ -1,16 +1,15 @@
 ---
+title: A Guide for Feedback Loops
 status: unread
 source: https://orafaelferreira.com/artigos/loop-engineering-na-pratica
 created: 2026-08-11
 tags:
-  - loop-engineering
-  - observability
-  - sre
-  - feedback-loops
-  - practical
+  - source/article
+  - topic/observability
+  - topic/sre
+  - topic/feedback-loops
+  - topic/incident-response
 ---
-
-# Rafael Ferreira | Cloud & DevOps Specialist
 
 ## TL;DR
 
@@ -19,8 +18,6 @@ A practical guide to implementing feedback loops (loop engineering) in productio
 ## Summary
 
 The article covers principles and patterns for building effective feedback loops: instrumenting systems, defining SLOs, closing the loop with automated responses or runbook triggers, and using post-incident analysis to refine signals. It emphasizes practical steps and real-world examples.
-
-
 
 ## Key Concepts
 
@@ -54,3 +51,8 @@ For SRE and platform teams, loop engineering operationalizes observability—tur
 ## Source
 
 https://orafaelferreira.com/artigos/loop-engineering-na-pratica
+
+## Connections
+
+- [[Cursos/Descomplicando System Design/Escalabilidade, Performance e Capacidade/Performance|Performance]]
+- [[Cursos/Descomplicando System Design/Concepts/Availability|Availability]]

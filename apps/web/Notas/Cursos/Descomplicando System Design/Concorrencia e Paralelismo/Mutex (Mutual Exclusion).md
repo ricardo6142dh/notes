@@ -1,4 +1,5 @@
 ---
+title: "Mutex (Mutual Exclusion)"
 tags:
   - course/system-design
   - topic/concurrency

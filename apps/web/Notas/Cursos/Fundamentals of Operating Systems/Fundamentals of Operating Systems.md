@@ -1,10 +1,9 @@
 ---
+title: "Fundamentals of Operating Systems"
 tags:
   - course/operating-systems
 course: Fundamentals of Operating Systems
 ---
-
-# Fundamentals of Operating Systems
 
 - [[Chapter 1 – Introduction to Operating Systems]]
 - [[Chapter 2 – System Architecture]]

@@ -1,4 +1,5 @@
 ---
+title: "Chapter 4 – Process Execution (Fetch–Execute Cycle)"
 tags:
   - course/operating-systems
   - topic/cpu

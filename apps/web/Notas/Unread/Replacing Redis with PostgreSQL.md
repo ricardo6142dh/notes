@@ -1,16 +1,16 @@
 ---
+title: Replacing Redis with PostgreSQL
 status: unread
 source: https://medium.com/@dev_tips/i-replaced-redis-with-postgresql-and-it-was-faster-and-yes-i-was-surprised-too-0b07fa736bfa
 created: 2026-08-05
 tags:
-  - postgresql
-  - redis
-  - database-migration
-  - performance
-  - tradeoffs
+  - source/article
+  - topic/postgresql
+  - topic/redis
+  - topic/databases
+  - topic/performance
+  - topic/tradeoffs
 ---
-
-# Replacing Redis with PostgreSQL
 
 ## TL;DR
 
@@ -53,3 +53,9 @@ Platform teams should evaluate whether an additional in-memory tier is necessary
 ## Source
 
 https://medium.com/@dev_tips/i-replaced-redis-with-postgresql-and-it-was-faster-and-yes-i-was-surprised-too-0b07fa736bfa
+
+## Connections
+
+- [[Cursos/Descomplicando System Design/CAP and Databases/Databases|Databases]]
+- [[Cursos/Descomplicando System Design/Cache/Definicao de Cache|Cache]]
+- [[Cursos/Descomplicando System Design/Escalabilidade, Performance e Capacidade/Performance|Performance]]

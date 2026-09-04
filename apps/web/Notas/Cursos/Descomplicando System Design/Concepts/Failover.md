@@ -1,4 +1,5 @@
 ---
+title: "Failover"
 tags:
   - course/system-design
   - topic/reliability

@@ -1,4 +1,5 @@
 ---
+title: "PACELC"
 tags:
   - course/system-design
   - topic/cap

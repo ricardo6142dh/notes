@@ -1,4 +1,5 @@
 ---
+title: "SRE & Observabilidade"
 tags:
   - links
   - sre

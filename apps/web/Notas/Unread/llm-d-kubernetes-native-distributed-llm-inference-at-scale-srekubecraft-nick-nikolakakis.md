@@ -1,16 +1,16 @@
 ---
+title: "llm-d: Kubernetes-Native Distributed LLM Inference at Scale"
 status: unread
 source: https://srekubecraft.io/posts/llm-d-distributed-inference/
 created: 2026-08-18
 tags:
-  - distributed-inference
-  - llm-d
-  - model-serving
-  - infrastructure
-  - sre
+  - source/article
+  - topic/kubernetes
+  - topic/llm-inference
+  - topic/model-serving
+  - topic/platform-engineering
+  - topic/sre
 ---
-
-# llm-d - Kubernetes-Native Distributed LLM Inference at Scale :: SREKubeCraft | Nick Nikolakakis
 
 ## TL;DR
 
@@ -20,7 +20,6 @@ LLM-D presents a distributed inference architecture for large language models em
 
 The post describes LLM-D, an approach for distributed inference that partitions model execution across a cluster of workers, coordinates input routing, and balances latency vs throughput. It covers system design, worker orchestration, batching strategies, and failure handling for production-grade LLM serving.
 
-
 Search posts... /explorer ~home %archives >projects #tags @whoaminetwork system tokyo-night49 posts · 110 tags SREKubeCraft ~/posts/llm-d-distributed-inference.md21 min · 4271 wordsllm-d - Kubernetes-Native Distributed LLM Inference at Scale// A hands-on tour of llm-d, the CNCF Sandbox framework for distributed LLM inference on Kubernetes - inference-aware routing, prefill/decode disaggregation, and KV-cache offload. Includes a GPU-free demo on Kind using the vLLM simulator, wired with Flux GitOps.
 
 Three months ago I wrote about KServe and how the InferenceService CRD had become the closest thing cloud-native has to a standard for putting a trained model behind an API. That post ended on a deliberate cliffhanger: KServe gives you a great single-model serving primitive, but it does not solve GPU sharing, fractional scheduling, or how you load-balance inference traffic across many replicas of a large model. I pointed at Volcano and Kueue and moved on.
@@ -29,10 +28,9 @@ This post is the other half of that story. Once your models get big enough and y
 
 llm-d joined the CNCF as a Sandbox project at KubeCon EU 2026, jointly donated by IBM Research, Red Hat, and Google Cloud, with founding support from NVIDIA, AMD, CoreWeave, Hugging Face, Intel, Lambda, and Mistral AI. It is a Kubernetes-native distributed inference framework built on top of vLLM, the Gateway API Inference Extension, and LeaderWorkerSet. This post walks through what it is, why plain Kubernetes load balancing falls short for LLMs, and how to run the whole orchestration layer on a Kind cluster on your laptop - no GPU required - using the vLLM simulator and Flux GitOps. The full demo lives in srekubecraft-demo/llm-d/.
 
-
 ## Key Concepts
 
-- Model parallelism: splitting a models layers or tensors across multiple workers to handle models larger than a single device memory.
+- Model parallelism: splitting a model's layers or tensors across multiple workers to handle models larger than a single device memory.
 - Sharding and replication: techniques to distribute model shards and replicas to balance load and provide redundancy.
 - Elastic scaling: adding/removing workers dynamically to match inference load while managing state and model placement.
 - Batching and scheduling: grouping requests to utilize GPU throughput while meeting latency SLOs.
@@ -63,3 +61,9 @@ For SREs and platform engineers running model serving, LLM-D outlines patterns t
 ## Source
 
 https://srekubecraft.io/posts/llm-d-distributed-inference/
+
+## Connections
+
+- [[Cursos/Descomplicando System Design/Concepts/Kubernetes|Kubernetes]]
+- [[Cursos/Descomplicando System Design/Load Balancing/Load Balancing (Balanceamento de Carga)|Load Balancing]]
+- [[Cursos/Descomplicando System Design/Escalabilidade, Performance e Capacidade/Performance|Performance]]

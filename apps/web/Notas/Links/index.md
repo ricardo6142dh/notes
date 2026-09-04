@@ -1,4 +1,5 @@
 ---
+title: "index"
 tags:
   - links
   - resources

@@ -1,3 +1,7 @@
+---
+title: "Diferença detalhada entre o modelo de mensageria do RabbitMQ (AMQP) e do Apache Kafka"
+---
+
 A principal diferença entre o **RabbitMQ (AMQP)** e o **Apache Kafka** está no modelo fundamental de gerenciamento das mensagens: o RabbitMQ é um **broker de mensagens tradicional ("Message Broker")**, enquanto o Kafka é um **plataforma de streaming de eventos ("Event Streaming Platform")**.
 
 ### 1. Modelo de Entrega: Smart Broker vs. Smart Consumer

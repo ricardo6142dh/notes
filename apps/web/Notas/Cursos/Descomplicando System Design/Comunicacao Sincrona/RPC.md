@@ -1,4 +1,5 @@
 ---
+title: "RPC"
 tags:
   - course/system-design
   - topic/communication

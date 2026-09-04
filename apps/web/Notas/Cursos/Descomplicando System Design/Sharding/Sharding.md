@@ -1,3 +1,6 @@
+---
+title: "Sharding"
+---
 
 O **Sharding** (ou particionamento) é uma técnica de design de sistemas distribuídos que consiste em **dividir grandes conjuntos de dados em partes menores**, chamadas de **shards ou partições**. Cada shard representa uma fração do todo, permitindo que o sistema gerencie dados de forma eficiente e segura, escalando horizontalmente a camada de persistência.
 

@@ -1,16 +1,16 @@
 ---
+title: Tinder Architecture
 status: unread
 source: https://newsletter.systemdesign.one/p/tinder-architecture
 created: 2026-08-26
 tags:
-  - tinder
-  - architecture
-  - system-design
-  - scalability
-  - mobile
+  - source/article
+  - topic/system-design
+  - topic/scalability
+  - topic/mobile
+  - topic/databases
+  - topic/messaging
 ---
-
-# Tinder Architecture
 
 ## TL;DR
 
@@ -20,15 +20,11 @@ Overview of Tinder's architecture and the design choices enabling large-scale ma
 
 The article presents Tinder's system architecture: user matching pipeline, real-time messaging infrastructure, media storage and CDN usage, and scaling strategies for mobile traffic peaks. It covers data models, caching, rate-limiting, and operational practices for availability and latency optimization.
 
-
-SubscribeSign in{"@context":"https://schema.org","@type":"NewsArticle","url":"https://newsletter.systemdesign.one/p/tinder-architecture","mainEntityOfPage":"https://newsletter.systemdesign.one/p/tinder-architecture","headline":"Tinder Architecture","description":"How Tinder Scaled to 1.6 Billion Swipes per Day","image":[{"@type":"ImageObject","url":"https://substack-post-media.s3.amazonaws.com/public/images/ad4f699a-dc60-4921-a6c2-e40d861617c0_1280x720.gif"}],"datePublished":"2024-03-19T13:20:11+00:00","dateModified":"2024-03-19T13:20:11+00:00","isAccessibleForFree":true,"author":[{"@type":"Person","name":"Neo Kim","url":"https://substack.com/@systemdesignone","description":"I Teach You AI Engineering & System Design \u2022 0.5M+ Audience","identifier":"user:135589200","image":{"@type":"ImageObject","contentUrl":"https://substackcdn.com/image/fetch/$s_!OHOm!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fc103940f-0d8b-47e7-9a33-013202e17bb8_389x389.jpeg","thumbnailUrl":"https://substackcdn.com/image/fetch/$s_!OHOm!,w_128,h_128,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fc103940f-0d8b-47e7-9a33-013202e17bb8_389x389.jpeg"}}],"publisher":{"@type":"Organization","name":"The System Design Newsletter","url":"https://newsletter.systemdesign.one","description":"Download my system design playbook on newsletter signup for FREE","interactionStatistic":{"@type":"InteractionCounter","name":"Subscribers","interactionType":"https://schema.org/SubscribeAction","userInteractionCount":100000},"identifier":"pub:1511845","logo":{"@type":"ImageObject","url":"https://substackcdn.com/image/fetch/$s_!W5r-!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fa1c8067a-95bb-416b-9114-e0b9fb8821d4_256x256.png","contentUrl":"https://substackcdn.com/image/fetch/$s_!W5r-!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fa1c8067a-95bb-416b-9114-e0b9fb8821d4_256x256.png","thumbnailUrl":"https://substackcdn.com/image/fetch/$s_!W5r-!,w_128,h_128,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fa1c8067a-95bb-416b-9114-e0b9fb8821d4_256x256.png"},"image":{"@type":"ImageObject","url":"https://substackcdn.com/image/fetch/$s_!W5r-!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fa1c8067a-95bb-416b-9114-e0b9fb8821d4_256x256.png","contentUrl":"https://substackcdn.com/image/fetch/$s_!W5r-!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fa1c8067a-95bb-416b-9114-e0b9fb8821d4_256x256.png","thumbnailUrl":"https://substackcdn.com/image/fetch/$s_!W5r-!,w_128,h_128,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fa1c8067a-95bb-416b-9114-e0b9fb8821d4_256x256.png"}},"interactionStatistic":[{"@type":"InteractionCounter","interactionType":"https://schema.org/LikeAction","userInteractionCount":199},{"@type":"InteractionCounter","interactionType":"https://schema.org/ShareAction","userInteractionCount":15},{"@type":"InteractionCounter","interactionType":"https://schema.org/CommentAction","userInteractionCount":19}]}{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"The System Design Newsletter","item":"https://newsletter.systemdesign.one"},{"@type":"ListItem","position":2,"name":"Tinder Architecture","item":"https://newsletter.systemdesign.one/p/tinder-architecture"}]}How Tinder Scaled to 1.6 Billion Swipes per Day#40: Break Into Tinder Architecture (7 minutes)Neo KimMar 19, 20241991915ShareGet my system design playbook for FREE on newsletter signup:
-
 This post outlines Tinder's architecture. If you want to learn more, scroll to the bottom and find the references.
 
 Creating a User ProfileThey store the user information in a key-value database like Amazon DynamoDB. And use Dynamo Streams to push out changes on a table to different places automatically.
 
 Also the user information gets added to the message queue to update the location index. They use the location index to find nearby users efficiently.
-
 
 ## Key Concepts
 
@@ -61,3 +57,11 @@ Platform teams building consumer mobile services should learn from Tinder's arch
 ## Source
 
 https://newsletter.systemdesign.one/p/tinder-architecture
+
+## Connections
+
+- [[Cursos/Descomplicando System Design/System Design|System Design]]
+- [[Cursos/Descomplicando System Design/CAP and Databases/Databases|Databases]]
+- [[Articles/AWS DynamoDB - How it Works|DynamoDB]]
+- [[Cursos/Descomplicando System Design/Cache/Definicao de Cache|Cache]]
+- [[Cursos/Descomplicando System Design/Comunicacao Assincrona/Comunicações Assincronas|Comunicações Assíncronas]]

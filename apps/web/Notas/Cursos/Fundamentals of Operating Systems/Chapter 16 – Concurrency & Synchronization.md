@@ -1,4 +1,5 @@
 ---
+title: "Chapter 16 – Concurrency & Synchronization"
 tags:
   - course/operating-systems
   - topic/concurrency

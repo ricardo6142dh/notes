@@ -1,4 +1,5 @@
 ---
+title: "Paralelismo"
 tags:
   - course/system-design
   - topic/parallelism

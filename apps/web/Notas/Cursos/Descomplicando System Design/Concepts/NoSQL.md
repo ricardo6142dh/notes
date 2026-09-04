@@ -1,4 +1,5 @@
 ---
+title: "NoSQL"
 tags:
   - course/system-design
   - topic/databases

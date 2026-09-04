@@ -1,4 +1,5 @@
 ---
+title: "Semaforo"
 tags:
   - course/system-design
   - topic/concurrency

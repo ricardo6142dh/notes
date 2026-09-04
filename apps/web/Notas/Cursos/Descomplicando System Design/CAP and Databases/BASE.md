@@ -1,4 +1,5 @@
 ---
+title: "BASE"
 tags:
   - course/system-design
   - topic/databases

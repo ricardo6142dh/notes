@@ -1,4 +1,5 @@
 ---
+title: "Algorithms & Programming"
 tags:
   - links
   - python

@@ -1,4 +1,5 @@
 ---
+title: "Paralelismo Interno X Externo"
 tags:
   - course/system-design
   - topic/parallelism

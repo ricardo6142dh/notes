@@ -1,4 +1,5 @@
 ---
+title: "Chapter 15 – CPU Scheduling"
 tags:
   - course/operating-systems
   - topic/cpu

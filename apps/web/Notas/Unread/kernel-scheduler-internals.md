@@ -1,16 +1,15 @@
 ---
+title: Kernel Scheduler Internals
 status: unread
 source: https://ariasdiniz.github.io/ariablog/so/kernel/scheduler/lowlevel/2026/08/02/kernel-scheduler.html
 created: 2026-08-12
 tags:
-  - kernel-scheduler
-  - scheduling
-  - os
-  - low-level
-  - performance
+  - source/article
+  - topic/linux
+  - topic/operating-systems
+  - topic/scheduling
+  - topic/performance
 ---
-
-# LinkedIn
 
 ## TL;DR
 
@@ -19,8 +18,6 @@ A low-level exploration of kernel scheduler design, implementation trade-offs, a
 ## Summary
 
 The article examines kernel scheduler internals: run queues, priority handling, preemption, and load balancing across CPUs. It presents implementation details, algorithmic choices, and how different designs affect latency and throughput at OS level.
-
-
 
 ## Key Concepts
 
@@ -54,3 +51,8 @@ For systems engineers and SREs, scheduler behavior directly affects latency-sens
 ## Source
 
 https://ariasdiniz.github.io/ariablog/so/kernel/scheduler/lowlevel/2026/08/02/kernel-scheduler.html
+
+## Connections
+
+- [[Cursos/Fundamentals of Operating Systems/Chapter 15 – CPU Scheduling|CPU Scheduling]]
+- [[Cursos/Descomplicando System Design/Escalabilidade, Performance e Capacidade/Performance|Performance]]

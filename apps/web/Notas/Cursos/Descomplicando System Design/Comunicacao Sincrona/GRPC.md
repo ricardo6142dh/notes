@@ -1,4 +1,5 @@
 ---
+title: "gRPC"
 tags:
   - course/system-design
   - topic/communication

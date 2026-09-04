@@ -1,4 +1,5 @@
 ---
+title: "Combinações CAP"
 tags:
   - course/system-design
   - topic/cap

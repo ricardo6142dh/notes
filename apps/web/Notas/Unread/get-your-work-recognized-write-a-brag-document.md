@@ -1,16 +1,14 @@
 ---
+title: "Get Your Work Recognized: Write a Brag Document"
 status: unread
 source: https://jvns.ca/blog/brag-documents/
 created: 2026-08-26
 tags:
-  - career
-  - brag-document
-  - resume
-  - personal-growth
-  - writing
+  - source/article
+  - topic/career
+  - topic/writing
+  - topic/personal-growth
 ---
-
-# Get your work recognized: write a brag document
 
 ## TL;DR
 
@@ -18,17 +16,13 @@ Brag documents are brief, specific lists of accomplishments you can share with m
 
 ## Summary
 
-The post explains what a brag document is, why its useful for career growth and performance reviews, and how to write one: focus on concrete outcomes, cite metrics where possible, and keep entries short and verifiable. It includes examples and practical tips for maintaining the document over time.
-
-
-Skip to main content Julia Evans About Talks Projects Mastodon Bluesky Github Favorites TIL Zines RSS Get your work recognized: write a brag document June 28, 2019
+The post explains what a brag document is, why it's useful for career growth and performance reviews, and how to write one: focus on concrete outcomes, cite metrics where possible, and keep entries short and verifiable. It includes examples and practical tips for maintaining the document over time.
 
 There’s this idea that, if you do great work at your job, people will (or should!) automatically recognize that work and reward you for it with promotions / increased pay. In practice, it’s often more complicated than that – some kinds of important work are more visible/memorable than others. It’s frustrating to have done something really important and later realize that you didn’t get rewarded for it just because the people making the decision didn’t understand or remember what you did. So I want to talk about a tactic that I and lots of people I work with have used!
 
 This blog post isn’t just about being promoted or getting raises though. The ideas here have actually been more useful to me to help me reflect on themes in my work, what’s important to me, what I’m learning, and what I’d like to be doing differently. But they’ve definitely helped with promotions!
 
 One thing I’m always struck by when it comes to performance review time is a feeling of “wait, what did I do in the last 6 months?”. This is a kind of demoralizing feeling and it’s usually not based in reality, more in “I forgot what cool stuff I actually did”.
-
 
 ## Key Concepts
 
@@ -61,3 +55,7 @@ For engineers and platform professionals, a maintained brag document reduces cog
 ## Source
 
 https://jvns.ca/blog/brag-documents/
+
+## Connections
+
+- [[Links/Interviews|Interviews]]

@@ -1,4 +1,5 @@
 ---
+title: "{{title}}"
 tags:
   - source/article
   - topic/{{topic}}

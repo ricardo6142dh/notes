@@ -1,4 +1,5 @@
 ---
+title: "Chapter 1 – Introduction to Operating Systems"
 tags:
   - course/operating-systems
   - topic/os-basics

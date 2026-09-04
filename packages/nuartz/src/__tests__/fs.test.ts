@@ -134,7 +134,7 @@ describe("buildFileTree", () => {
     const tree = buildFileTree(files)
     expect(tree).toHaveLength(1)
     expect(tree[0].type).toBe("folder")
-    expect(tree[0].name).toBe("notes")
+    expect(tree[0].name).toBe("Notes")
     expect(tree[0].children).toHaveLength(2)
     expect(tree[0].children![0].name).toBe("Page 1")
     expect(tree[0].children![1].name).toBe("Page 2")
@@ -155,7 +155,7 @@ describe("buildFileTree", () => {
     ]
 
     const tree = buildFileTree(files)
-    expect(tree[0].name).toBe("my-file")
+    expect(tree[0].name).toBe("My File")
   })
 
   it("handles deeply nested structures", () => {
@@ -165,9 +165,9 @@ describe("buildFileTree", () => {
 
     const tree = buildFileTree(files)
     expect(tree[0].type).toBe("folder")
-    expect(tree[0].name).toBe("a")
+    expect(tree[0].name).toBe("A")
     expect(tree[0].children![0].type).toBe("folder")
-    expect(tree[0].children![0].name).toBe("b")
+    expect(tree[0].children![0].name).toBe("B")
     expect(tree[0].children![0].children![0].type).toBe("file")
     expect(tree[0].children![0].children![0].name).toBe("Deep")
   })

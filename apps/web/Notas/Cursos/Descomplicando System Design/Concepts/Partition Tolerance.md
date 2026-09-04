@@ -1,4 +1,5 @@
 ---
+title: "Tolerância a Partições"
 tags:
   - course/system-design
   - topic/distributed-systems

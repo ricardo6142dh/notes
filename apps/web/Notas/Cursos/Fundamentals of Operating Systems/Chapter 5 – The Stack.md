@@ -1,4 +1,5 @@
 ---
+title: "Chapter 5 – The Stack"
 tags:
   - course/operating-systems
   - topic/memory

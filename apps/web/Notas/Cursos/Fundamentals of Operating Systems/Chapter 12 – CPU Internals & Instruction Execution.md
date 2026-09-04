@@ -1,4 +1,5 @@
 ---
+title: "Chapter 12 – CPU Internals & Instruction Execution"
 tags:
   - course/operating-systems
   - topic/cpu

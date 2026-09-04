@@ -1,12 +1,15 @@
 ---
+title: Safe Database Rollback Starts Before Deployment
 status: unread
 source: https://newsletter.systemdesignclassroom.com/p/safe-database-rollback-starts-before-deployment
 created: 2026-08-12
 tags:
-- databases
+  - source/article
+  - topic/databases
+  - topic/deployment
+  - topic/rollback
+  - topic/reliability
 ---
-
-# Safe Database Rollback Starts Before Deployment
 
 ## TL;DR
 Application rollback is not database rollback; safe schema changes require compatibility planning, staged migration, observable backfills, delayed cleanup, and recovery paths before deployment.
@@ -57,3 +60,9 @@ The useful engineering habit is to preserve options: keep old and new versions c
 
 ## Source
 https://newsletter.systemdesignclassroom.com/p/safe-database-rollback-starts-before-deployment
+
+## Connections
+
+- [[Cursos/Descomplicando System Design/CAP and Databases/Databases|Databases]]
+- [[Cursos/Descomplicando System Design/CAP and Databases/ACID|ACID]]
+- [[Cursos/Descomplicando System Design/Concepts/Durability|Durability]]

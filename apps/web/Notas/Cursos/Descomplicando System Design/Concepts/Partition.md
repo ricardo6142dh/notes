@@ -1,4 +1,5 @@
 ---
+title: "Partição (Sharding)"
 tags:
   - course/system-design
   - topic/distributed-systems

@@ -204,3 +204,10 @@ Uma das principais lições culturais e técnicas da AWS no design do DynamoDB �
 1.  **Evite a Bimodalidade (Predictability over Efficiency):** Projetar sistemas para se comportarem da mesma forma em situações de pico ou de normalidade evita colapsos imprevisíveis. O refresco assíncrono do cache no DynamoDB consome mais recursos, mas blinda o banco de metadados contra *cold starts* catastróficos.
 2.  **Separe a Lógica Física da Lógica de Negócios:** Amarrar alocação de capacidade ao particionamento físico gera restrições indesejadas. O controle global descentralizado (GAC) abstrai essa limitação física de forma transparente para o cliente.
 3.  **Reduza o Tempo de Recuperação (MTTR):** Reduzir o tempo de recuperação é mais eficiente para a durabilidade do que tentar evitar 100% das falhas físicas. Com `Log Replicas`, o DynamoDB restabelece seu quórum Paxos de segurança em segundos, e não minutos.
+
+
+Videos
+
+https://www.youtube.com/watch?v=cU01EnyBwQI
+
+https://www.youtube.com/watch?v=LnqKfLcszEg&t=4466s
