@@ -1,0 +1,8 @@
+
+O **Change Data Capture (CDC)** é uma técnica que detecta e captura as alterações feitas em uma fonte de dados, como um **[banco de dados relacional ou não relacional](https://fidelissauro.dev/teorema-cap/)**, e as **transmite para outros sistemas em tempo real**. Isso **permite que outros serviços sejam imediatamente atualizados sem a necessidade de consultar diretamente o banco de dados original**. Essa abordagem é muito útil para **sincronizar dados entre diferentes sistemas**, alimentar filas de mensagens ou manter caches atualizados com as informações mais recentes.
+
+O objetivo desse padrão é oferecer um mecanismo que **monitora operações como inserções, atualizações e deleções**, **capturando essas mudanças à medida que ocorrem**. Depois de capturadas, as **alterações podem ser enviadas para tópicos de eventos ou diretamente para sistemas que dependem desses dados**
+
+## CRDTs - Conflict-Free Replicated Data Types 
+
+Em ambientes de replicação distribuída, especialmente em arquiteturas **primary-primary** ou **multi-master**, os CRDTs _(Conflict-Free Replicated Data Types)_ são estruturas de dados que resolvem um dos maiores desafios desse modelo de replicação: **como lidar com conflitos entre diferentes atualizações de um dado**. Esse tipo de situação ocorre quando **mais de um nó recebe alterações distintas do mesmo dado**, e, durante a propagação dessas versões, **surge a necessidade de resolver o conflito para decidir “qual será a versão final e correta” do dado**

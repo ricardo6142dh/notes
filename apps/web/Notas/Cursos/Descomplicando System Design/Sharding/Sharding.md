@@ -65,6 +65,7 @@ $$\text{Posição} = \text{Hash}(\text{ID do Nó}) \quad \text{e} \quad \text{Po
   * O tenant `Mecanica-Dois-Irmaos` gera um hash cuja posição no anel cai logo antes do nó `Shard-02`. No sentido horário, ele é alocado no `Shard-02`.
   * Se o `Shard-02` for removido por falha, apenas os dados mapeados para ele migram para o próximo nó (ex: `Shard-00`), mantendo todos os outros tenants intocados em seus respectivos shards originais.
 
+Video - https://www.youtube.com/watch?v=OGoEt-5zaHs
 ---
 
 ## ⚖️ 4. Trade-offs do Sharding
