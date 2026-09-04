@@ -8,206 +8,758 @@ tags:
   - topic/databases
   - topic/distributed-systems
   - topic/dynamodb
-  - topic/consensus
-  - topic/high-availability
 ---
 
-## 1. O que é o DynamoDB e que Problema Ele Resolve? (O Essencial para Iniciantes)
+A melhor forma de lembrar DynamoDB é pensar na sequência de problemas que aparecem quando um key-value store precisa escalar:
 
-Para quem nunca usou o DynamoDB, a forma mais fácil de entendê-lo é como uma planilha de dados infinitamente escalável, serverless e totalmente gerenciada pela AWS.
-
-*   **O Problema dos Bancos Tradicionais (SQL):** Em bancos de dados tradicionais, a escalabilidade horizontal exige esforço hercúleo: o engenheiro precisa gerenciar manualmente o particionamento dos servidores (*sharding*), planejar o hardware, atualizar patches de sistema operacional, configurar replicação master-slave e gerenciar conexões de rede concorrentes. Sob picos de tráfego extremos, o banco de dados costuma ser o gargalo que derruba a aplicação.
-*   **O que o DynamoDB faz:** Ele remove toda a complexidade operacional da infraestrutura. O desenvolvedor apenas cria uma tabela por API e escreve dados, sem se preocupar com servidores, clusters ou provisionamento físico. O sistema cresce e diminui de forma elástica e transparente.
-*   **A Promessa:** Latência consistente de dígito único de milissegundo (menos de 10ms) para qualquer volume de dados (de gigabytes a petabytes) e qualquer quantidade de acessos simultâneos (dezenas a milhões de requisições por segundo).
-*   **NoSQL com ACID:** Diferente de outros bancos NoSQL primitivos que abrem mão de consistência forte em favor de velocidade, o DynamoDB oferece suporte completo a transações ACID (atômicas, consistentes, isoladas e duráveis) de nível *serializável*, sem comprometer sua escalabilidade horizontal.
-
----
-
-## 2. O Modelo de Dados e Armazenamento (A Base)
-
-Toda tabela no DynamoDB é composta por itens (linhas), e cada item é um conjunto de atributos (colunas) sem esquema fixo (*schema-less*). A estrutura física baseia-se na Chave Primária (*Primary Key*).
-
-### A Chave Primária (The Primary Key)
-Ela é definida obrigatoriamente na criação da tabela e determina a distribuição física dos dados:
-
-1.  **Partition Key (Chave Simples):** Composta por um único atributo. O valor desse atributo é passado por uma **função de espalhamento (internal hash function)**. O resultado desse hash dita exatamente qual partição física (nó de armazenamento) guardará aquele item.
-2.  **Composite Primary Key (Partition Key + Sort Key):** Composta por dois atributos. O primeiro (*Partition Key*) direciona o item à partição física via hash, e o segundo (*Sort Key*) é usado para agrupar e ordenar os dados fisicamente dentro daquela partição.
-
-> 🛒 **Exemplo Prático (A Loja Eletrônica):**
-> Se criarmos uma tabela de `Produtos` com chave simples `ProductID`:
-> - Gravar o produto `Notebook Gamer` (ID `ID-999`) faz a string `"ID-999"` passar pelo hash (ex: `MD5("ID-999")`), apontando direto para a **Partição 3**.
->
-> Se criarmos uma tabela de `Pedidos` com chave composta: `ClienteID` (Partition Key) e `DataPedido` (Sort Key):
-> - O cliente `"Cliente-A"` faz duas compras em datas distintas. Ambos os pedidos caem na **mesma partição física** (pois o hash de `"Cliente-A"` é idêntico), mas estarão gravados ordenados lado a lado cronologicamente no SSD pela Sort Key.
-
----
-
-## 3. Indexação Secundária: Consultas Rápidas sem SQL JOINs (LSI vs. GSI)
-
-No mundo NoSQL, para obtermos alta performance sob escala massiva, **evitamos JOINs a todo custo**. Em vez disso, abraçamos a desnormalização e a duplicação de dados, modelando as tabelas de acordo com o padrão de acesso (*access patterns*) da aplicação. Para consultar os dados por atributos diferentes da chave primária principal, o DynamoDB fornece dois tipos de índices:
-
-*   **Local Secondary Index (LSI):** 
-    *   **Como funciona:** Utiliza a **mesma** *Partition Key* da tabela original, mas uma *Sort Key* diferente.
-    *   **Arquitetura física:** É armazenado fisicamente **dentro da mesma partição lógica** onde reside o item principal.
-    *   **Consistência:** Por compartilhar a mesma partição física, suporta **consistência forte** (*strongly consistent*) nas leituras de forma nativa.
-*   **Global Secondary Index (GSI):**
-    *   **Como funciona:** Pode ter uma *Partition Key* e uma *Sort Key* completamente diferentes da tabela original.
-    *   **Arquitetura física:** Funciona como uma tabela secundária oculta e paralela. Quando um dardo é gravado na tabela principal, as mutações são enviadas assincronamente para a partição física do GSI.
-    *   **Consistência:** Por ser atualizado assincronamente em background, as leituras no GSI são **eventualmente consistentes** (*eventually consistent*).
-
----
-
-## 4. Captura de Mutações com DynamoDB Streams
-
-O DynamoDB Streams é uma solução integrada de **Change Data Capture (CDC)** que grava todas as modificações de dados ocorridas em uma tabela em tempo real.
-
-*   **O Fluxo de Eventos:** Qualquer inserção (`INSERT`), modificação (`MODIFY`) ou exclusão (`REMOVE`) gera um evento ordenado no stream.
-*   **Aplicações Práticas em System Design:**
-    *   **Arquiteturas orientadas a eventos:** Disparar funções serverless (como AWS Lambda) imediatamente após um dado ser alterado.
-    *   **Sincronização externa:** Sincronizar dados em tempo real com mecanismos de busca (como OpenSearch) ou lagos de dados (S3).
-    *   **Atualização de GSIs:** O próprio DynamoDB consome internamente os streams da tabela de forma transparente para atualizar os Índices Globais Secundários (GSIs).
-
----
-
-## 5. Partições e Escalabilidade Horizontal (Partitioning)
-
-Uma **partição** no DynamoDB é uma unidade de armazenamento lógica e física isolada (um bloco de disco SSD operando em um servidor físico) que gerencia uma faixa contígua do conjunto de chaves da tabela.
-
-*   **Elasticidade Automática:** Conforme sua tabela acumula mais dados (uma partição física suporta limites de tamanho de armazenamento) ou exige mais poder de processamento, o DynamoDB divide essa partição em subpartições e as redistribui fisicamente pelo cluster de forma transparente.
-*   **O Roteador de Requisições (Request Router):** Atua como o guarda de trânsito. Quando a requisição do cliente bate nele, o roteador calcula o hash da Partition Key e encaminha o tráfego de forma direta e instantânea ao nó físico correto.
-
----
-
-## 6. Garantindo Alta Escrita (Multi-Paxos, WAL e Quórum)
-
-Para alta disponibilidade e durabilidade, cada partição da tabela possui **três réplicas** físicas hospedadas em Zonas de Disponibilidade (Availability Zones - AZs) distintas.
-
-Essas três réplicas formam um grupo coordenado pelo protocolo de consenso **Multi-Paxos**, que elege uma delas como a **Líder** (*Leader*) e as demais como **Seguidoras** (*Followers*).
-
-```mermaid
-sequenceDiagram
-    autonumber
-    actor Cliente
-    participant RR as Request Router
-    participant Leader as Líder Paxos (AZ-1)
-    participant Follower1 as Seguidor Paxos (AZ-2)
-    participant Follower2 as Seguidor Paxos (AZ-3)
-
-    Cliente->>RR: PutItem(ID-999)
-    RR->>Leader: Encaminha Escrita
-    Note over Leader: Grava no WAL Local
-    rect rgb(240, 248, 255)
-        par Envio em Paralelo
-            Leader->>Follower1: Replica WAL Entry
-            Leader->>Follower2: Replica WAL Entry
-        end
-    end
-    Follower1-->>Leader: WAL Persistido (ACK)
-    Note over Leader: Quórum Alcançado (2 de 3)
-    Leader-->>RR: Sucesso de Escrita
-    RR-->>Cliente: HTTP 200 OK
-    Follower2-->>Leader: WAL Persistido (Atrasado)
-    Note over Leader, Follower2: Aplicação assíncrona na B-Tree
+```text
+dados demais
+  ↓
+partitioning
+  ↓
+como achar a partition?
+  ↓
+request routing + metadata
+  ↓
+e se o node morrer?
+  ↓
+replicação
+  ↓
+como as réplicas concordam?
+  ↓
+Multi-Paxos + quorum
+  ↓
+como ler rápido?
+  ↓
+strong vs eventual consistency
+  ↓
+e se uma partition ficar quente?
+  ↓
+split + admission control
+  ↓
+e se o cache de routing morrer?
+  ↓
+MemDS + async refresh
+  ↓
+e se uma réplica falhar?
+  ↓
+log replicas + fast recovery
 ```
 
-### O Fluxo da Gravação:
-1.  **Apenas o líder** do grupo Paxos aceita solicitações de escrita.
-2.  Quando você grava seu `Notebook Gamer` via `PutItem`, o líder recebe a escrita, gera um registro em formato sequencial de log rápido chamado **Write-Ahead Log (WAL)** e o envia imediatamente aos seguidores.
-3.  **O Quórum de Escrita:** O líder **não** espera que as três réplicas atualizem a árvore B-Tree final de dados no disco. A gravação é considerada concluída e confirmada como sucesso para a aplicação cliente assim que um **quórum mínimo de 2 das 3 réplicas** persistir de forma segura o registro no WAL local.
-4.  A escrita sequencial no WAL é uma operação de I/O em disco extremamente leve, garantindo latências de gravação na casa de milissegundos de dígito único.
+A filosofia que conecta quase tudo:
+
+> **Predictability over maximum efficiency.**
 
 ---
 
-## 7. Consistência na Leitura (Eventually vs. Strongly Consistent)
+## 1. Partitioning: uma máquina não basta
 
-O DynamoDB permite que o desenvolvedor ajuste o balanço entre performance e consistência ao ler os dados:
+A `Partition Key` passa por uma função de hash interna que determina qual partition é responsável pelo item.
 
-*   **Strongly Consistent Read (Leitura Fortemente Consistente):** O roteador direciona a chamada **obrigatoriamente ao líder** do grupo Paxos. Como o líder gerencia todas as atualizações, você tem garantia absoluta de ler a escrita mais recente. Isso concentra o tráfego no nó líder.
-*   **Eventually Consistent Read (Leitura Eventualmente Consistente - Padrão):** O roteador distribui as requisições de leitura por **qualquer uma das três réplicas** de forma balanceada.
-    *   **O Risco:** Se um seguidor ainda estiver processando o log WAL enviado pelo líder, o cliente poderá receber um dado levemente atrasado (por milissegundos).
-    *   **O Ganho:** Remove gargalos do nó líder, dobra o throughput de leitura utilizável e reduz drasticamente a latência de resposta.
-
----
-
-## 8. Arquitetura de Roteamento Avançada e Resiliência (MemDS)
-
-O mapeamento entre chaves primárias e nós de armazenamento (*routing metadata*) é o componente mais crítico de latência do sistema. Para otimizá-lo, a Amazon implementou o **MemDS (In-Memory Datastore)** e um sistema de cache inteligente nos Request Routers que soluciona os desafios clássicos de concorrência e indisponibilidade.
-
-```mermaid
-graph TD
-    Cliente["Cliente: PutItem / GetItem"] --> RR["Request Router"]
-    RR --> Auth["Authentication System: IAM / KMS"]
-    RR --> GAC["Global Admission Control: Token Buckets"]
-    RR --> MemDS[("MemDS: In-Memory Perkle Tree")]
-
-    subgraph Storage["Storage Nodes: Replication Group"]
-        SN1["Storage Node 1: Lider Paxos, WAL e B-Tree"]
-        SN2["Storage Node 2: Seguidor, WAL e B-Tree"]
-        LogRep["Log Replica Node: Aceitador, WAL only"]
-    end
-
-    RR -->|"Gravacao / Leitura Forte"| SN1
-    RR -->|"Leitura Eventual"| SN2
-
-    SN1 -->|"Consenso Paxos"| SN2
-    SN1 -->|"Cura rapida em falhas"| LogRep
-
-    SN1 -->|"Push de mudanca de topologia"| MemDS
-    SN2 -->|"Push de mudanca de topologia"| MemDS
+```text
+hash(partition_key)
+        ↓
+      partition
 ```
 
-### Como o MemDS se mantém sempre atualizado?
-O fluxo de atualização de metadados do MemDS baseia-se em um modelo misto extremamente resiliente de notificações push e autocorreção sob demanda:
-1.  **Atualizações baseadas em Push (Storage Nodes):** Os nós de armazenamento físicos são as fontes autoritativas da associação de partição. Toda vez que ocorre uma mudança de topologia (como uma partição dividida pelo *Split for Consumption* ou a migração automática de réplicas com falha pelo *autoadmin*), os **Storage Nodes empurram as updates de membership diretamente para o MemDS**. O MemDS então propaga esses dados de forma incremental para todos os seus nós.
-2.  **Mecanismo de Autocorreção sob Demanda (Stale Metadata Mitigation):** Caso ocorra um atraso de propagação e o MemDS sirva uma rota desatualizada (*stale*) para o roteador, o sistema autocorrige-se em tempo de execução:
-    - O Request Router direciona a requisição do cliente para o Storage Node incorreto.
-    - O Storage Node percebe que aquela chave não está no intervalo sob sua custódia e rejeita a operação.
-    - O Storage Node responde com o novo endereço da partição (se souber) ou com um código de erro específico.
-    - O código de erro força o Request Router a ignorar seu cache local e a realizar uma consulta fresca e imediata ao MemDS para obter as rotas atualizadas.
+Exemplo:
 
-### Resiliência contra Queda de Roteadores (Thundering Herd e Tempestade de Requisições)
-A queda de instâncias de roteadores ou sua escalabilidade abrupta costuma derrubar bancos de dados tradicionais de metadados devido ao "cold start" (quando todos os novos caches iniciam zerados ao mesmo tempo). O DynamoDB resolveu esse problema usando duas frentes de projeto:
+```text
+user:123 → P1
+user:456 → P3
+user:789 → P2
+```
 
-1.  **MemDS Redimensionado para 100% da Carga:** O MemDS não é um gargalo centralizado e frágil. Ele é um banco em memória distribuído horizontalmente que retém todos os dados altamente compactados em árvores lógicas do tipo **Perkle** (Patricia + Merkle Tree). A infraestrutura do MemDS foi projetada e dimensionada para **suportar nativamente até 100% da carga total de requisições do DynamoDB diretamente na memória RAM**, garantindo que mesmo se a taxa de acerto de cache dos roteadores caísse para zero por completo, a frota de MemDS continuaria servindo as chaves com latências de milissegundo de dígito único sem sofrer sobrecarga ou degradação.
-2.  **O Truque do Tráfego Constante (Asynchronous Refresh):** Para impedir comportamentos bimodais extremos (sem tráfego quando o cache está cheio vs. picos colossais na perda do cache), os roteadores implementam a política de *Asynchronous Refresh*:
-    - Quando ocorre um acerto de cache (*cache hit*), o Request Router atende ao cliente na hora.
-    - Em background, de forma assíncrona, ele envia uma requisição para o MemDS para renovar e estender a vida útil daquela rota no cache local.
-    - **A sacada técnica:** Como as chamadas em background ocorrem continuamente a cada leitura, o MemDS experimenta um volume de tráfego plano e perfeitamente constante. Quando um roteador cai e é reiniciado, **não ocorre nenhuma variação drástica ou bimodal no perfil de rede que bate no MemDS**. A engenharia abriu mão da eficiência pura (desperdiçando certa banda em background) para obter uma **previsibilidade total sob estresse**, blindando todo o ecossistema contra falhas em cascata.
+Isso permite escalar horizontalmente.
 
----
+A `Sort Key`, quando existe, organiza itens dentro da mesma Partition Key.
 
-## 9. Resumo da Evolução: Gargalo vs. Solução Técnica
+```text
+PK = customer_id
+SK = order_date
+```
 
-Com as bases estabelecidas, agora fica muito mais simples entender por que a Amazon precisou evoluir cada componente sob escala massiva:
+Então:
 
-| Componente | Missão Principal | Primeiro Gargalo (Escala) | Solução de Engenharia |
-| :--- | :--- | :--- | :--- |
-| **Request Router (Cache)** | Descobrir a rota física (Storage Node) a partir da chave primária. | **Bimodalidade e Cold Starts:** Baixava o mapa de partições inteiro de tabelas gigantes. Quedas ou reinicializações geravam picos de 75% no serviço de metadados. | **MemDS & Async Refresh:** Criação de um banco em memória distribuído com árvore **Perkle**. Os caches dos roteadores agora se atualizam assincronamente a cada *cache hit*, mantendo a carga plana. |
-| **Admission Control** | Verificar se o lojista possui saldo de throughput contratado (tokens). | **Partições Quentes & Throughput Dilution:** Throughput dividido estaticamente entre partições. Picos de acessos concentrados geravam rejeição (*throttling*) indevida. | **Global Admission Control (GAC):** Substituição do controle local por contadores globais distribuídos (via token buckets em memória). Permite que partições consumam até a cota total da tabela. |
-| **Storage Nodes (Healing)** | Gravar o WAL sequencial e estruturar os dados na B-Tree física. | **Lentidão na Recuperação de Nós:** Reconstruir um nó físico do zero exigia copiar toda a B-Tree de dados pela rede, levando minutos e deixando o quórum vulnerável. | **Log Replicas:** Criação de nós Paxos efêmeros que copiam apenas logs de transações (`WAL`) recentes. Entram online em segundos para restabelecer o quórum seguro. |
-| **Consensus (Paxos)** | Garantir concordância do estado do banco entre as réplicas. | **Eleições Espúrias de Líder:** Falhas cinzas de rede (*gray failures*) isolavam parcialmente nós seguidores, que assumiam falsamente a queda do líder e travavam o sistema. | **Pre-vote Protocol:** Antes de iniciar eleição, o nó seguidor precisa de validação dos outros nós para confirmar se o líder caiu de fato. |
+- **Partition Key** → onde os dados ficam.
+- **Sort Key** → como os dados daquele grupo são organizados/consultados.
+
+Importante:
+
+> distribuição uniforme de keys não significa distribuição uniforme de tráfego.
+
+Uma única key muito popular ainda pode criar uma **hot partition**.
 
 ---
 
-## 10. A Filosofia Amazon: "Boring Systems" e Baixa Variância
+## 2. Routing Metadata: o problema escondido do particionamento
 
-Uma das principais lições culturais e técnicas da AWS no design do DynamoDB é a **busca deliberada por previsibilidade sobre eficiência bruta**.
+Depois de particionar os dados, aparece uma dependência crítica.
 
-*   **O Mal da Variabilidade:** Para a Amazon, um sistema que responde às vezes em 10ms, às vezes em 3s, e às vezes em 500ms é muito pior e mais nocivo para a experiência do usuário do que um sistema que responde consistentemente em 100ms. 
-*   **O Efeito Cascata:** Em arquiteturas de microsserviços complexos, picos isolados de latência (outliers, medidos no percentil P99) em um serviço base como o DynamoDB propagam-se pelas camadas superiores da aplicação (*cascade effect*), gerando filas de conexão e degradando a experiência como um todo.
-*   **O Preço da Previsibilidade:** O DynamoDB prefere realizar tarefas redundantes ou "desperdiçar" processamento (como o *Asynchronous Refresh* constante do cache de rotas e o sobredimensionamento do MemDS) se isso garantir que o sistema se comporte de forma uniforme, entediante e imune a choques térmicos de tráfego.
+O cliente envia:
+
+```text
+GetItem(user:123)
+```
+
+O Request Router consegue determinar a partition lógica a partir da key, mas ainda precisa responder:
+
+> **Onde fisicamente estão as réplicas responsáveis por essa partition agora?**
+
+Partitions mudam ao longo do tempo:
+
+```text
+split
+migration
+replica replacement
+leader change
+failure recovery
+```
+
+Então existe routing metadata semelhante a:
+
+```text
+key range X
+    ↓
+partition P42
+    ↓
+replicas A, B, C
+    ↓
+leader / membership atual
+```
+
+Sem metadata correto, o router não sabe para qual Storage Node enviar a request.
+
+```text
+Client
+  ↓
+Request Router
+  ↓
+Routing Metadata
+  ↓
+Storage Node
+```
+
+Isso torna o metadata uma infraestrutura **crítica para o data path**.
+
+Consultar remotamente o metadata service em toda request adicionaria latência e criaria um gargalo central.
+
+A solução natural é cache.
+
+```text
+Request Router
+     ↓
+Local Metadata Cache
+```
+
+Em um cache hit:
+
+```text
+key
+ ↓
+cache
+ ↓
+Storage Node
+```
+
+O lookup remoto sai do hot path.
+
+Parece resolvido.
+
+Só que agora criamos outro problema.
 
 ---
 
-## 11. Principais Aprendizados para System Design
+## 3. Cold Cache: quando uma otimização vira risco
 
-1.  **Evite a Bimodalidade (Predictability over Efficiency):** Projetar sistemas para se comportarem da mesma forma em situações de pico ou de normalidade evita colapsos imprevisíveis. O refresco assíncrono do cache no DynamoDB consome mais recursos, mas blinda o banco de metadados contra *cold starts* catastróficos.
-2.  **Separe a Lógica Física da Lógica de Negócios:** Amarrar alocação de capacidade ao particionamento físico gera restrições indesejadas. O controle global descentralizado (GAC) abstrai essa limitação física de forma transparente para o cliente.
-3.  **Reduza o Tempo de Recuperação (MTTR):** Reduzir o tempo de recuperação é mais eficiente para a durabilidade do que tentar evitar 100% das falhas físicas. Com `Log Replicas`, o DynamoDB restabelece seu quórum Paxos de segurança em segundos, e não minutos.
+Em operação normal:
 
+```text
+cache quente
+    ↓
+pouco tráfego no metadata backend
+```
 
-Videos
+Agora imagine um deployment ou falha que reinicie milhares de routers.
 
-https://www.youtube.com/watch?v=cU01EnyBwQI
+```text
+Router 1 ─┐
+Router 2 ─┤
+Router 3 ─┼──► Metadata Service
+Router 4 ─┤
+Router 5 ─┘
+```
 
-https://www.youtube.com/watch?v=LnqKfLcszEg&t=4466s
+Todos começam com cache frio.
+
+Temos um **thundering herd**.
+
+Pior: o backend passa a possuir dois perfis completamente diferentes.
+
+```text
+NORMAL:
+quase nenhum tráfego
+
+COLD START / FAILURE:
+tráfego gigantesco
+```
+
+Esse é um **comportamento bimodal**.
+
+É perigoso porque o metadata service pode passar a maior parte do tempo pouco exercitado e receber sua maior carga justamente quando o sistema já está enfrentando uma falha.
+
+O DynamoDB então redesenhou o backend de metadata.
+
+---
+
+## 6. MemDS: cache não pode ser requisito para sobrevivência
+
+O **MemDS (Memory Data Store)** é um datastore distribuído em memória especializado em servir routing metadata.
+
+A ideia arquitetural mais importante não é simplesmente colocar metadata em RAM.
+
+É:
+
+> **o backend de metadata deve conseguir sustentar a carga mesmo se os caches dos Request Routers desaparecerem.**
+
+Ou seja:
+
+```text
+99% cache hit
+```
+
+não pode significar:
+
+```text
+backend suporta apenas 1% da carga
+```
+
+Porque no dia em que:
+
+```text
+cache hit → 0%
+```
+
+o metadata service entraria em colapso.
+
+O cache passa a ser uma otimização de latência, e não algo necessário para o sistema sobreviver.
+
+Mas existe outro problema: em escala DynamoDB, o mapa de partitions é gigantesco.
+
+É aqui que entra o **Perkle**.
+
+### Perkle Tree: Patricia + Merkle
+
+O MemDS usa uma estrutura chamada **Perkle Tree**, combinando ideias de Patricia Trees e Merkle Trees.
+
+```text
+Patricia Tree
+      +
+ Merkle Tree
+      ↓
+ Perkle Tree
+```
+
+A **Patricia Tree** ajuda a representar o enorme espaço de routing de forma compacta, comprimindo prefixos comuns.
+
+A parte **Merkle** adiciona hashes à estrutura.
+
+Conceitualmente:
+
+```text
+             hash(root)
+              /      \
+         hash(A)    hash(B)
+          /  \       /  \
+        ...  ...    ...  ...
+```
+
+Se duas cópias possuem o mesmo hash para uma subtree, sabemos que aquela parte do estado é equivalente.
+
+Se os hashes forem diferentes, podemos localizar apenas os branches divergentes.
+
+Assim:
+
+```text
+Patricia → representação compacta
+Merkle   → comparação/sincronização eficiente
+```
+
+Em vez de redistribuir um mapa gigantesco inteiro, o sistema consegue trabalhar com diferenças incrementais.
+
+---
+
+## 7. Async Refresh: gastar mais para tornar a falha previsível
+
+Mesmo com MemDS dimensionado corretamente, caches ainda poderiam criar comportamento bimodal.
+
+Uma implementação convencional faria:
+
+```text
+cache hit
+   ↓
+responde cliente
+```
+
+e só consultaria MemDS quando o cache expirasse ou falhasse.
+
+O DynamoDB faz algo contraintuitivo: **asynchronous refresh mesmo em cache hits**.
+
+```text
+Request
+   ↓
+Router Cache
+   │
+   ├── HIT → responde cliente
+   │
+   └── async refresh → MemDS
+```
+
+Isso aparentemente desperdiça requests e banda.
+
+Mas compare os dois cenários.
+
+### Cache tradicional
+
+```text
+cache quente → MemDS quase ocioso
+cache frio   → MemDS recebe avalanche
+```
+
+### Async Refresh
+
+```text
+cache quente:
+Router ─────► MemDS
+
+cache frio:
+Router ─────► MemDS
+```
+
+O backend fica continuamente exercitado e a mudança de perfil quando caches desaparecem é muito menor.
+
+Essa é uma das ideias centrais do paper:
+
+> **Predictability over maximum efficiency.**
+
+O DynamoDB conscientemente aceita trabalho redundante para evitar que uma falha transforme radicalmente o comportamento do sistema.
+
+### E se o routing metadata estiver stale?
+
+Partitions sofrem splits, migrações e mudanças de membership.
+
+Logo, caches nunca estarão perfeitamente sincronizados.
+
+Imagine:
+
+```text
+Router cache:
+range X → Node A
+
+estado atual:
+range X → Node B
+```
+
+A request chega ao node errado.
+
+```text
+Router
+  │
+  ├── request → Node A
+  │                │
+  │                └── não sou mais responsável
+  │
+  ├── refresh metadata
+  │
+  └── retry → Node B
+```
+
+Em vez de exigir sincronização perfeita entre milhares de routers, o sistema aceita metadata temporariamente stale, detecta o erro e se autocorrige.
+
+Lição:
+
+> **stale metadata pode ser aceitável quando é detectável e existe um caminho barato de recovery.**
+
+---
+
+## 6. Replicação: uma partition não pode depender de um único node
+
+Cada partition possui múltiplas réplicas distribuídas entre AZs.
+
+Simplificando:
+
+```text
+          Partition
+        /     |     \
+       A      B      C
+```
+
+Se um node morrer, as outras cópias continuam disponíveis.
+
+Mas agora aparece um problema novo:
+
+> com três cópias do estado, quem decide qual é a versão correta?
+
+A resposta é consenso.
+
+---
+
+## 7. Multi-Paxos, WAL e quorum
+
+As réplicas formam um grupo coordenado por **Multi-Paxos**, com um leader responsável pelas writes.
+
+```text
+        Leader
+       /      \
+Follower    Follower
+```
+
+Uma escrita segue aproximadamente:
+
+```text
+PutItem
+  ↓
+Leader
+  ↓
+WAL / replicated log
+  ↓
+réplicas
+  ↓
+quorum
+  ↓
+ACK ao cliente
+```
+
+### Por que quorum 2 de 3?
+
+Se exigíssemos `3/3`, uma única falha bloquearia writes.
+
+Se aceitássemos `1/3`, o único node com a write poderia morrer logo depois do ACK.
+
+Com maioria:
+
+```text
+2 de 3
+```
+
+qualquer dois quorums majoritários sempre possuem interseção.
+
+```text
+quorum 1 = A B
+quorum 2 = B C
+```
+
+Sempre há pelo menos uma réplica em comum.
+
+Essa é a base matemática da segurança do quorum.
+
+### WAL
+
+O sistema não precisa atualizar toda a estrutura final de dados antes de responder.
+
+Primeiro:
+
+```text
+write
+ ↓
+WAL durável
+ ↓
+quorum
+ ↓
+ACK
+```
+
+Depois a mudança pode ser aplicada à estrutura de armazenamento.
+
+Ou seja:
+
+> **durabilidade não exige materialização completa imediata.**
+
+---
+
+## 8. Strong vs Eventual Consistency
+
+Com múltiplas réplicas, temos duas opções de leitura.
+
+### Strongly Consistent Read
+
+Precisa garantir que o cliente veja o estado mais recente válido.
+
+Conceitualmente passa pelo caminho autoritativo do replication group.
+
+### Eventually Consistent Read
+
+Pode ser servida por uma réplica que ainda esteja alguns instantes atrás.
+
+Exemplo:
+
+```text
+Leader      x = 42
+Replica B   x = 42
+Replica C   x = 41
+```
+
+Uma leitura eventual em `C` pode retornar `41`.
+
+Isso não é corrupção; é **replication lag**.
+
+Trade-off:
+
+```text
+strong   → mais garantia
+eventual → mais flexibilidade/throughput
+```
+
+---
+
+## 9. Hot Partitions e Split for Consumption
+
+Hash distribui keys, não requests.
+
+```text
+P1 → 10%
+P2 → 10%
+P3 → 60%  ← hot
+P4 → 10%
+P5 → 10%
+```
+
+DynamoDB pode dividir partitions com base em consumo.
+
+```text
+      P
+    /   \
+   P1   P2
+```
+
+Isso ajuda a espalhar carga.
+
+Mas se toda a carga estiver concentrada em uma única Partition Key, existe um limite para o que o sistema consegue fazer.
+
+Por isso:
+
+> **uma boa Partition Key ainda é responsabilidade do developer.**
+
+---
+
+## 10. Admission Control: capacidade não deve ficar presa à partition física
+
+Imagine uma tabela com:
+
+```text
+1000 writes/s
+```
+
+e 10 partitions.
+
+Se cada uma tivesse rigidamente:
+
+```text
+100 writes/s
+```
+
+uma partition recebendo 500 writes/s seria throttled mesmo que as outras estivessem quase ociosas.
+
+Isso é **throughput dilution**.
+
+O DynamoDB evoluiu para um modelo mais global de controle de capacidade, usando **Global Admission Control (GAC)**.
+
+A ideia:
+
+```text
+capacidade lógica da tabela
+        ≠
+layout físico das partitions
+```
+
+Isso permite aproveitar melhor a capacidade total.
+
+---
+
+## 11. Log Replicas: recuperar quorum rápido
+
+Se temos:
+
+```text
+A ✓
+B ✓
+C ✗
+```
+
+ainda existe quorum.
+
+Mas agora estamos vulneráveis: mais uma falha pode derrubar o replication group.
+
+Reconstruir uma réplica completa pode exigir copiar muitos dados e levar tempo.
+
+A sacada foi separar:
+
+```text
+participar do consenso
+```
+
+de:
+
+```text
+possuir todo o dataset
+```
+
+Uma **Log Replica** mantém apenas o replicated log necessário para participar rapidamente do consenso.
+
+```text
+Leader
+  ├── Full Replica
+  └── Log Replica
+```
+
+Primeiro o sistema restaura:
+
+```text
+quorum + safety
+```
+
+Depois reconstrói a réplica completa.
+
+Grande lição:
+
+> **reduzir MTTR pode ser mais importante do que tentar impedir toda falha.**
+
+---
+
+## 12. Gray Failures e Pre-vote
+
+Falhas distribuídas não são apenas:
+
+```text
+alive / dead
+```
+
+Um node pode estar saudável para alguns peers e inacessível para outros.
+
+Isso é uma **gray failure**.
+
+Um follower isolado pode achar que o leader morreu e iniciar uma eleição desnecessária.
+
+Para reduzir esse churn, o DynamoDB usa **pre-vote**:
+
+```text
+não vejo o leader
+      ↓
+pergunto aos peers
+      ↓
+eles também acham que precisamos de eleição?
+      ↓
+sim → eleição
+não → provavelmente o problema é local
+```
+
+Lição:
+
+> não transforme uma observação local de falha em decisão global imediatamente.
+
+---
+
+## 13. GSI e LSI
+
+### LSI
+
+Mesma Partition Key, Sort Key diferente.
+
+```text
+Base:
+PK = customer
+SK = date
+
+LSI:
+PK = customer
+SK = value
+```
+
+Continua ligado ao mesmo partitioning lógico.
+
+### GSI
+
+Pode ter outra Partition Key completamente diferente.
+
+```text
+Base:
+PK = customer_id
+
+GSI:
+PK = order_status
+```
+
+É útil pensar no GSI como:
+
+> **uma segunda projeção distribuída dos mesmos dados.**
+
+Como sua atualização ocorre de forma assíncrona, reads do GSI são eventualmente consistentes.
+
+---
+
+## 14. Streams
+
+DynamoDB Streams funciona como CDC:
+
+```text
+INSERT
+MODIFY
+REMOVE
+   ↓
+Stream
+   ↓
+Lambda / analytics / indexing / downstream systems
+```
+
+O banco deixa de ser apenas armazenamento de estado e passa também a fornecer um fluxo das mudanças desse estado.
+
+---
+
+# Resumo final
+
+| Problema | Solução |
+|---|---|
+| Dados maiores que uma máquina | Partitioning |
+| Encontrar a partition | Request Router + metadata |
+| Metadata no hot path | Router cache |
+| Cold cache / thundering herd | MemDS + Async Refresh |
+| Node pode morrer | Replicação |
+| Réplicas precisam concordar | Multi-Paxos |
+| Não esperar todas as réplicas | Majority quorum |
+| Durabilidade rápida | WAL |
+| Diferentes requisitos de leitura | Strong / Eventual consistency |
+| Partition recebe tráfego demais | Split for Consumption |
+| Capacidade presa ao layout físico | Global Admission Control |
+| Replica recovery demora | Log Replicas |
+| Falha parcial causa eleição | Pre-vote |
+| Consultar por outra key | LSI / GSI |
+| Reagir a alterações | Streams |
+
+---
+
+# O que lembrar para System Design
+
+```text
+Partitioning escala dados.
+Hashing não elimina hot keys.
+Replication exige consenso.
+Quorum funciona pela interseção das maiorias.
+WAL separa durabilidade de materialização.
+Caches podem criar comportamento bimodal.
+Predictability pode valer mais que eficiência.
+MTTR é parte da disponibilidade.
+Metadata stale pode ser aceitável se for detectável e corrigível.
+```
+
+> **A ideia central do DynamoDB não é um algoritmo específico.  
+> É construir um sistema que continue previsível quando partes dele falham, escalam ou ficam quentes.**
+
+---
+
+## Referência
+
+Amazon DynamoDB: A Scalable, Predictably Performant, and Fully Managed NoSQL Database Service — USENIX ATC 2022
+
+https://www.usenix.org/system/files/atc22-elhemali.pdf
+
+---
