@@ -659,45 +659,7 @@ Lição:
 
 ---
 
-## 13. GSI e LSI
-
-### LSI
-
-Mesma Partition Key, Sort Key diferente.
-
-```text
-Base:
-PK = customer
-SK = date
-
-LSI:
-PK = customer
-SK = value
-```
-
-Continua ligado ao mesmo partitioning lógico.
-
-### GSI
-
-Pode ter outra Partition Key completamente diferente.
-
-```text
-Base:
-PK = customer_id
-
-GSI:
-PK = order_status
-```
-
-É útil pensar no GSI como:
-
-> **uma segunda projeção distribuída dos mesmos dados.**
-
-Como sua atualização ocorre de forma assíncrona, reads do GSI são eventualmente consistentes.
-
----
-
-## 14. Streams
+## 13. Streams
 
 DynamoDB Streams funciona como CDC:
 
