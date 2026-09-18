@@ -23,6 +23,7 @@ tags:
 - [[Cursos/Descomplicando System Design/CAP and Databases/BASE|BASE]]
 - [[Cursos/Descomplicando System Design/CAP and Databases/Database Models Reference|Database Models Reference]]
 - [[Cursos/Descomplicando System Design/CAP and Databases/Estruturas de Indexação e Armazenamento de Dados|Estruturas de Indexação e Armazenamento de Dados]]
+- [[Algoritmos e Estrutura de Dados/B-Trees|B-Trees]]
 - [[Cursos/Descomplicando System Design/Sharding/Sharding|Sharding]]
 
 ### Cache e Roteamento
@@ -40,6 +41,7 @@ tags:
 ### Comunicação
 
 - [[Cursos/Descomplicando System Design/Comunicacao Sincrona/HTTP & REST|HTTP & REST]]
+- [[Cursos/Descomplicando System Design/Comunicacao Sincrona/HTTP - Principais diferenças entre versões|HTTP - Principais diferenças entre versões]]
 - [[Cursos/Descomplicando System Design/Comunicacao Sincrona/RPC|RPC]]
 - [[Cursos/Descomplicando System Design/Comunicacao Sincrona/GRPC|gRPC]]
 - [[Cursos/Descomplicando System Design/Comunicacao Sincrona/GraphQL|GraphQL]]
@@ -81,3 +83,7 @@ tags:
 - [[Cursos/Descomplicando System Design/Replicacao de Dados/Event Carried Event Transfer|Event Carried Event Transfer]]
 - [[Cursos/Descomplicando System Design/Replicacao de Dados/Outbox Relay|Outbox Relay]]
 - [[Cursos/Descomplicando System Design/CQRS/CQRS|CQRS]]
+
+### Issues do dia a dia
+
+- [[Issues/Kubernetes — Desbalanceamento com HTTP gRPC|Kubernetes — Desbalanceamento com HTTP/gRPC]]

@@ -1,4 +1,10 @@
-# B-Trees — Por que são tão boas em bancos de dados?
+---
+title: "B-Trees — Por que são tão boas em bancos de dados?"
+tags:
+  - topic/data-structures
+  - topic/databases
+  - topic/indexing
+---
 
 A ideia principal:
 
@@ -78,6 +84,8 @@ Consequência:
 ## 3. Por que isso combina tão bem com bancos?
 
 Bancos trabalham com blocos chamados **pages**.
+
+Isso conecta diretamente com [[Cursos/Fundamentals of Operating Systems/Chapter 17 – I O Systems & Storage|I/O de storage]] e com estruturas de indexação em [[Cursos/Descomplicando System Design/CAP and Databases/Estruturas de Indexação e Armazenamento de Dados|bancos de dados]].
 
 No PostgreSQL, por exemplo, normalmente:
 
@@ -293,7 +301,7 @@ range scans eficientes
 
 ---
 
-# O que lembrar
+# Para Lembrar
 
 > **B-Tree não é fodona simplesmente porque busca em O(log n).**
 
@@ -340,3 +348,11 @@ page tem espaço?
 ```
 
 É nos **page splits e random writes** que começam a aparecer os custos que motivam estruturas como LSM-Trees.
+
+## Connections
+
+- [[Cursos/Descomplicando System Design/CAP and Databases/Estruturas de Indexação e Armazenamento de Dados|Estruturas de Indexação e Armazenamento de Dados]]
+- [[Cursos/Descomplicando System Design/CAP and Databases/Database Models Reference|Database Models Reference]]
+- [[Cursos/Descomplicando System Design/CAP and Databases/Databases|Databases]]
+- [[Cursos/Fundamentals of Operating Systems/Chapter 17 – I O Systems & Storage|I/O Systems & Storage]]
+- [[Articles/AWS DynamoDB - How it Works|AWS DynamoDB - How it Works]]

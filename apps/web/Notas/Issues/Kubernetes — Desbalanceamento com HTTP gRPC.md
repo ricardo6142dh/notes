@@ -1,3 +1,12 @@
+---
+title: "Kubernetes — Desbalanceamento com HTTP/gRPC"
+tags:
+  - topic/kubernetes
+  - topic/load-balancing
+  - topic/http
+  - topic/grpc
+  - source/experience
+---
 
 ## O problema
 
@@ -57,6 +66,8 @@ HTTP/2 permite **multiplexar vários streams dentro de uma única conexão TCP**
 Como o Kubernetes enxerga apenas a conexão TCP, todos esses streams podem acabar no **mesmo Pod**.
 
 gRPC normalmente usa HTTP/2 e mantém conexões persistentes, então é especialmente suscetível a esse comportamento.
+
+Esse comportamento depende das características de [[Cursos/Descomplicando System Design/Comunicacao Sincrona/HTTP - Principais diferenças entre versões|HTTP/2]] e do modelo de [[Cursos/Descomplicando System Design/Comunicacao Sincrona/GRPC|gRPC]].
 
 ## Scaling
 
@@ -121,3 +132,11 @@ Possível desbalanceamento
 **Ambient + ztunnel → continua L4.**
 
 **Ambient + Waypoint → L7, podendo balancear requests/streams.**
+
+## Connections
+
+- [[Cursos/Descomplicando System Design/Concepts/Kubernetes|Kubernetes]]
+- [[Cursos/Descomplicando System Design/Load Balancing/Load Balancing (Balanceamento de Carga)|Load Balancing]]
+- [[Cursos/Descomplicando System Design/Load Balancing/Algoritmos de balanceamento de carga|Algoritmos de balanceamento de carga]]
+- [[Cursos/Descomplicando System Design/Comunicacao Sincrona/HTTP - Principais diferenças entre versões|HTTP - Principais diferenças entre versões]]
+- [[Cursos/Descomplicando System Design/Comunicacao Sincrona/GRPC|gRPC]]

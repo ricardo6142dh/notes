@@ -10,7 +10,7 @@ tags:
   - topic/dynamodb
 ---
 
-A melhor forma de lembrar DynamoDB é pensar na sequência de problemas que aparecem quando um key-value store precisa escalar:
+Sequência de problemas que aparecem quando um key-value store precisa escalar:
 
 ```text
 dados demais
@@ -212,7 +212,7 @@ O DynamoDB então redesenhou o backend de metadata.
 
 ---
 
-## 6. MemDS: cache não pode ser requisito para sobrevivência
+## 4. MemDS: cache não pode ser requisito para sobrevivência
 
 O **MemDS (Memory Data Store)** é um datastore distribuído em memória especializado em servir routing metadata.
 
@@ -289,7 +289,7 @@ Em vez de redistribuir um mapa gigantesco inteiro, o sistema consegue trabalhar 
 
 ---
 
-## 7. Async Refresh: gastar mais para tornar a falha previsível
+## 5. Async Refresh: gastar mais para tornar a falha previsível
 
 Mesmo com MemDS dimensionado corretamente, caches ainda poderiam criar comportamento bimodal.
 
@@ -699,7 +699,7 @@ O banco deixa de ser apenas armazenamento de estado e passa também a fornecer u
 
 ---
 
-# O que lembrar para System Design
+# Para Lembrar
 
 ```text
 Partitioning escala dados.
@@ -724,4 +724,14 @@ Amazon DynamoDB: A Scalable, Predictably Performant, and Fully Managed NoSQL Dat
 
 https://www.usenix.org/system/files/atc22-elhemali.pdf
 
----
+## Connections
+
+- [[Cursos/Descomplicando System Design/CAP and Databases/Databases|Databases]]
+- [[Cursos/Descomplicando System Design/CAP and Databases/Database Models Reference|Database Models Reference]]
+- [[Cursos/Descomplicando System Design/Sharding/Sharding|Sharding]]
+- [[Cursos/Descomplicando System Design/Concepts/Partition|Partition]]
+- [[Cursos/Descomplicando System Design/Concepts/Consistency|Consistency]]
+- [[Cursos/Descomplicando System Design/Concepts/Availability|Availability]]
+- [[Cursos/Descomplicando System Design/Concepts/Durability|Durability]]
+- [[Cursos/Descomplicando System Design/CAP and Databases/PACELC|PACELC]]
+- [[Algoritmos e Estrutura de Dados/B-Trees|B-Trees]]

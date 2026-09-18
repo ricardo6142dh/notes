@@ -7,10 +7,13 @@ title: Ricardo Notes
 - [[Cursos/index|Cursos]]
 - [[Cursos/Descomplicando System Design/index|Descomplicando System Design]]
 - [[Cursos/Descomplicando System Design/CAP and Databases/Databases|Databases]]
+- [[Algoritmos e Estrutura de Dados/index|Algoritmos e Estrutura de Dados]]
+- [[Algoritmos e Estrutura de Dados/B-Trees|B-Trees]]
 - [[Cursos/Descomplicando System Design/Cache/Definicao de Cache|Definição de Cache]]
 - [[Cursos/Descomplicando System Design/Load Balancing/Load Balancing (Balanceamento de Carga)|Load Balancing]]
 - [[Cursos/Descomplicando System Design/Api Gateway/API Gateway|API Gateway]]
 - [[Cursos/Descomplicando System Design/Comunicacao Sincrona/HTTP & REST|HTTP & REST]]
+- [[Cursos/Descomplicando System Design/Comunicacao Sincrona/HTTP - Principais diferenças entre versões|HTTP - Principais diferenças entre versões]]
 - [[Cursos/Descomplicando System Design/Comunicacao Sincrona/RPC|RPC]]
 - [[Cursos/Descomplicando System Design/Comunicacao Sincrona/GRPC|gRPC]]
 - [[Cursos/Descomplicando System Design/Comunicacao Sincrona/GraphQL|GraphQL]]
@@ -47,6 +50,11 @@ title: Ricardo Notes
 - [[Articles/Uber’s Failover Architecture Reconciling Reliability and Efficiency in Hyperscale Microservice Infrastructure|Uber’s Failover Architecture]]
 - [[Articles/AWS DynamoDB - How it Works|AWS DynamoDB - How it Works]]
 - [[Articles/Zalando Client-Side Load Balancing at 1M reqs|Zalando Client-Side Load Balancing at 1M reqs]]
+
+## Issues
+
+- [[Issues/index|Issues]]
+- [[Issues/Kubernetes — Desbalanceamento com HTTP gRPC|Kubernetes — Desbalanceamento com HTTP/gRPC]]
 
 ## Unread
 

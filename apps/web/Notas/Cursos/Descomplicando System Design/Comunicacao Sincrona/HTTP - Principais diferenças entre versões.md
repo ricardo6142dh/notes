@@ -1,4 +1,11 @@
-
+---
+title: "HTTP - Principais diferenças entre versões"
+tags:
+  - course/system-design
+  - topic/networking
+  - topic/http
+  - topic/communication
+---
 
 ## Visão geral
 
@@ -8,7 +15,7 @@
 | HTTP/1.0 | TCP | Não por padrão | Não | Texto | Não |
 | HTTP/1.1 | TCP | Sim | Não | Texto | Não |
 | HTTP/2 | TCP | Sim | Sim | Binário | HPACK |
-| HTTP/3 | QUIC sobre UDP | Sim | Sim | Binário | QPACK 
+| HTTP/3 | QUIC sobre UDP | Sim | Sim | Binário | QPACK |
 
 ## HTTP/1.0
 
@@ -42,6 +49,8 @@ Browser
 ```
 
 **Ideia-chave:** reutilizar conexões TCP.
+
+Esse detalhe é importante para entender [[Issues/Kubernetes — Desbalanceamento com HTTP gRPC|desbalanceamento em Kubernetes com conexões long-lived]].
 
 ## HTTP/2
 
@@ -121,9 +130,17 @@ HTTP/3
 multiplexação sobre QUIC/UDP
 ```
 
-### Para lembrar em System Design / SRE
+### Para lembrar 
 
 -   **HTTP/1.1 → Keep-Alive**
 -   **HTTP/2 → Multiplexação + TCP**
 -   **HTTP/3 → Multiplexação + QUIC/UDP**
 -   **Problema central do HTTP/2 → TCP Head-of-Line Blocking**
+
+## Connections
+
+- [[Cursos/Descomplicando System Design/Comunicacao Sincrona/HTTP & REST|HTTP & REST]]
+- [[Cursos/Descomplicando System Design/Comunicacao Sincrona/GRPC|gRPC]]
+- [[Cursos/Descomplicando System Design/Comunicacao Sincrona/WebSockets|WebSockets]]
+- [[Cursos/Descomplicando System Design/Load Balancing/Load Balancing (Balanceamento de Carga)|Load Balancing]]
+- [[Issues/Kubernetes — Desbalanceamento com HTTP gRPC|Kubernetes — Desbalanceamento com HTTP/gRPC]]

@@ -2,7 +2,9 @@
 title: "Mensagens, Eventos, Comandos e Documentos"
 ---
 
-Mensagens
+Mensagens - Message Queue 
+
+Trabalho a ser feito
 
 - Destinatário e Remetente Conhecidos
 - Comandos Imperativos 
@@ -14,7 +16,9 @@ Mensagens
   RabbitMQ, ZeroMQ, SQS
 
 
-Eventos
+Eventos - / Pub/Sub
+
+Evento Ocorreu
 
 - Reatividade
 - Notificação genérica de que algo ocorreu\
