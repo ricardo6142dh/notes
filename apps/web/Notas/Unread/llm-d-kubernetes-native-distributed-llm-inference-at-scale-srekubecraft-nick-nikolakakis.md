@@ -1,5 +1,5 @@
 ---
-title: "llm-d: Kubernetes-Native Distributed LLM Inference at Scale"
+title: "llm-d: Kubernetes-native distributed LLM inference"
 status: unread
 source: https://srekubecraft.io/posts/llm-d-distributed-inference/
 created: 2026-08-18
@@ -7,60 +7,109 @@ tags:
   - source/article
   - topic/kubernetes
   - topic/llm-inference
-  - topic/model-serving
+  - topic/load-balancing
   - topic/platform-engineering
-  - topic/sre
 ---
 
 ## TL;DR
 
-LLM-D presents a distributed inference architecture for large language models emphasizing model parallelism, elastic scaling, and reduced latency through coordinated worker pools and efficient routing.
+Um Kubernetes `Service` distribui requests sem conhecer prefix-cache hits, uso do KV cache ou tamanho das filas. O llm-d adiciona routing ciente do estado da inferência, separa prefill de decode e permite offload hierárquico do KV cache. Ele orquestra engines como vLLM; não executa inferência por conta própria.
 
-## Summary
+## Problema
 
-The post describes LLM-D, an approach for distributed inference that partitions model execution across a cluster of workers, coordinates input routing, and balances latency vs throughput. It covers system design, worker orchestration, batching strategies, and failure handling for production-grade LLM serving.
+Requests de LLM têm custos muito diferentes. Round-robin e least-connections não enxergam informações que determinam latência e uso de GPU:
 
-Search posts... /explorer ~home %archives >projects #tags @whoaminetwork system tokyo-night49 posts · 110 tags SREKubeCraft ~/posts/llm-d-distributed-inference.md21 min · 4271 wordsllm-d - Kubernetes-Native Distributed LLM Inference at Scale// A hands-on tour of llm-d, the CNCF Sandbox framework for distributed LLM inference on Kubernetes - inference-aware routing, prefill/decode disaggregation, and KV-cache offload. Includes a GPU-free demo on Kind using the vLLM simulator, wired with Flux GitOps.
+- prompts podem compartilhar prefixos já presentes no cache de um pod;
+- prefill consome principalmente compute, enquanto decode depende mais de bandwidth e memória;
+- pressão do KV cache muda por pod e pode provocar eviction ou filas;
+- uma conexão gerando muitos tokens pode ocupar recursos por vários segundos.
 
-Three months ago I wrote about KServe and how the InferenceService CRD had become the closest thing cloud-native has to a standard for putting a trained model behind an API. That post ended on a deliberate cliffhanger: KServe gives you a great single-model serving primitive, but it does not solve GPU sharing, fractional scheduling, or how you load-balance inference traffic across many replicas of a large model. I pointed at Volcano and Kueue and moved on.
+No exemplo do artigo, reutilizar um prefixo compartilhado de 4 mil tokens pode reduzir time to first token de cerca de 2 segundos para 40 milissegundos. Um load balancer comum perde essa localidade ao espalhar requests entre réplicas.
 
-This post is the other half of that story. Once your models get big enough and your traffic high enough, the interesting problem is no longer “how do I serve one model” - it is “how do I route, disaggregate, and cache inference across a fleet of GPUs so tail latency stays flat under load.” A plain Kubernetes Service in front of eight vLLM pods is inference-blind: it round-robins requests as if every token cost the same. It does not. That gap is exactly what llm-d fills.
+## Arquitetura
 
-llm-d joined the CNCF as a Sandbox project at KubeCon EU 2026, jointly donated by IBM Research, Red Hat, and Google Cloud, with founding support from NVIDIA, AMD, CoreWeave, Hugging Face, Intel, Lambda, and Mistral AI. It is a Kubernetes-native distributed inference framework built on top of vLLM, the Gateway API Inference Extension, and LeaderWorkerSet. This post walks through what it is, why plain Kubernetes load balancing falls short for LLMs, and how to run the whole orchestration layer on a Kind cluster on your laptop - no GPU required - using the vLLM simulator and Flux GitOps. The full demo lives in srekubecraft-demo/llm-d/.
+O llm-d usa componentes Kubernetes e uma engine de inferência existente:
 
-## Key Concepts
+- **vLLM:** executa o modelo e mantém o KV cache;
+- **Gateway API Inference Extension:** fornece `InferencePool` e integração com routing de inferência;
+- **Endpoint Picker (EPP):** pontua endpoints antes de cada request;
+- **LeaderWorkerSet:** organiza réplicas de modelo distribuídas entre vários nodes;
+- **LMCache:** move KV cache entre GPU, RAM e storage.
 
-- Model parallelism: splitting a model's layers or tensors across multiple workers to handle models larger than a single device memory.
-- Sharding and replication: techniques to distribute model shards and replicas to balance load and provide redundancy.
-- Elastic scaling: adding/removing workers dynamically to match inference load while managing state and model placement.
-- Batching and scheduling: grouping requests to utilize GPU throughput while meeting latency SLOs.
+```mermaid
+flowchart TD
+    A[Client] --> B[Inference Gateway]
+    B --> C[Endpoint Picker]
+    C --> D[InferencePool]
 
-## Technical Insights
+    subgraph llm-d
+        D --> E[Prefill pods]
+        E -->|KV transfer| F[Decode pods]
+        F <--> G[LMCache]
+    end
 
-- Architecture: coordinator service routes requests to appropriate shard replicas, manages pipeline parallelism, and orchestrates micro-batches across GPUs.
-- Performance: discusses trade-offs between batch size, latency, and GPU utilization; recommends adaptive batching and optimistic execution to reduce tail latency.
-- Fault tolerance: use of health checks, fallback replicas, and re-routing on worker failure; state checkpointing and quick rewarm strategies to restore capacity.
-- Trade-offs: complexity of distributed state and synchronization versus ability to serve very large models; network overhead and cross-device communication are primary bottlenecks.
+    G --> H[GPU HBM]
+    G --> I[CPU RAM]
+    G --> J[Disk or shared storage]
+```
 
-## Why This Matters
+## Inference-aware routing
 
-For SREs and platform engineers running model serving, LLM-D outlines patterns to serve large models efficiently while controlling costs and meeting latency SLOs; it informs capacity planning, deployment automation, and observability needs for ML infra.
+O EPP combina scorers para escolher o endpoint:
 
-## Open Questions
+- `prefix-cache-scorer`: favorece pod que já possui maior parte do prefixo;
+- `no-hit-lru-scorer`: distribui requests frias quando nenhum pod tem cache hit;
+- `kv-cache-utilization-scorer`: penaliza pods próximos do limite de memória;
+- `queue-scorer`: penaliza pods com fila profunda.
 
-- What are the exact shard placement algorithms and heuristics used for latency optimization?
-- How are model updates and versioning handled without disrupting in-flight requests?
-- Concrete numbers: p50/p95/p99 latencies, GPU utilisation, network overhead for sample deployments?
+O objetivo não é somente equilibrar quantidade de conexões. Scheduler tenta maximizar reutilização do cache sem criar hotspots.
 
-## Review Points
+## Prefill e decode
 
-- Prototype a small LLM-D-style pipeline for a medium-sized model to measure batching vs latency trade-offs.
-- Evaluate existing open-source tools (Ray Serve, TorchServe, NVIDIA Triton) for parts of the architecture before building custom components.
-- Define SLOs and observability for per-shard latency, queue lengths, and rewarm times.
+Prefill processa prompt inteiro e tende a ser compute-bound. Decode gera tokens sequencialmente e tende a ser limitado por bandwidth e tamanho do KV cache.
 
-## Source
+O llm-d pode executar essas fases em pods separados. Prefill e decode escalam independentemente e podem usar tipos de GPU diferentes. O KV cache produzido no prefill é transferido ao decode por conectores como NIXL ou NCCL.
 
-https://srekubecraft.io/posts/llm-d-distributed-inference/
+Essa separação faz sentido quando proporção entre tamanho do prompt e tamanho da resposta varia bastante. Para modelo pequeno, baixo QPS ou uma única réplica, custo operacional provavelmente supera benefício.
+
+## KV cache hierárquico
+
+LMCache permite retirar KV cache da memória HBM da GPU e mantê-lo em tiers mais baratos:
+
+```text
+GPU HBM -> CPU RAM -> disco ou storage compartilhado
+```
+
+Conversas longas podem retomar contexto sem recomputar todo prefixo depois de eviction da GPU. Ganho vem com mais componentes, transferências e pontos de falha.
+
+## Demo sem GPU
+
+Artigo demonstra control plane em cluster Kind usando `llm-d-inference-sim`, simulador compatível com API OpenAI. Flux entrega CRDs, router e quatro model servers simulados.
+
+Teste observado:
+
+- oito requests com mesmo prefixo foram direcionadas ao mesmo pod;
+- oito prompts distintos foram distribuídos igualmente entre quatro pods.
+
+Demo valida routing, scorer chain e topologia de disaggregation. Não mede tokens por segundo nem desempenho real de GPU.
+
+## Limites
+
+- Projeto estava em CNCF Sandbox; APIs e manifests ainda mudavam entre versões.
+- Stack envolve Gateway API, GAIE, `InferencePool`, EPP, LeaderWorkerSet e LMCache.
+- GPU Operator, node pools e scheduling continuam responsabilidade da plataforma.
+- Ganho aparece principalmente em workloads multi-replica, multi-node e alto QPS.
+- KServe não é substituto direto: `LLMInferenceService` usa fundamentos do llm-d e atua numa camada superior de lifecycle e governance.
+
+## Quando considerar
+
+Use llm-d quando prompts compartilham prefixos longos, prefill e decode têm perfis diferentes, modelo ocupa vários nodes ou custo de GPU justifica routing especializado.
+
+Para modelo pequeno e baixo QPS, vLLM atrás de um `Service` costuma bastar. Para scheduling e fair-share de GPUs, problema pertence primeiro a ferramentas como Kueue ou Volcano.
+
+## Fonte
+
+[llm-d - Kubernetes-Native Distributed LLM Inference at Scale](https://srekubecraft.io/posts/llm-d-distributed-inference/) - Nick Nikolakakis, SREKubeCraft
 
 ## Connections
 
