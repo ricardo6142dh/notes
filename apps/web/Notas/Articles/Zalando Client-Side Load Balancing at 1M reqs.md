@@ -80,3 +80,7 @@ graph TD
 - **Custos:** A frota de proxies do Skipper diminuiu de **>50 pods para 8 pods**, reduzindo drasticamente os custos operacionais do cluster.
     
 - **Velocidade de Engenharia:** Tempo mediano de deploy reduzido de **289 minutos para 128 minutos**.
+
+## Fonte
+
+[Client-Side Load Balancing at 1M Requests per Second](https://engineering.zalando.com/posts/2026/06/client-side-load-balancing.html) - Zalando Engineering

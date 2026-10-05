@@ -83,4 +83,6 @@ graph TD
 
 - **Maturidade operacional:** Drills recorrentes transformam failover em rotina testada, não em procedimento manual raro.
 
-Source: https://arxiv.org/pdf/2603.07345
+## Fonte
+
+[Failover Architecture: Reconciling Reliability and Efficiency in Hyperscale Microservice Infrastructure](https://arxiv.org/pdf/2603.07345) - Uber

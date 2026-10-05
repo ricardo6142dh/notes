@@ -140,9 +140,9 @@ Participar do consenso não exige possuir imediatamente todo o dataset. Ao resta
 
 > **A ideia central do DynamoDB não é um algoritmo específico, mas construir um sistema que continue previsível quando partes dele falham, escalam ou ficam quentes.**
 
-## Referência
+## Fonte
 
-[Amazon DynamoDB: A Scalable, Predictably Performant, and Fully Managed NoSQL Database Service](https://www.usenix.org/system/files/atc22-elhemali.pdf) — USENIX ATC 2022
+[Amazon DynamoDB: A Scalable, Predictably Performant, and Fully Managed NoSQL Database Service](https://www.usenix.org/system/files/atc22-elhemali.pdf) - USENIX ATC 2022
 
 ## Connections
 
